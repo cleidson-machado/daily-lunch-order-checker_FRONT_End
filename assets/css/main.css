@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gray-200;
+}
+
+@layer utilities{
+    .btn {
+        @apply font-bold py-2 px-4 rounded inline-flex items-center;
+      }
+    .btn-blue {
+        @apply bg-violet-800 text-white;
+      }
+    .btn-blue:hover {
+        @apply bg-violet-600;
+      }
+    .btn-disable {
+        @apply bg-violet-500 text-blue-200 font-bold py-2 px-4 rounded inline-flex items-center opacity-50 cursor-not-allowed;
+    }
+    .timer-place {
+        @apply appearance-none text-center;
+    }
+    .timer-btn {
+        @apply px-5 py-2.5 font-medium bg-blue-100 text-blue-500 rounded-lg text-sm inline-flex items-center;
+    }
+}
