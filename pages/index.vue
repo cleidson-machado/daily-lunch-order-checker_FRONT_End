@@ -1,12 +1,16 @@
 <template>
-    <home-view/>
+  <div>
+      <view-header-menu/>
+      <view-body-page/>
+  </div>
 </template>
 
 <script>
-import HomeView from '~/components/Home.vue';
+import ViewHeaderMenu from '~/components/Header.vue';
+import ViewBodyPage from '~/components/BodyPage.vue';
 
 export default {
   name: 'IndexPage',
-  components:{ HomeView },
+  components:{ ViewHeaderMenu, ViewBodyPage },
 }
 </script>
