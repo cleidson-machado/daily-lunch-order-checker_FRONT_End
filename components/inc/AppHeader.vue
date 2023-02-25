@@ -1,8 +1,9 @@
 <template>
-    <div class="flex justify-between bg-white text-black p-2">
-      
-        <div class="p-2">
-
+<header>
+    <nav class=" bg-white text-black p-2 shadow-lg">
+      <div class="flex justify-between">
+        
+        <div>
           <button class="inline-flex items-center justify-center w-8 h-8 mr-2 text-pink-100 transition-colors duration-150 bg-red-700 rounded-full focus:shadow-outline hover:bg-red-800">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 20 20" stroke="currentColor">
               <path clip-rule="evenodd" fill-rule="evenodd" stroke-width="2" d="M8.34 1.804A1 1 0 019.32 1h1.36a1 1 0 01.98.804l.295 1.473c.497.144.971.342 1.416.587l1.25-.834a1 1 0 011.262.125l.962.962a1 1 0 01.125 1.262l-.834 1.25c.245.445.443.919.587 1.416l1.473.294a1 1 0 01.804.98v1.361a1 1 0 01-.804.98l-1.473.295a6.95 6.95 0 01-.587 1.416l.834 1.25a1 1 0 01-.125 1.262l-.962.962a1 1 0 01-1.262.125l-1.25-.834a6.953 6.953 0 01-1.416.587l-.294 1.473a1 1 0 01-.98.804H9.32a1 1 0 01-.98-.804l-.295-1.473a6.957 6.957 0 01-1.416-.587l-1.25.834a1 1 0 01-1.262-.125l-.962-.962a1 1 0 01-.125-1.262l.834-1.25a6.957 6.957 0 01-.587-1.416l-1.473-.294A1 1 0 011 10.68V9.32a1 1 0 01.804-.98l1.473-.295c.144-.497.342-.971.587-1.416l-.834-1.25a1 1 0 01.125-1.262l.962-.962A1 1 0 015.38 3.03l1.25.834a6.957 6.957 0 011.416-.587l.294-1.473zM13 10a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -14,11 +15,9 @@
               <path clip-rule="evenodd" fill-rule="evenodd" stroke-width="2" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z"></path>
             </svg>
           </button>
-
         </div>
 
-        <div class="flex">
-
+        <div>
           <button class="btn btn-blue mx-4">
             <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <path clip-rule="evenodd" fill-rule="evenodd" d="M18 5.25a2.25 2.25 0 00-2.012-2.238A2.25 2.25 0 0013.75 1h-1.5a2.25 2.25 0 00-2.238 2.012c-.875.092-1.6.686-1.884 1.488H11A2.5 2.5 0 0113.5 7v7h2.25A2.25 2.25 0 0018 11.75v-6.5zM12.25 2.5a.75.75 0 00-.75.75v.25h3v-.25a.75.75 0 00-.75-.75h-1.5z"></path>
@@ -41,22 +40,28 @@
             </svg>
             <span>Cardápios da Semana</span>
           </button>
-
         </div>
 
+        <div>
           <button class="timer-btn">
             <svg class="fill-current w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path clip-rule="evenodd" fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z"></path>
             </svg>
             <span>11:40</span>
           </button>
+        </div>
 
-    </div>
+      </div>
+    </nav>
+</header>
+
   </template>
-  
-  <script>
-  export default {
-    name: 'HeaderTopMenu'
-  }
-  </script>
-  
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  name: 'AppHeader'
+})
+
+</script>

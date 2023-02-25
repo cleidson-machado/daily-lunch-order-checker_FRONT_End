@@ -1,16 +1,17 @@
 <template>
   <div>
-      <view-header-menu/>
-      <view-body-page/>
+    <spa-1/>
   </div>
 </template>
 
 <script>
-import ViewHeaderMenu from '~/components/Header.vue';
-import ViewBodyPage from '~/components/BodyPage.vue';
+import Vue from 'vue'
+import Spa1 from '~/components/SinglePageApp1.vue';
 
-export default {
+export default Vue.extend({
   name: 'IndexPage',
-  components:{ ViewHeaderMenu, ViewBodyPage },
-}
+  components: {
+    Spa1
+  }
+})
 </script>
