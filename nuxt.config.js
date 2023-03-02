@@ -32,8 +32,9 @@ export default {
   proxy: {
     //'/api': 'https://benef-api.frontline.cassems.com.br/auth/signin',
     //'/api/': 'https://benef-api.frontline.cassems.com.br',
-    '/api/': { target: 'https://benef-api.frontline.cassems.com.br', pathRewrite: {'^/api/': ''} },
     //'/api2/': 'http://api.another-website.com'
+    '/api/': { target: 'https://benef-api.frontline.cassems.com.br', pathRewrite: {'^/api/': ''} },
+    '/foodapi/': { target: 'http://localhost:3000', pathRewrite: {'^/foodapi/': ''} },
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
