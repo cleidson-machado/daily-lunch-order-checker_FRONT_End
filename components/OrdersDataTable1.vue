@@ -23,7 +23,7 @@
                     <span>{{ order.lunchMeal.lunchBox.name }}</span>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <span>{{ order.orderValue }}</span>
+                    <span>{{ todayDay }} / {{ todayMonth }} / {{ todayYear }}</span>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <span>{{ order.userOrder.firstName }}</span>
@@ -42,19 +42,30 @@
   export default Vue.extend({
     name: 'OrderTable',
 
-    data(){
-        {
-          return {
-            ordersList: [],
-          }
-        }
-      },
+    data: () => ({
+        ordersList: [],
+        todayDay: new Date().getDate().toLocaleString(),
+        todayMonth: new Date().getMonth().toLocaleString(),
+        todayYear: new Date().getFullYear(),
+    }),
 
-    async created() {
-        const orders = await this.$axios.$get('/foodapi/order-for-lunch/listAll');
-            this.ordersList = orders
+    created() {
+        this.fetchOrdersData()
+        },
+
+    watch: {
+
+    },
+    
+    methods: {
+
+      async fetchOrdersData() {
+        const orders = this.$axios.$get('/foodapi/order-for-lunch/listAll');
+            this.ordersList = await orders;
             console.table(orders);
-        }
+            console.log(this.todayDay, this.todayMonth , this.todayYear);
+        },
+    }
 
   })
   
