@@ -50,7 +50,9 @@
     }),
 
     created() {
-        this.fetchOrdersData()
+        this.fetchOrdersData(),
+        this.showDate(),
+        this.showDateFull()
         },
 
     watch: {
@@ -63,8 +65,20 @@
         const orders = this.$axios.$get('/foodapi/order-for-lunch/listAll');
             this.ordersList = await orders;
             console.table(orders);
-            console.log(this.todayDay, this.todayMonth , this.todayYear);
+            console.log('METODO 1 Date:' + this.todayDay, this.todayMonth , this.todayYear); // NÃO ESTÁ TRAZENDO O NÚMERO REF. AO MÊS CORRETO!.. VERIFICAR!
         },
+
+       showDate(){
+            const dateObj = new Date(Date.now());
+            console.log('METODO 2 Date:' + dateObj);
+        },
+
+        showDateFull(){
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const d = new Date(Date.now());
+            var dayName = days[d.getDay()];
+            console.log('METODO 3 Date:' + dayName);
+        }
     }
 
   })
