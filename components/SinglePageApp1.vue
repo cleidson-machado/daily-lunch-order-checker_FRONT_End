@@ -51,81 +51,24 @@
                 </div>
             <!-- END Dropdown menu -->
 
+            <!-- START SPACER -->
             <div class="col-span-3 text-center">
                 <hr class="w-auto h-1 mx-auto my-4 bg-gray-200 border-0 rounded md:my-1">
             </div>
+            <!-- END SPACER -->
 
-            <!-- START DESCRIÇÃO COMPLETA MARMITA E DO ESPAÇO DA FOTO 1 -->
-            <div class=" text-center">
-                <img class="img-food-item" src="ImageTestHoriz.png"/>
+            <!-- START THE TODAY MENU -->
+            <div class="col-span-3">
+                <the-menu-for-today/> <!-- HERE-COMPONENT -->
             </div>
-                <div class="col-span-2 p-0">
-                    <!-- START DESCRIÇÃO COMPLETA MARMITA -->
-                        <div class="grid grid-cols-1 gap-0 p-1">
-                            <div class="txt-label-item">Decrição:</div>
-                            <div class="txt-title-food ">Marmita Normal Simples</div>
-                            <div class="txt-content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                In hendrerit metus id erat pulvinar vehicula.
-                            </div>
-                        </div>
-                    <!-- END DESCRIÇÃO COMPLETA MARMITA -->
-                </div>
-            <!-- END DESCRIÇÃO COMPLETA MARMITA E DO ESPAÇO DA FOTO 1 -->
+            <!-- END THE TODAY MENU -->
 
+            <!-- START SPACER -->
             <div class="col-span-3 text-center" >
                 <hr class="w-auto h-1 mx-auto my-4 bg-gray-200 border-0 rounded md:my-1">
             </div>
+            <!-- END SPACER -->
 
-            <!-- START DESCRIÇÃO COMPLETA DO CARDÁPIO E DO ESPAÇO DA FOTO 2 -->
-                <div class="col-span-2 p-0">
-                    <!-- START DESCRIÇÃO COMPLETA DO CARDÁPIO -->
-                    <div class="col-span-2 ">
-                        
-                        <div class="grid grid-cols-1 gap-0 p-1">
-                            <div class="txt-label-item">Cardápio:</div>
-                            <div class="txt-title-food">Macarrão a Bolonhesa e Frango Grelhado</div>
-                            <div class="txt-content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                In hendrerit metus id erat pulvinar vehicula.
-                            </div>
-                        </div>
-
-                    </div>
-                <!-- END DESCRIÇÃO COMPLETA DO CARDÁPIO -->
-                </div>
-                <div class="text-center">
-                    <img class="img-food-item" src="ImageTestHoriz.png"/>
-                </div>
-            <!-- END DESCRIÇÃO COMPLETA DO CARDÁPIO E DO ESPAÇO DA FOTO 2 -->
-
-            <div class="col-span-3   text-center">
-                <hr class="w-auto h-1 mx-auto my-4 bg-gray-200 border-0 rounded md:my-1">
-            </div>
-
-            <!-- START DADOS NUMÉRICOS -->
-
-                <div class="grid grid-cols-1 gap-0 mt-4 mb-4">
-                    <div class="txt-title-food text-center">CALORIAS MÉDIAS</div>
-                    <div class="txt-content text-center">4500 cal</div>
-                </div>
-                
-                <div class="grid grid-cols-1 gap-0 mt-4 mb-4">
-                    <div class="txt-title-food text-center">PESO MÉDIO</div>
-                    <div class="txt-content text-center">350 gr</div>
-                </div>
-
-                <div class="grid grid-cols-1 gap-0 mt-4 mb-4">
-                    <div class="txt-title-food text-center">PREÇO MÉDIO</div>
-                    <div class="txt-content text-center">R$ 35,00</div>
-                </div>
-
-            <!-- END DADOS NUMÉRICOS -->
-
-            <div class="col-span-3 text-center" >
-                <hr class="w-auto h-1 mx-auto my-4 bg-gray-200 border-0 rounded md:my-1">
-            </div>
-            
             <!-- START CABEÇALHO DA TABELA COM HISTÓRICO DE PEDIDOS RECENTES E DO BTN DE RELAÇÃO DE PEDIDOS -->
             <div class="txt-title-app col-span-2 mt-8">Histórico de Pedidos Recentes</div>  
             <div class="grid grid-cols-1 gap-0 justify-items-end mt-8">
@@ -142,7 +85,7 @@
 
     <!-- START DATA TABLE -->
     <div class="col-span-3">
-        <order-table/>
+        <order-table/> <!-- HERE-COMPONENT -->
     </div>
     <!-- END DATA TABLE -->
 
@@ -163,6 +106,7 @@
     </div>
 
         </div>
+        <!-- kkkkkkkk -->
 
     </div>
     
@@ -171,12 +115,14 @@
 <script>
 import Vue from 'vue'
 import OrderTable from '~/components/OrdersDataTable1.vue'
+import TheMenuForToday from '~/components/MenuForToday.vue';
 
 export default Vue.extend({
   name: 'SinglePageApp1',
 
   components:{
-    OrderTable
+    OrderTable,
+    TheMenuForToday,
   }
   
 })

@@ -20,16 +20,16 @@
         <tbody>
             <tr v-for="order in ordersList" v-bind:key="order.id" >
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <span>{{ toTheUpperCase (order.lunchMeal.lunchBox.name) }}</span>
+                    <span>{{ formatUpperCase(order.lunchMeal.lunchBox.name) }}</span>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <span>{{ formatDateDayJs(order.createdAt) }}</span>
+                    <span>{{ formatDateByDayJs(order.createdAt) }}</span>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <span>{{ toTheUpperCase(order.userOrder.firstName) }}</span>
+                    <span>{{ formatUpperCase(order.userOrder.firstName) }}</span>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <span>{{ toTheUpperCase (order.lunchMeal.name) }}</span>
+                    <span>{{ formatUpperCase (order.lunchMeal.name) }}</span>
                 </td>
             </tr>
         </tbody>
@@ -45,15 +45,10 @@
 
     data: () => ({
         ordersList: [],
-        todayDay: new Date().getDate().toLocaleString(),
-        todayMonth: new Date().getMonth().toLocaleString(),
-        todayYear: new Date().getFullYear(),
     }),
 
     created() {
-        this.fetchOrdersData(),
-        this.showDate(),
-        this.showDateFull()
+        this.fetchOrdersData()
         },
 
     watch: {
@@ -65,44 +60,19 @@
       async fetchOrdersData() {
         const orders = this.$axios.$get('/foodapi/order-for-lunch/listAll');
             this.ordersList = await orders;
-
-            //TEST
-            console.table(orders);
-            console.log('METODO 1 Date:' + this.todayDay, this.todayMonth , this.todayYear); // NÃO ESTÁ TRAZENDO O NÚMERO REF. AO MÊS CORRETO!.. VERIFICAR!
+            console.table(orders);//TEST
         },
 
-       showDate(){
-            const dateObj = new Date(Date.now());
-            console.log('METODO 2 Date:' + dateObj);
-        },
-
-        showDateFull(){
-            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const d = new Date(Date.now());
-            var dayName = days[d.getDay()];
-            console.log('METODO 3 Date:' + dayName);
-        },
-
-        formatDate(givendate) {
-            const theOne = givendate.replace(/T|Z/g, ' ');
-        return theOne
-        },
-
-        formatDateDayJs(givendate){
-            //const theOne = dayjs(givendate).format("MMMM, YYYY");
-            //const theOne = dayjs(givendate).format("MM/DD/YYYY");
-            //const theOne = dayjs(givendate).format("DD/MM/YYYY");
-            //const theOne = dayjs(givendate).format("DD/MMMM/YYYY");
-            //const theOne = dayjs(givendate).format("dddd/MMMM/YYYY");//ESSE PODE SER UTIL.. ADAPTAR AO SALVAR O PEDIDO?
-            const theOne = dayjs(givendate).format("dddd");//ESSE PODE SER UTIL.. ADAPTAR AO SALVAR O PEDIDO?
-            //const theOne = dayjs(givendate).toString();
+        formatDateByDayJs(apiDateValue){
+            const theOne = dayjs(apiDateValue).format("dddd");
         return theOne.toUpperCase()
         },
 
-        toTheUpperCase(theField){
-            const theOne = theField
-            return theOne.toUpperCase()
+        formatUpperCase(theFieldValue){
+            const theOne = theFieldValue
+        return theOne.toUpperCase()
         }
+
     }
 
   })
