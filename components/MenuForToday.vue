@@ -1,19 +1,22 @@
 <template>
     <div>
-        <!-- START AVISO OFF -->
+        <div>
+        <!-- START AVISO_OFF -->
         <div class="grid grid-cols-3 gap-0" v-if="!menuList || !menuList.length">
             <div>
                 <img class="object-scale-down h-40 w-96" src="alertWarningBlack.png"/>
             </div>
             <div class="col-span-2 p-0">
-                <span class="txt-title-food text-center">AVISO: Não há serviço de Marmitas aos Sábados e Domingos...</span>
                 <br>
-                <span class="txt-title-food text-center">Ou o Serviço Pode ter sido Cancelado Por Motivos afins da Gerrência</span>
                 <br>
-                <span class="txt-title-food text-center">Ou, ainda, o MENU deste dia da Semana pode não ter sido Criado!</span>
+                <span class="txt-warning">AVISO: Não há serviço de Marmitas aos Sábados e Domingos...</span>
+                <br>
+                <span class="txt-warning">Ou o Serviço Pode ter sido Cancelado Por Motivos afins da Gerência</span>
+                <br>
+                <span class="txt-warning">Ou, ainda, o MENU deste dia da Semana pode não ter sido Criado!</span>
             </div>
         </div>
-        <!-- END AVISO OFF -->
+        <!-- END AVISO_OFF -->
         <!-- ########################################################################################################### -->
         <!-- START DIV PRINCIPAL DOS ITENS DO DIA CORRENTE -->
         <div class="grid grid-cols-3 gap-0">
@@ -82,6 +85,7 @@
         </div>
         <!-- END DIV PRINCIPAL DOS ITENS DO DIA CORRENTE -->
     </div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -97,7 +101,7 @@ export default Vue.extend({
     }),
 
     created() {
-        this.fetchMenuData()
+        this.fetchMenuDataForToday()
         },
 
     watch: {
@@ -105,7 +109,7 @@ export default Vue.extend({
     },
 
     methods: {
-        async fetchMenuData() {
+        async fetchMenuDataForToday() {
             const nameOfWeekToday = dayjs(Date.now()).format("dddd");
             const menuToday = this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+nameOfWeekToday);
             this.menuList = await menuToday;

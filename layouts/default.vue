@@ -1,7 +1,7 @@
 <template>
     <div>
       <AppHeader />
-          <Nuxt />
+          <Nuxt />  <!-- O CONTEÚDO VEM DESSE CARA (pages\index.vue) ELE TB CONTÉM A TABELA E O MENU -->
       <AppFooter />
     </div>
   </template>

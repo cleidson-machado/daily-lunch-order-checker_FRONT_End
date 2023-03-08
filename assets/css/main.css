@@ -43,6 +43,9 @@ body {
     .txt-label-item {
         @apply font-semibold text-gray-400 text-lg italic
     }
+    .txt-warning {
+        @apply font-bold text-red-700 italic text-xl
+    }
     .img-food-item {
         @apply mt-4 mb-4 rounded-lg shadow-lg sm:object-cover
     }
