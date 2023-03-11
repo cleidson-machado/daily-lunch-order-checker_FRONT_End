@@ -14,49 +14,64 @@
                 <span class="txt-warning">Ou o Serviço Pode ter sido Cancelado Por Motivos afins da Gerência</span>
                 <br>
                 <span class="txt-warning">Ou, ainda, o MENU deste dia da Semana pode não ter sido Criado!</span>
+                <br>
+                <span class="txt-warning">Ou, API PODE ESTAR OFF LINE!!!</span>
             </div>
         </div>
         <!-- END AVISO_OFF -->
+
+
         <!-- ########################################################################################################### -->
+
+
         <!-- START DIV PRINCIPAL DOS ITENS DO DIA CORRENTE -->
-        <div class="grid grid-cols-3 gap-0">
-        <!-- START DESCRIÇÃO COMPLETA MARMITA E DO ESPAÇO DA FOTO 1 -->
-            <div class=" text-center">
-                <img class="img-food-item" src="ImageTestHoriz.png" v-if="menuList.length"/>
-            </div>
-                <div class="col-span-2 p-0">
-                    <!-- START DESCRIÇÃO COMPLETA MARMITA -->
-                        <div class="grid grid-cols-1 gap-0 p-1" v-for="menu in menuList" v-bind:key="menu.id">
-                            <div class="txt-label-item">Embalagem:</div>
-                            <div class="txt-title-food ">{{ menu.lunchBox.name }}</div>
-                            <div class="txt-content">{{ menu.lunchBox.description }}</div>
-                        </div>
-                    <!-- END DESCRIÇÃO COMPLETA MARMITA -->
+            <div class="flex flex-row">
+            <!-- START DESCRIÇÃO COMPLETA MARMITA E DO ESPAÇO DA FOTO 1 -->
+                <div class="basis-1/4" v-for="menu in menuList" v-bind:key="menu.id">
+                    <span>Imagem Ilustrativa!</span>
+                    <img class="img-food-item" v-bind:src="menu.lunchBox.imageLinkPath" v-if="menuList.length"/>
                 </div>
             <!-- END DESCRIÇÃO COMPLETA MARMITA E DO ESPAÇO DA FOTO 1 -->
+                    <div class="basis-1/3 p-2">
+                        <!-- START DESCRIÇÃO COMPLETA MARMITA -->
+                            <div class="grid grid-cols-1 gap-0 p-1" v-for="menu in menuList" v-bind:key="menu.id">
+                                <div class="txt-label-item">Embalagem:</div>
+                                <div class="txt-title-food ">{{ menu.lunchBox.name }}</div>
+                                <p class="txt-content">{{ menu.lunchBox.description }}</p>
+                            </div>
+                        <!-- END DESCRIÇÃO COMPLETA MARMITA -->
+                    </div>
+            </div>
+        <!-- END DIV PRINCIPAL DOS ITENS DO DIA CORRENTE -->
+
                 <!-- START SPACER -->   
                     <div class="col-span-3 text-center" >
                         <hr class="w-auto h-1 mx-auto my-4 bg-gray-200 border-0 rounded md:my-1" v-if="menuList.length">
                     </div>
                 <!-- END SPACER -->
-            <!-- START DESCRIÇÃO COMPLETA DO CARDÁPIO E DO ESPAÇO DA FOTO 2 -->
-                <div class="col-span-2 p-0">
-                    <!-- START DESCRIÇÃO COMPLETA DO CARDÁPIO -->
-                    <div class="col-span-2 ">
-                        
-                        <div class="grid grid-cols-1 gap-0 p-1" v-for="menu in menuList" v-bind:key="menu.id">
-                            <div class="txt-label-item">Cardápio:</div>
+
+
+
+<!-- START DIV PRINCIPAL DOS ITENS DO DIA CORRENTE -->
+            <div class="flex flex-row">
+            <!-- START DESCRIÇÃO COMPLETA MARMITA E DO ESPAÇO DA FOTO 2 -->
+                <div class="basis-1/4" v-for="menu in menuList" v-bind:key="menu.id">
+                    <span>Imagem Ilustrativa!</span>
+                    <img class="img-food-item" v-bind:src="menu.imageLinkPath" v-if="menuList.length"/>
+                </div>
+            <!-- END DESCRIÇÃO COMPLETA MARMITA E DO ESPAÇO DA FOTO 2 -->
+                    <div class="basis-1/3 p-2">
+                        <!-- START DESCRIÇÃO COMPLETA DO MENU -->
+                            <div class="grid grid-cols-1 gap-0 p-1" v-for="menu in menuList" v-bind:key="menu.id">
+                                <div class="txt-label-item">Cardápio:</div>
                             <div class="txt-title-food">{{ menu.name }}</div>
                             <div class="txt-content">{{ menu.description }}</div>
-                        </div>
-
+                            </div>
+                        <!-- END DESCRIÇÃO COMPLETA DO MENU -->
                     </div>
-                <!-- END DESCRIÇÃO COMPLETA DO CARDÁPIO -->
-                </div>
-                <div class="text-center">
-                    <img class="img-food-item" v-bind:src="localImg" v-if="menuList.length"/>
-                </div>
-            <!-- END DESCRIÇÃO COMPLETA DO CARDÁPIO E DO ESPAÇO DA FOTO 2 -->
+            </div>
+<!-- END DIV PRINCIPAL DOS ITENS DO DIA CORRENTE -->
+
 
             <!-- START SPACER -->
             <div class="col-span-3   text-center">
@@ -64,8 +79,9 @@
             </div>
             <!-- END SPACER -->
 
-            <!-- START DADOS NUMÉRICOS -->
 
+            <!-- START DADOS NUMÉRICOS -->
+        <div class="grid grid-cols-3 gap-0">
             <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="menu in menuList" v-bind:key="menu.id">
                 <div class="txt-title-food text-center">CALORIAS MÉDIAS <span class="txt-label-item"> ( Cal )</span></div>
                 <div class="txt-content text-center">{{ menu.averageCalories }}</div>
@@ -80,11 +96,10 @@
                 <div class="txt-title-food text-center">PREÇO MÉDIO<span class="txt-label-item"> ( R$ )</span></div>
                 <div class="txt-content text-center">R$ {{ menu.averagePrice }}</div>
             </div>
-
+        </div>
             <!-- END DADOS NUMÉRICOS -->
         </div>
-        <!-- END DIV PRINCIPAL DOS ITENS DO DIA CORRENTE -->
-    </div>
+        
     </div>
 </template>
 
