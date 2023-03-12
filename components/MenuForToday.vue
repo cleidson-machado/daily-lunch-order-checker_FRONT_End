@@ -1,11 +1,27 @@
 <template>
-    <div class="pt-5 space-y-2 ...">
+    <div class="pt-10 space-y-2 ...">
+
         <div class="container max-w-screen-lg mx-auto px-1">
+
+            <div class="flex justify-between ...">
+                <div class="txt-title-app  text-left">Reserva de Refeições - Centro Operacional <span class="text-red-700 text-base">( Joaquin Murtinho )</span> TI</div>
+                <div class="order-first">
+                    <button class="btn btn-red min-h-full min-w-full">
+                        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"></path>
+                        </svg>
+                        <span>REALIZAR PEDIDO!</span>
+                    </button>
+                </div>
+            </div>
 
             <div class="flex flex-row auto-cols-max auto-rows-auto gap-2 bg-gray-300 border-solid border-4 border-gray-300 rounded-md ...">
 
                 <div class="basis-96" v-for="menu in menuList" v-bind:key="menu.id">
                     <img class="mt-1 mb-1 rounded-lg shadow-lg object-fill h-48 w-96 ..." v-bind:src="menu.lunchBox.imageLinkPath" v-if="menuList.length"/>
+                    <span class="font-extralight text-xs text-black">
+						Imagem Meramente Ilustrativa!......
+					</span>
                 </div>
 
                 <div class="basis-full"  v-for="menu in menuList" v-bind:key="menu.id">
@@ -24,10 +40,13 @@
 
                 <div class="basis-96" v-for="menu in menuList" v-bind:key="menu.id">
                     <img class="mt-1 mb-1 rounded-lg shadow-lg object-fill h-48 w-96 ..." v-bind:src="menu.imageLinkPath" v-if="menuList.length"/>
+                    <span class="font-extralight text-xs text-black">
+						Imagem Meramente Ilustrativa!......
+					</span>
                 </div>
 
                 <div class="basis-full"  v-for="menu in menuList" v-bind:key="menu.id">
-                    <div class="txt-label-item">Cardápio:</div>
+                    <div class="txt-label-item">Cardápio NORMAL de Hoje 13/03/2023 ( Segunda-Feira ):</div>
                     <div class="txt-title-food">{{ menu.name }}</div>
                     <div class="txt-content">{{ menu.description }}</div>
                 </div>
