@@ -2,7 +2,7 @@
     <div>
       <AppHeader />
           <Nuxt />  <!-- O CONTEÚDO VEM DESSE CARA (pages\index.vue) ELE TB CONTÉM A TABELA E O MENU -->
-      <AppFooter />
+      <!-- <AppFooter />  HERE-COMPONENT -->
     </div>
   </template>
   

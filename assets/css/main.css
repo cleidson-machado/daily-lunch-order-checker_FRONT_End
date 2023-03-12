@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    @apply bg-gray-300;
+    @apply bg-blue-400;
 }
 
 @layer utilities{
@@ -40,8 +40,11 @@ body {
     .txt-content {
         @apply font-bold text-red-700 text-base
     }
+    .txt-content-menu-numbers {
+        @apply text-center font-extrabold text-red-700 text-2xl
+    }
     .txt-label-item {
-        @apply font-semibold text-gray-400 text-lg italic
+        @apply font-semibold text-gray-500 text-lg italic
     }
     .txt-warning {
         @apply font-bold text-red-700 italic text-xl
