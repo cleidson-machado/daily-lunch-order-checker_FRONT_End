@@ -1,9 +1,8 @@
 
 <template>
-  <footer class="text-center text-white" style="background-color: #0a4275">
-    <div class="container p-6">
-      <div class="">
-        <p class="flex items-center justify-center">
+  <footer class="text-center text-white mt-auto bg-violet-800">
+    <div class="container max-w-screen-lg mx-auto py-6 px-1 mt-10">
+      <div class="flex items-center justify-center">
           <span class="mr-4">Register for free</span>
           <button
             type="button"
@@ -12,7 +11,6 @@
             data-te-ripple-color="light">
             Sign up!
           </button>
-        </p>
       </div>
     </div>
 
@@ -21,7 +19,7 @@
       style="background-color: rgba(0, 0, 0, 0.2)">
       © 2023 Copyright:
       <a class="text-white" href="https://tailwind-elements.com/"
-        >Tailwind Elements</a
+        >Tailwind Elements by CLEIDSON P. MACHADO</a
       >
     </div>
   </footer>
