@@ -2,15 +2,19 @@
     <div>
 
         <div v-if="menuList.length === 0">
-            
-        <div class="pt-10 space-y-2 ...">
-            <div class="container max-w-screen-lg mx-auto px-1">
-                <div class="flex justify-between ...">
-                    <strong>{{ erroMsn }}</strong>
+            <!-- START SHOW A WARNING -->   
+                <div class="pt-6">
+                    <div class="container max-w-screen-lg mx-auto px-1">
+                        <div class="grid grid-cols-1 gap-4 place-items-center h-16 ...">
+                            <div
+                                class="mb-4 rounded-lg bg-warning-100 py-5 px-6 text-base text-warning-800"
+                                role="alert">
+                                <strong>{{ erroMsn }}</strong>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
+            <!-- END SHOW A WARNING -->
         </div>
 
             <div v-else>
@@ -101,6 +105,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import * as dayjs from 'dayjs'
+import { Warning } from 'postcss'
+//import * as te from 'tw-elements'
 
 export default Vue.extend({
     name: 'TheMenuForToday',
@@ -132,21 +138,23 @@ export default Vue.extend({
         },
 
         nameOfWeekToday(){
-            let response = dayjs(Date.now()).format("dddd");
+            let response = dayjs(Date.now()).format("dddd").toUpperCase();
             return ( response )
         },
 
         async fetchSomething() {
-           try {
-            const nameToday = this.nameOfWeekToday();
-            const response = this.$axios.$get('/foodapi/lunch-meal-menu/listBy/' +nameToday);
-            this.menuList = await response;
-           } catch (err) {
-            //alert(err);
-            this.erroMsn = err
-            console.log('xxxxx: ' + err)
-           }
-    },
+            try {
+                const nameOfWeekToday = this.nameOfWeekToday();
+                const menuToday = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+nameOfWeekToday);
+
+                if (menuToday.length != 0)  { this.menuList = menuToday }
+                else throw new Error('NÃO EXISTEM REFEIÇÕES / MENUS CRIADOS PARA ESSE DIA DA SEMANA!');
+
+            } catch (e) {
+                this.erroMsn = e
+                console.log(e)
+            }
+        },
 
         async fetchSomethingBackup() {
             const nameOfWeekToday = dayjs(Date.now()).format("dddd");
@@ -166,6 +174,19 @@ export default Vue.extend({
             alert('SERVIDOR DA API NÃO DISPONÍVEL com : ' + error);
            }
     },
+
+    async fetchSomethingBackup3() {
+           try {
+            const nameToday = this.nameOfWeekToday();
+            const response = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/' +nameToday);
+            this.menuList = response;
+            console.log('YYYYY: ' + response)
+           } catch (err) {
+            //alert(err);
+            this.erroMsn = err
+            console.log('XXXXX: ' + err)
+           }
+        },
 
 }
 
