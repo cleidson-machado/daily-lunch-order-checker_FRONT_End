@@ -1,7 +1,5 @@
 <template>
-  <div>
     <spa-1/>
-  </div>
 </template>
 
 <script>

@@ -19,7 +19,7 @@
         </div>
 
                 <div v-else>
-                    <div class="container max-w-screen-lg mx-auto px-1 mt-10">
+        <div class="container max-w-screen-lg mx-auto px-1 mt-10 mb-28">
 
             <!-- START CABEÇALHO DA TABELA COM HISTÓRICO DE PEDIDOS RECENTES E DO BTN DE RELAÇÃO DE PEDIDOS -->
                 <div class="flex justify-between ...">

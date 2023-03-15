@@ -1,6 +1,6 @@
 <template>
     <div>
-      <AppHeader />
+       <!-- <AppHeader />  HERE-COMPONENT -->
           <Nuxt />  <!-- O CONTEÚDO VEM DESSE CARA (pages\index.vue) ELE TB CONTÉM A TABELA E O MENU -->
       <AppFooter /> <!--  HERE-COMPONENT -->
     </div>

@@ -1,27 +1,38 @@
 
 <template>
-  <footer class="text-center text-white mt-auto bg-violet-800">
-    <div class="container max-w-screen-lg mx-auto py-6 px-1 mt-10">
-      <div class="flex items-center justify-center">
-          <span class="mr-4">Register for free</span>
-          <button
-            type="button"
-            class="inline-block rounded-full border-2 border-neutral-50 px-6 pt-2 pb-[6px] text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-            data-te-ripple-init
-            data-te-ripple-color="light">
-            Sign up!
-          </button>
-      </div>
-    </div>
+  <footer class="w-full h-16 bg-violet-800 border-t-4 border-violet-500
+            fixed left-0 bottom-0
+            flex justify-center items-center
+            text-white text-2xl
+            ">
+          
+            <div
+              class="inline-flex shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+              role="group">
+              <button
+                type="button"
+                class="inline-block rounded-l bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700"
+                data-te-ripple-init
+                data-te-ripple-color="light">
+                REGISTRE-SE
+              </button>
+              <button
+                type="button"
+                class="inline-block bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700"
+                data-te-ripple-init
+                data-te-ripple-color="light">
+                ADMINISTRAÇÃO
+              </button>
+              <button
+                type="button"
+                class="inline-block rounded-r bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700"
+                data-te-ripple-init
+                data-te-ripple-color="light">
+                RELATÓRIOS
+              </button>
+            </div>
+          
 
-    <div
-      class="p-4 text-center"
-      style="background-color: rgba(0, 0, 0, 0.2)">
-      © 2023 Copyright:
-      <a class="text-white" href="https://tailwind-elements.com/"
-        >Tailwind Elements by CLEIDSON P. MACHADO</a
-      >
-    </div>
   </footer>
 </template>
 
