@@ -64,7 +64,7 @@
                                 </div>
 
                                 <div class="basis-full"  v-for="menu in menuList" v-bind:key="menu.id">
-                                    <div class="txt-label-item">Cardápio NORMAL de Hoje 13/03/2023 ( Segunda-Feira ):</div>
+                                    <div class="txt-label-item">Cardápio {{menu.type}} de Hoje {{todayDateBr}} ( <span class="txt-content">{{todayNameOfWeekBr}}</span> ):</div>
                                     <div class="txt-title-food">{{ menu.name }}</div>
                                     <div class="txt-content">{{ menu.description }}</div>
                                 </div>
@@ -108,12 +108,15 @@
 <script lang="ts">
 import Vue from 'vue'
 import * as dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
 
 export default Vue.extend({
     name: 'TheMenuForToday',
 
     data: () => ({
         menuList: [],
+        todayDateBr: '',
+        todayNameOfWeekBr: '',
         erroMsn: '',
     }),
 
@@ -133,10 +136,24 @@ export default Vue.extend({
         return (response)
     },
 
+    nameOfWeekTodayBrFormat(){
+        let response = dayjs(Date.now()).locale('pt-br').format("dddd").toUpperCase();
+        return (response)
+    },
+
+    todayDateBrFormat(){
+        let response = dayjs(Date.now()).format("DD/MM/YYYY");
+        return (response)
+    },
+
     async fetchMenuDataForToday() {
         try {
             const nameOfWeekToday = this.nameOfWeekToday();
             const menuToday = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+nameOfWeekToday);
+            
+            //JUST SET THE CURRENT DATE PT-BR FOR SHOW IN A TODAY MENU...
+            this.todayDateBr = this.todayDateBrFormat();
+            this.todayNameOfWeekBr = this.nameOfWeekTodayBrFormat();
 
             if (menuToday.length != 0)  { this.menuList = menuToday }
             else throw new Error('NÃO EXISTEM REFEIÇÕES / OPÇÕES DE MENU CRIADOS PARA ESSE DIA DA SEMANA!');
