@@ -109,20 +109,28 @@
 import Vue from 'vue'
 import * as dayjs from 'dayjs'
 import 'dayjs/locale/pt-br'
+import axios from 'axios'
 
 export default Vue.extend({
     name: 'TheMenuForToday',
 
-    data: () => ({
-        menuList: [],
-        todayDateBr: '',
-        todayNameOfWeekBr: '',
-        erroMsn: '',
-    }),
+    data: () => {
+        return {
+            menuList: [],
+            todayDateBr: '',
+            todayNameOfWeekBr: '',
+            erroMsn: '',
+        }
+    },
 
     created() {
         this.nameOfWeekToday()
         this.fetchMenuDataForToday()
+        //this.fetchMenuDataForTodayTest()
+        //this.fetchMenuDataForTodayTest2()
+        //this.fetchMenuDataForTodayTest3()
+        //this.fetchMenuDataForTodayTest4()
+        //this.fetchMenuDataForTodayTest5()
         },
 
     watch: {
@@ -146,7 +154,60 @@ export default Vue.extend({
         return (response)
     },
 
+    //BKP 2 USING AXIOS USING JSON.stringify()
     async fetchMenuDataForToday() {
+        try {
+            const nameOfWeekToday = this.nameOfWeekToday();
+            const response = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+nameOfWeekToday);
+            
+            //JUST SET THE CURRENT DATE PT-BR FOR SHOW IN A TODAY MENU...
+            this.todayDateBr = this.todayDateBrFormat();
+            this.todayNameOfWeekBr = this.nameOfWeekTodayBrFormat();
+
+            //TEST
+            //console.log(JSON.stringify(menuToday.status))
+            //console.log(JSON.stringify(menuToday))
+            console.table(JSON.stringify(response))
+
+            if (response.length != 0) { this.menuList = response }
+            else throw new Error('NÃO EXISTEM REFEIÇÕES / OPÇÕES DE MENU CRIADOS PARA ESSE DIA men DA SEMANA!')
+
+            return {response}
+
+        } catch (e) {
+            this.erroMsn = e
+            console.log(e)
+        }
+    },
+
+    //BKP USING AXIOS USING JSON.stringify()
+    async fetchMenuDataForTodayBKP_json() {
+        try {
+            const nameOfWeekToday = this.nameOfWeekToday();
+            const response = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+nameOfWeekToday);
+            
+            //JUST SET THE CURRENT DATE PT-BR FOR SHOW IN A TODAY MENU...
+            this.todayDateBr = this.todayDateBrFormat();
+            this.todayNameOfWeekBr = this.nameOfWeekTodayBrFormat();
+
+            //TEST
+            //console.log(JSON.stringify(menuToday.status))
+            //console.log(JSON.stringify(menuToday))
+            console.table(JSON.stringify(response))
+
+            if (response.length != 0) { this.menuList = response }
+            else throw new Error('NÃO EXISTEM REFEIÇÕES / OPÇÕES DE MENU CRIADOS PARA ESSE DIA men DA SEMANA!')
+
+            return {response}
+
+        } catch (e) {
+            this.erroMsn = e
+            console.log(e)
+        }
+    },
+
+    //BKP 2 USING AXIOS RECENTE WORK GOOD...
+    async fetchMenuDataForTodayBkp() {
         try {
             const nameOfWeekToday = this.nameOfWeekToday();
             const menuToday = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+nameOfWeekToday);
@@ -154,6 +215,9 @@ export default Vue.extend({
             //JUST SET THE CURRENT DATE PT-BR FOR SHOW IN A TODAY MENU...
             this.todayDateBr = this.todayDateBrFormat();
             this.todayNameOfWeekBr = this.nameOfWeekTodayBrFormat();
+
+            //TEST
+            //console.log(menuToday)
 
             if (menuToday.length != 0)  { this.menuList = menuToday }
             else throw new Error('NÃO EXISTEM REFEIÇÕES / OPÇÕES DE MENU CRIADOS PARA ESSE DIA DA SEMANA!');
@@ -163,6 +227,89 @@ export default Vue.extend({
             console.log(e)
         }
     },
+
+    async fetchMenuDataForTodayTest() {
+        try {
+            const nameOfWeekToday = this.nameOfWeekToday();
+            const menuToday = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+nameOfWeekToday)
+            .then(function (response) {
+                console.log(response.data);
+                console.log(response.status);
+                console.log(response.statusText);
+                console.log(response.headers);
+                console.log(response.config);
+            });
+            
+            //TEST
+            console.log(menuToday);
+
+        } catch (e) {
+            this.erroMsn = e
+            console.log('TXT-Error: ' + e)
+        }
+    },
+
+    async fetchMenuDataForTodayTest2() {
+        try {
+            const nameOfWeekToday = this.nameOfWeekToday();
+            const res = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+nameOfWeekToday)
+            .then((response) => {
+                console.log('kkkkk: ' + response.$axios);
+            });
+
+            let objectPosts = {}
+            objectPosts = res
+
+            //TEST
+            //console.log('DO OBEJTO: ' + objectPosts);
+            
+            //TEST
+            //console.log(res);
+
+        } catch (e) {
+            this.erroMsn = e
+            console.log('TXT-Error: ' + e)
+        }
+    },
+
+    //ANOTHER WAY OF USING??
+    async fetchMenuDataForTodayTest3() {
+        try {
+            const nameOfWeekToday = this.nameOfWeekToday();
+            const response = await this.$axios({
+                    method: 'GET',
+                    url: '/foodapi/lunch-meal-menu/listBy/' +nameOfWeekToday,
+                });
+
+            //console.log('CONSULTA:' + JSON.stringify(response.data));
+            console.table('CONSULTA:' + JSON.stringify(response.status));
+            //console.table(response);
+
+            return {
+                response
+            }
+
+        } catch (e) {
+            this.erroMsn = e
+            console.log('TXT-Error: ' + e)
+        }
+    },
+
+       //TEST...4
+       async fetchMenuDataForTodayTest4() {
+
+        let data = await fetch("http://localhost:3000/lunch-meal-menu/listAll")
+                        .then((response) => response.json())
+                        .then((data) => console.log(data));
+
+        console.log('kkkkkkkkkk:' + data)
+    },
+
+    //TEST...5
+        fetchMenuDataForTodayTest5() {
+            console.log('kkkkkkkkkk:')
+        },
+
 
 }
 

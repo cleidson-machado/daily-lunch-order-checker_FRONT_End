@@ -1,8 +1,4 @@
 export default {
-  server: {
-    port: 3333, // default: 3000
-    host: '0.0.0.0' // default: localhost
-  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'daily-lunch-order-checker',
@@ -25,18 +21,6 @@ export default {
     '@/assets/css/main.css',
   ],
 
-  axios: {
-    proxy: true
-  },
-
-  proxy: {
-    //'/api': 'https://benef-api.frontline.cassems.com.br/auth/signin',
-    //'/api/': 'https://benef-api.frontline.cassems.com.br',
-    //'/api2/': 'http://api.another-website.com'
-    '/api/': { target: 'https://benef-api.frontline.cassems.com.br', pathRewrite: {'^/api/': ''} },
-    '/foodapi/': { target: 'http://localhost:3000', pathRewrite: {'^/foodapi/': ''} },
-  },
-
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
   ],
@@ -46,14 +30,23 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxt/postcss8'
+    '@nuxt/postcss8',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/proxy',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
   ],
+
+  axios: {
+    proxy: true,
+    proxyHeaders: false,
+  },
+
+  proxy: {
+    '/api/': { target: 'https://benef-api.frontline.cassems.com.br', pathRewrite: {'^/api/': ''} },
+    '/foodapi/': { target: 'http://localhost:3000', pathRewrite: {'^/foodapi/': ''} },
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
