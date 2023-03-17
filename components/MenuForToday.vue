@@ -24,7 +24,7 @@
                         <div class="flex justify-between ...">
                             <div class="txt-title-app  text-left">Reserva de Refeições - Operacional TI <span class="text-red-700 text-base">( Joaquin Murtinho )</span></div>
                             <div class="order-first">
-                                <button class="btn btn-red min-h-full min-w-full">
+                                <button v-on:click="sendNewOrderForToday" class="btn btn-red min-h-full min-w-full">
                                     <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"></path>
                                     </svg>
@@ -126,6 +126,7 @@ export default Vue.extend({
     created() {
         this.nameOfDayWeekToday()
         this.fetchMenuDataForToday()
+        //this.fetchMenuDataForToday2()
         },
 
     watch: {
@@ -153,7 +154,7 @@ export default Vue.extend({
     async fetchMenuDataForToday() {
         try {
             const dayName = this.nameOfDayWeekToday();
-            const response = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+dayName, { progress: true });
+            const response = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+dayName);
             
             //SET THE CURRENT DATE PT-BR
             this.todayDateBr = this.todayDateBrFormat();
@@ -185,6 +186,64 @@ export default Vue.extend({
             console.log('ERROR_LOG_1:' + e)
         }
     },
+
+    //TEST USING PROMISES... DOESN'T WORK WELL BECAUSE THE ANSWER STOPS BEFORE RUNNING THE END OF THE ALGORITHM
+    async fetchMenuDataForToday2(){
+            const dayName = this.nameOfDayWeekToday();
+            this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+dayName)
+            .then(response => {
+            
+            //SET THE CURRENT DATE PT-BR
+            this.todayDateBr = this.todayDateBrFormat();
+            this.todayNameOfWeekBr = this.nameOfDayWeekTodayBrFormat();
+
+            console.log('USANDO_PROMISE: ' + this.menuList.length)
+
+             //RETURN TO DATA
+             this.menuList = response
+
+            })
+            .catch(error => {
+                console.log('ERROR_LOG_2: ' + error)
+
+                if (dayName == 'SATURDAY' && this.menuList.length != 0) 
+                { 
+                    //RETURN WARNING SATURDAY
+                    throw new Warning('NO ' + this.todayNameOfWeekBr + ' NÃO HÁ FORNECIMENTO DE REFEIÇÕES!')
+                }
+                else if (dayName == 'SUNDAY' && this.menuList.length != 0) 
+                { 
+                    //RETURN WARNING SUNDAY
+                    throw new Warning('NO ' + this.todayNameOfWeekBr + ' NÃO HÁ FORNECIMENTO DE REFEIÇÕES!')
+                }
+                else 
+                {
+                    throw new Error('NÃO EXISTEM!!!, AINDA, OPÇÕES DE MENU CRIADOS PARA: ' + '| ' + this.todayNameOfWeekBr + ' |')  
+                }
+
+            })
+    },
+
+    //TO SEND A NEW ORDER.. JUST A BASIC TEST
+    async sendNewOrderForToday() {
+        let theOrder = this.menuList
+
+        //OBJECT CREATION TO SEND ORDER
+        let getLunchMealId = this.menuList[0].id
+        let getAveragePrice = this.menuList[0].averagePrice
+
+        //HOW CREATE!?
+        let getuserOrderId = 'f4da5de2-a214-4097-865e-199b77af9530'
+        let getamount = '1'
+
+        //TESTS
+        console.log('EXIBINDO_ID:' + getLunchMealId)
+        console.log('EXIBINDO_PREÇO:' + getAveragePrice)
+
+        //console.log( JSON.stringify(theOrder) )
+        //console.log( 'kkkkkkkkk' )
+        //console.log('EXIBINDO_ID:' + this.menuList[0].id)
+    }
 
 }
 
