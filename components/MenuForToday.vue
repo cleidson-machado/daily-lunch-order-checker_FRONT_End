@@ -33,7 +33,9 @@
                         <div class="flex justify-between ...">
                             <div class="txt-title-app  text-left">Reserva de Refeições - Operacional TI <span class="text-red-700 text-base">( Joaquin Murtinho )</span></div>
                             <div class="order-first">
-                                <button v-on:click="sendNewOrderForToday" class="btn btn-red min-h-full min-w-full">
+                                <button 
+                                    v-on:click="showModal = true"
+                                    class="btn btn-red min-h-full min-w-full">
                                     <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"></path>
                                     </svg>
@@ -83,29 +85,30 @@
                             </div>
 
                             <div class="container max-w-screen-lg mx-auto px-1">
-
                                 <!-- START DADOS NUMÉRICOS -->
-                            <div class="grid grid-cols-3 gap-0 bg-gray-300 border-solid border-4 border-violet-600 rounded-md ...">
-                                <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="menu in menuList" v-bind:key="menu.id">
-                                    <div class="txt-title-food text-center">CALORIAS MÉDIAS <span class="txt-label-item"> ( Cal )</span></div>
-                                    <div class="txt-content-menu-numbers">{{ menu.averageCalories }}</div>
-                                    <div class="font-extralight text-center text-xs text-black">valor calórico estimado...</div>
-                                </div>
-                                
-                                <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="menu in menuList" v-bind:key="menu.id">
-                                    <div class="txt-title-food text-center">PESO MÉDIO<span class="txt-label-item"> ( g )</span></div>
-                                    <div class="txt-content-menu-numbers">{{ menu.averageWeight }}</div>
-                                    <div class="font-extralight text-center text-xs text-black">pessagem estimada...</div>
-                                </div>
+                                <div class="grid grid-cols-3 gap-0 bg-gray-300 border-solid border-4 border-violet-600 rounded-md ...">
+                                    <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="menu in menuList" v-bind:key="menu.id">
+                                        <div class="txt-title-food text-center">CALORIAS MÉDIAS <span class="txt-label-item"> ( Cal )</span></div>
+                                        <div class="txt-content-menu-numbers">{{ menu.averageCalories }}</div>
+                                        <div class="font-extralight text-center text-xs text-black">valor calórico estimado...</div>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="menu in menuList" v-bind:key="menu.id">
+                                        <div class="txt-title-food text-center">PESO MÉDIO<span class="txt-label-item"> ( g )</span></div>
+                                        <div class="txt-content-menu-numbers">{{ menu.averageWeight }}</div>
+                                        <div class="font-extralight text-center text-xs text-black">pessagem estimada...</div>
+                                    </div>
 
-                                <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="menu in menuList" v-bind:key="menu.id">
-                                    <div class="txt-title-food text-center">PREÇO MÉDIO<span class="txt-label-item"> ( R$ )</span></div>
-                                    <div class="txt-content-menu-numbers">R$ {{ menu.averagePrice }}</div>
-                                    <div class="font-extralight text-center text-xs text-black">preço simbólico estimado...</div>
+                                    <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="menu in menuList" v-bind:key="menu.id">
+                                        <div class="txt-title-food text-center">PREÇO MÉDIO<span class="txt-label-item"> ( R$ )</span></div>
+                                        <div class="txt-content-menu-numbers">R$ {{ menu.averagePrice }}</div>
+                                        <div class="font-extralight text-center text-xs text-black">preço simbólico estimado...</div>
+                                    </div>
                                 </div>
-                            </div>
                                 <!-- END DADOS NUMÉRICOS -->
                             </div>
+
+                            <order-modal-1 v-show="showModal" @close-modal="showModal = false"/>
 
                 </div> 
 
@@ -116,11 +119,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import OrderLunchModal from '@/components/OrderModal1.vue'
+
 import * as dayjs from 'dayjs'
 import 'dayjs/locale/pt-br'
 
 export default Vue.extend({
     name: 'TheMenuForToday',
+
+    components: {
+        OrderLunchModal
+    },
 
     data: () => {
         return {
@@ -128,7 +137,8 @@ export default Vue.extend({
             todayDateBr: '',
             todayNameOfWeekBr: '',
             infoTextMsn: '',
-            errorCode: 0
+            errorCode: 0,
+            showModal: false,
         }
     },
 
@@ -158,16 +168,16 @@ export default Vue.extend({
         return (response)
     },
 
-        //OK.. REVIEW
+    //OK.. REVIEW
     async fetchMenuDataForToday() {
         try {
             const dayName = this.nameOfDayWeekToday();
             const resApi = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+dayName);
-            
+
             //SET THE CURRENT DATE PT-BR
             this.todayDateBr = this.todayDateBrFormat();
             this.todayNameOfWeekBr = this.nameOfDayWeekTodayBrFormat();
-    
+
             if (dayName == 'SATURDAY' && resApi.length != 0) 
             { 
                 //RETURN WARNING SATURDAY
