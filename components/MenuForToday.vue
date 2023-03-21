@@ -2,19 +2,28 @@
     <div>
 
         <div v-if="menuList.length === 0">
-            <!-- START SHOW A WARNING -->   
+            <!-- START SHOW A WARNING OR ERROR MENSAGE -->   
                 <div class="pt-6">
                     <div class="container max-w-screen-lg mx-auto px-1">
                         <div class="grid grid-cols-1 gap-4 place-items-center h-16 ...">
-                            <div
-                                class="mb-4 rounded-lg bg-warning-100 py-5 px-6 text-base text-warning-800"
-                                role="alert">
-                                <strong>{{ erroMsn }}</strong>
+                            <div v-if="errorCode === 504">
+                                <div
+                                    class="mb-4 rounded-lg bg-danger-100 py-5 px-6 text-base text-danger-700"
+                                    role="alert">
+                                    <p class="font-bold text-danger-700">{{ infoTextMsn }}</p>
+                                </div>
+                            </div>
+                            <div v-else>
+                                <div
+                                    class="mb-4 rounded-lg bg-warning-50 py-5 px-6 text-base text-warning-800"
+                                    role="alert">
+                                    <p class="font-bold text-warning-900">{{ infoTextMsn }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <!-- END SHOW A WARNING -->
+            <!-- END SHOW A WARNING OR ERROR MENSAGE -->
         </div>
 
             <div v-else>
@@ -109,7 +118,6 @@
 import Vue from 'vue'
 import * as dayjs from 'dayjs'
 import 'dayjs/locale/pt-br'
-import { Warning } from 'postcss'
 
 export default Vue.extend({
     name: 'TheMenuForToday',
@@ -119,14 +127,14 @@ export default Vue.extend({
             menuList: [],
             todayDateBr: '',
             todayNameOfWeekBr: '',
-            erroMsn: '',
+            infoTextMsn: '',
+            errorCode: 0
         }
     },
 
     created() {
         this.nameOfDayWeekToday()
         this.fetchMenuDataForToday()
-        //this.fetchMenuDataForToday2()
         },
 
     watch: {
@@ -150,78 +158,41 @@ export default Vue.extend({
         return (response)
     },
 
-    //OK.. REVIEW
+        //OK.. REVIEW
     async fetchMenuDataForToday() {
         try {
             const dayName = this.nameOfDayWeekToday();
-            const response = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+dayName);
+            const resApi = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+dayName);
             
             //SET THE CURRENT DATE PT-BR
             this.todayDateBr = this.todayDateBrFormat();
             this.todayNameOfWeekBr = this.nameOfDayWeekTodayBrFormat();
-
     
-            if (dayName == 'SATURDAY' && response.length != 0) 
+            if (dayName == 'SATURDAY' && resApi.length != 0) 
             { 
                 //RETURN WARNING SATURDAY
-                throw new Warning('NO ' + this.todayNameOfWeekBr + ' NÃO HÁ FORNECIMENTO DE REFEIÇÕES!')
+                this.infoTextMsn = ('NO ' + this.todayNameOfWeekBr + ' NÃO HÁ FORNECIMENTO DE REFEIÇÕES!')
             }
-            else if (dayName == 'SUNDAY' && response.length != 0) 
+            else if (dayName == 'SUNDAY' && resApi.length != 0) 
             { 
                 //RETURN WARNING SUNDAY
-                throw new Warning('NO ' + this.todayNameOfWeekBr + ' NÃO HÁ FORNECIMENTO DE REFEIÇÕES!')
+                this.infoTextMsn = ('NO ' + this.todayNameOfWeekBr + ' NÃO HÁ FORNECIMENTO DE REFEIÇÕES!')
             }
-            else if (response.length != 0) 
+            else if (resApi.length != 0) 
             { 
                 //RETURN TO DATA
-                this.menuList = response
+                this.menuList = resApi
             }
             else 
             {
-                throw new Error('NÃO EXISTEM!!!, AINDA, OPÇÕES DE MENU CRIADOS PARA: ' + '| ' + this.todayNameOfWeekBr + ' |')  
+                this.infoTextMsn = ('NÃO EXISTEM!!!, AINDA, OPÇÕES DE MENU CRIADOS PARA: ' + '| ' + this.todayNameOfWeekBr + ' |')
             }
 
         } catch (e) {
-            this.erroMsn = e
-            console.log('ERROR_LOG_1:' + e)
+            this.infoTextMsn = 'Error Code ( ' + e.response.status + ' ) Sorry The API sever is Of Line?'
+            this.errorCode = e.response.status
+            console.log(this.infoTextMsn)
         }
-    },
-
-    //TEST USING PROMISES... DOESN'T WORK WELL BECAUSE THE ANSWER STOPS BEFORE RUNNING THE END OF THE ALGORITHM
-    async fetchMenuDataForToday2(){
-            const dayName = this.nameOfDayWeekToday();
-            this.$axios.$get('/foodapi/lunch-meal-menu/listBy/'+dayName)
-            .then(response => {
-            
-            //SET THE CURRENT DATE PT-BR
-            this.todayDateBr = this.todayDateBrFormat();
-            this.todayNameOfWeekBr = this.nameOfDayWeekTodayBrFormat();
-
-            console.log('USANDO_PROMISE: ' + this.menuList.length)
-
-             //RETURN TO DATA
-             this.menuList = response
-
-            })
-            .catch(error => {
-                console.log('ERROR_LOG_2: ' + error)
-
-                if (dayName == 'SATURDAY' && this.menuList.length != 0) 
-                { 
-                    //RETURN WARNING SATURDAY
-                    throw new Warning('NO ' + this.todayNameOfWeekBr + ' NÃO HÁ FORNECIMENTO DE REFEIÇÕES!')
-                }
-                else if (dayName == 'SUNDAY' && this.menuList.length != 0) 
-                { 
-                    //RETURN WARNING SUNDAY
-                    throw new Warning('NO ' + this.todayNameOfWeekBr + ' NÃO HÁ FORNECIMENTO DE REFEIÇÕES!')
-                }
-                else 
-                {
-                    throw new Error('NÃO EXISTEM!!!, AINDA, OPÇÕES DE MENU CRIADOS PARA: ' + '| ' + this.todayNameOfWeekBr + ' |')  
-                }
-
-            })
     },
 
     //TO SEND A NEW ORDER.. JUST A BASIC TEST
@@ -243,6 +214,7 @@ export default Vue.extend({
         //console.log( JSON.stringify(theOrder) )
         //console.log( 'kkkkkkkkk' )
         //console.log('EXIBINDO_ID:' + this.menuList[0].id)
+
     }
 
 }
