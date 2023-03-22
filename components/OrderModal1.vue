@@ -1,26 +1,58 @@
-!<template>
-    <div class="modal-overlay" @click="$emit('close-modal')">
-        <div class="modal" @click.stop>
-            <img class="check" src="@/static/check-icon.png" alt="" />
-                <h6>Saved!</h6>
-                <p>Your Details have been saved Successfully</p>
-                <button>Go Home</button>
+######## NOVO! ###############
+<template>
+  <div id="wrapper" class="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex" v-on:click="handleClose">
+    <div id="wrapperIn"  class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+      <div class="mt-5 bg-white sm:rounded-lg p-2">
+        <div class="items-center px-4 py-3">
+          <strong>( ENVIO DE PEDIDO )</strong>
         </div>
-        <div class="close" @click="$emit('close-modal')">
-            <img class="close-img" src="@/static/close-icon.svg" alt="" />
-        </div>
+        <div class="items-center px-4 py-3">
+        <button
+          id="order-btn"
+          class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
+          @click="$emit('close-modal')"
+          >
+          OK!
+        </button>
+        <button
+          id="schedule-btn"
+          class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
+          @click="$emit('close-modal')"
+          >
+          AGENDAR...
+        </button>
+        <button
+          id="out-btn"
+          class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
+          @click="$emit('close-modal')"
+          >
+          SAIR
+        </button>
+		</div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 import Vue from 'vue'
 
-export default Vue.extend({
+  export default Vue.extend({
     name: 'OrderLunchModal',
 
-})
+    methods: {
+      handleClose(e){
+        if(e.target.id === 'wrapper' || e.target.id === 'wrapperIn') 
+        {
+          this.$emit('close-modal')
+        }
+      }
+    }
 
+
+  })
 </script>
+
 
 <style scoped>
 .modal-overlay {
