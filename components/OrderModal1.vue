@@ -1,34 +1,27 @@
 ######## NOVO! ###############
 <template>
   <div id="wrapper" class="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex" v-on:click="handleClose">
-    <div id="wrapperIn"  class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-      <div class="mt-5 bg-white sm:rounded-lg p-2">
-        <div class="items-center px-4 py-3">
-          <strong>( ENVIO DE PEDIDO )</strong>
+    <div id="wrapperIn" class="w-[900px] mt-16 mx-auto">
+      <div class=" bg-white sm:rounded-lg p-2 box-content"> 
+        <div class="grid grid-cols-3 gap-4">
+          <div class="order-first">Envio da Ordem do Pedido</div>
+          <div class="..."></div>
+          <div class="..."></div>
+          <div class="...">ID do PEDIDO: {{ idItem }}</div>
+          <div class="...">VALOR R$ (UNID): {{ priceItem }}</div>
+          <div class="..."></div>
+          <div class="..."></div>
+          <div class="order-last">
+          <button 
+            v-on:click="$emit('close-modal')"
+            class="btn btn-red min-h-full min-w-full">
+            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"></path>
+            </svg>
+            <span>OK - ENVIAR!</span>
+          </button>
+          </div>
         </div>
-        <div class="items-center px-4 py-3">
-        <button
-          id="order-btn"
-          class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
-          @click="$emit('close-modal')"
-          >
-          OK!
-        </button>
-        <button
-          id="schedule-btn"
-          class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
-          @click="$emit('close-modal')"
-          >
-          AGENDAR...
-        </button>
-        <button
-          id="out-btn"
-          class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
-          @click="$emit('close-modal')"
-          >
-          SAIR
-        </button>
-		</div>
       </div>
     </div>
   </div>
@@ -39,6 +32,13 @@ import Vue from 'vue'
 
   export default Vue.extend({
     name: 'OrderLunchModal',
+
+    data: () => {
+        return {
+            idItem: localStorage.getItem('theLunchMealId'),
+            priceItem: localStorage.getItem('theAveragePrice')
+        }
+    },
 
     methods: {
       handleClose(e){
@@ -54,58 +54,6 @@ import Vue from 'vue'
 </script>
 
 
-<style scoped>
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #000000da;
-}
+<style>
 
-.modal {
-  text-align: center;
-  background-color: white;
-  height: 600px;
-  width: 800px;
-  margin-top: 2%;
-  padding: 5px 0;
-  border-radius: 5px;
-}
-.close {
-  margin: 2% 0 0 4px;
-  cursor: pointer;
-}
-
-.close-img {
-  width: 25px;
-}
-
-.check {
-  width: 150px;
-}
-
-h6 {
-  font-weight: 500;
-  font-size: 28px;
-  margin: 20px 0;
-}
-
-p {
-  font-size: 16px;
-  margin: 20px 0;
-}
-
-button {
-  background-color: #ac003e;
-  width: 150px;
-  height: 40px;
-  color: white;
-  font-size: 14px;
-  border-radius: 16px;
-  margin-top: 50px;
-}
 </style>

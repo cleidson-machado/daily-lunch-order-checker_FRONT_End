@@ -34,7 +34,7 @@
                             <div class="txt-title-app  text-left">Reserva de Refeições - Operacional TI <span class="text-red-700 text-base">( Joaquin Murtinho )</span></div>
                             <div class="order-first">
                                 <button 
-                                    v-on:click="showModal = true"
+                                    v-on:click="sendNewOrderForToday"
                                     class="btn btn-red min-h-full min-w-full">
                                     <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"></path>
@@ -207,15 +207,25 @@ export default Vue.extend({
 
     //TO SEND A NEW ORDER.. JUST A BASIC TEST
     async sendNewOrderForToday() {
-        let theOrder = this.menuList
+
+        this.showModal = true
+
+        //let theOrder = this.menuList
 
         //OBJECT CREATION TO SEND ORDER
         let getLunchMealId = this.menuList[0].id
         let getAveragePrice = this.menuList[0].averagePrice
 
+        //SET TO AMBIENT VARIABLE
+        localStorage.setItem('theLunchMealId', this.menuList[0].id)
+        console.log( "ID_VARIB_AMB: ",  localStorage.getItem('theLunchMealId') );
+
+        localStorage.setItem('theAveragePrice', this.menuList[0].averagePrice)
+        console.log( "PRICE_VARIB_AMB: ",  localStorage.getItem('theAveragePrice') );
+
         //HOW CREATE!?
-        let getuserOrderId = 'f4da5de2-a214-4097-865e-199b77af9530'
-        let getamount = '1'
+        //let getuserOrderId = 'f4da5de2-a214-4097-865e-199b77af9530'
+        //let getamount = '1'
 
         //TESTS
         console.log('EXIBINDO_ID:' + getLunchMealId)
