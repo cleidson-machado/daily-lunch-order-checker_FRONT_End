@@ -1,40 +1,44 @@
-######## NOVO! ###############
 <template>
   <div id="wrapper" class="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex" v-on:click="handleClose">
-    <div id="wrapperIn" class="w-[900px] mt-16 mx-auto">
-      <div class=" bg-white sm:rounded-lg p-2 box-content"> 
-        <div class="grid grid-cols-3 gap-4">
-          <div class="order-first">Envio da Ordem do Pedido</div>
-          <div class="..."></div>
-          <div class="..."></div>
-          <div class="...">ID do PEDIDO: {{ itemId }}</div>
-          <div class="...">VALOR R$ (UNID): {{ itemPrice }}</div>
-          <div class="...">ID do USER:</div>
-          <div class="...">{{ itemUser }}</div>
-          <div class="...">QUANTIDADE:</div>
-          <div class="...">{{ itemAmount }}</div>
-          <div class="order-last">
-          <button 
-            v-on:click="saveTheNewOrder"
-            class="btn btn-red min-h-full min-w-full">
-            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"></path>
-            </svg>
-            <span>OK - ENVIAR!</span>
-          </button>
-          </div>
-          <div class="order-last">
-          <button 
-            v-on:click="$emit('close-modal')"
-            class="btn btn-red min-h-full min-w-full">
-            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"></path>
-            </svg>
-            <span>SAIR</span>
-          </button>
+    <div id="wrapperIn" class="w-[500px] mt-16 mx-auto">
+      <form class="bg-white rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+          <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+            <strong>Embalagem:</strong>
+          </h5>
+          <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+           {{ itemLunchBoxlName }}
+          </p>
+        </div>
+        <div class="mb-4">
+          <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+            <strong>Cardápio:</strong>
+          </h5>
+          <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+            {{ itemLunchMealName }}
+          </p>
+        </div>
+        <div class="mb-4">
+          <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+            <strong>Colaborador:</strong>
+          </h5>
+          <div class="w-80 relative mb-4 flex flex-wrap items-stretch">
+            <div class="mb-3 xl:w-96">
+              <select class="bg-gray-200 p-2 rounded-md" v-model="selectedUserId">
+                <option>Selecione um ID / Nome</option>
+                <option v-for="user in userList" v-bind:key="user.id" v-bind:value="user.id">{{ user.idCompanyEmployee }} - {{ user.firstName }} {{ user.lastName }}</option>
+              </select>
+            </div>
           </div>
         </div>
-      </div>
+        <div class="flex items-center justify-between">
+          <button 
+          v-on:click="saveTheNewOrder"
+          class="btn btn-red rounded focus:outline-none focus:shadow-outline" type="button">
+            <span>OK! ENVIAR</span>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -47,11 +51,27 @@ import Vue from 'vue'
 
     data: () => {
         return {
-            itemId: localStorage.getItem('theLunchMealId'),
+
+            //DATA DO CREATE A NEW ORDE.... JUST A TEST
             itemPrice: localStorage.getItem('theOrderValue'),
-            itemUser: localStorage.getItem('theUserOrderId'),
-            itemAmount: localStorage.getItem('theAmount')
+            itemAmount: localStorage.getItem('theAmount'),
+            itemId: localStorage.getItem('theLunchMealId'),
+            //itemUser: localStorage.getItem('theUserOrderId'),
+
+            //TXT DATA TO VIEW ONLY ON MODAL
+            itemLunchMealName: localStorage.getItem('theLunchMealName'),
+            itemLunchBoxlName: localStorage.getItem('theLunchBoxName'),
+
+            //USER DATA LOAD... LOAD WHEN THE INDEX MAIN IS LOAD
+            userList: [],
+
+            //USER ID SELECTED
+            selectedUserId: '',
         }
+    },
+
+    mounted() {
+        this.selectAllUserToOrder()
     },
 
     methods: {
@@ -68,15 +88,28 @@ import Vue from 'vue'
             orderValue: this.itemPrice,
             amount: parseInt(this.itemAmount),
             lunchMealId: this.itemId,
-            userOrderId: this.itemUser
+            userOrderId: this.selectedUserId,
         })
         .then(response => {
+        //RETORNA OS DADOS DA ORDEM SALVA... COMO UTILIZAR NO APP?
         console.log(response)
+        console.log('User_ID_Selected:' + this.selectedUserId)
         })
         .catch(err => {
         console.log(err)
         })
-      }
+      },
+
+      //GET USER LIST FOR ORDER A LUNCH
+      async selectAllUserToOrder() {
+        await this.$axios.$get('/foodapi/user/listAll')
+        .then( response => {
+          this.userList = response
+        })
+        .catch(err => {
+        console.log(err)
+        })
+      },
 
     }
 

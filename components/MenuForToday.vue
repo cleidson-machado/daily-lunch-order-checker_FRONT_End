@@ -149,6 +149,7 @@ export default Vue.extend({
     created() {
         this.nameOfDayWeekToday()
         this.fetchMenuDataForToday()
+
         },
 
     watch: {
@@ -228,7 +229,11 @@ export default Vue.extend({
         //TEMP AMOUNT FOR CALC STUFF
         localStorage.setItem('theAmount', '88')
 
-    }
+        //TXT DATA TO VIEW ONLY ON MODAL
+        localStorage.setItem('theLunchMealName', this.menuList[0].name)
+        localStorage.setItem('theLunchBoxName', this.menuList[0].lunchBox.name)
+
+    },
 
 }
 
