@@ -114,12 +114,15 @@
 
             </div> <!-- END ELSE NA DIV -->
 
+            <orders-data-table/>
+
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import OrderLunchModal from '@/components/OrderModal1.vue'
+import OrdersDataTable from '@/components/OrdersDataTable1.vue'
 
 import * as dayjs from 'dayjs'
 import 'dayjs/locale/pt-br'
@@ -128,7 +131,8 @@ export default Vue.extend({
     name: 'TheMenuForToday',
 
     components: {
-        OrderLunchModal
+        OrderLunchModal,
+        OrdersDataTable
     },
 
     data: () => {
@@ -205,35 +209,24 @@ export default Vue.extend({
         }
     },
 
-    //TO SEND A NEW ORDER.. JUST A BASIC TEST
+    //SEND A NEW ORDER...
     async sendNewOrderForToday() {
 
+        //OPEN DE MODAL VIEW
         this.showModal = true
-
-        //let theOrder = this.menuList
-
-        //OBJECT CREATION TO SEND ORDER
-        let getLunchMealId = this.menuList[0].id
-        let getAveragePrice = this.menuList[0].averagePrice
-
-        //SET TO AMBIENT VARIABLE
+      
+        //SET TO AMBIENT VARIABLE FOR THE ORDER OBJECT
         localStorage.setItem('theLunchMealId', this.menuList[0].id)
-        console.log( "ID_VARIB_AMB: ",  localStorage.getItem('theLunchMealId') );
+        localStorage.setItem('theOrderValue', this.menuList[0].averagePrice)
 
-        localStorage.setItem('theAveragePrice', this.menuList[0].averagePrice)
-        console.log( "PRICE_VARIB_AMB: ",  localStorage.getItem('theAveragePrice') );
+        //TEMP TEST USER MÔNICA ID
+        //localStorage.setItem('theUserOrderId', 'f4da5de2-a214-4097-865e-199b77af9530')
 
-        //HOW CREATE!?
-        //let getuserOrderId = 'f4da5de2-a214-4097-865e-199b77af9530'
-        //let getamount = '1'
+        //TEMP TEST USER CLEIDSON ID 
+        localStorage.setItem('theUserOrderId', '98af8669-0abf-427b-93d8-74dc02143bf4')
 
-        //TESTS
-        console.log('EXIBINDO_ID:' + getLunchMealId)
-        console.log('EXIBINDO_PREÇO:' + getAveragePrice)
-
-        //console.log( JSON.stringify(theOrder) )
-        //console.log( 'kkkkkkkkk' )
-        //console.log('EXIBINDO_ID:' + this.menuList[0].id)
+        //TEMP AMOUNT FOR CALC STUFF
+        localStorage.setItem('theAmount', '88')
 
     }
 
