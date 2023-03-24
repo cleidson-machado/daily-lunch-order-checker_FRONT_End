@@ -22,12 +22,13 @@
           <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
             <strong>Colaborador:</strong>
           </h5>
-          <div class="w-80 relative mb-4 flex flex-wrap items-stretch">
-            <div class="mb-3 xl:w-96">
-              <select class="bg-gray-200 p-2 rounded-md" v-model="selectedUserId">
-                <option>Selecione um ID / Nome</option>
+          <div class="w-10 relative mb-4 flex flex-wrap items-stretch">
+            <div class="relative inline-flex self-center">
+
+              <select class="text-xl font-bold rounded border-2 border-blue-400 text-gray-800 h-10 w-100 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" v-model="selectedUserId">
                 <option v-for="user in userList" v-bind:key="user.id" v-bind:value="user.id">{{ user.idCompanyEmployee }} - {{ user.firstName }} {{ user.lastName }}</option>
               </select>
+
             </div>
           </div>
         </div>

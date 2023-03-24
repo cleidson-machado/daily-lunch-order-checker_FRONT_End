@@ -146,10 +146,11 @@ export default Vue.extend({
         }
     },
 
+    //NÃO CARREGA OS DADOS NO MODAL EM SESSÃO ZERADA!.. VERIFICAR?
     created() {
         this.nameOfDayWeekToday()
         this.fetchMenuDataForToday()
-
+        //this.sendDataForModal()
         },
 
     watch: {
@@ -197,6 +198,7 @@ export default Vue.extend({
             { 
                 //RETURN TO DATA
                 this.menuList = resApi
+                this.sendDataForModal()
             }
             else 
             {
@@ -211,11 +213,13 @@ export default Vue.extend({
     },
 
     //SEND A NEW ORDER...
-    async sendNewOrderForToday() {
-
+    sendNewOrderForToday() {
         //OPEN DE MODAL VIEW
         this.showModal = true
-      
+        this.sendDataForModal()
+    },
+
+    sendDataForModal() {
         //SET TO AMBIENT VARIABLE FOR THE ORDER OBJECT
         localStorage.setItem('theLunchMealId', this.menuList[0].id)
         localStorage.setItem('theOrderValue', this.menuList[0].averagePrice)
@@ -233,7 +237,7 @@ export default Vue.extend({
         localStorage.setItem('theLunchMealName', this.menuList[0].name)
         localStorage.setItem('theLunchBoxName', this.menuList[0].lunchBox.name)
 
-    },
+    }
 
 }
 
