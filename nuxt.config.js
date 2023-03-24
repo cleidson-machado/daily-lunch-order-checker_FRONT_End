@@ -1,6 +1,12 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  // https://tailwind-elements.com/docs/standard/integrations/nuxt-integration
   head: {
+    script: [
+      {
+        src: "https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js",
+      },
+    ],
     title: 'daily-lunch-order-checker',
     htmlAttrs: {
       lang: 'en'
@@ -18,7 +24,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/css/main.css',
+    '@/assets/css/tailwind.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -30,7 +36,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxt/postcss8',
+    '@nuxt/postcss8','@nuxtjs/tailwindcss'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -46,6 +52,16 @@ export default {
   proxy: {
     '/api/': { target: 'https://benef-api.frontline.cassems.com.br', pathRewrite: {'^/api/': ''} },
     '/foodapi/': { target: 'http://localhost:3000', pathRewrite: {'^/foodapi/': ''} },
+  },
+
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+    configPath: 'tailwind.config',
+    exposeConfig: false,
+    exposeLevel: 2,
+    config: {},
+    injectPosition: 'first',
+    viewer: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
