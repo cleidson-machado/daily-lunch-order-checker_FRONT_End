@@ -23,7 +23,7 @@
             <strong>Colaborador:</strong>
           </h5>
           <h5 class="mb-0 text-base text-red-600 dark:text-neutral-200" v-if="userList.length != 0">
-            <strong>OK! Colaborador Detectado:</strong>
+            <strong>OK! CONFIRMADO...</strong>
           </h5>
           <p class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50" v-if="userList.length != 0">
             <strong v-for="user in userList" v-bind:key="user.id">
@@ -43,7 +43,7 @@
                 hover:border-gray-400 
                 focus:outline-none appearance-none"
                 placeholder="Dig. Sobre Nome ou Email..."
-                v-model="txtDataFindUser">
+                v-model="txtDataFindUser" v-if="userList.length === 0">
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@
             focus:outline-none 
             dark:focus:ring-red-800"
             v-if="userList.length != 0">
-            <span>OK ENVIAR</span>
+            <span>FINALIZAR o PEDIDO!</span>
           </button>
         </div>
       </form>
