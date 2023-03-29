@@ -8,13 +8,15 @@ module.exports = {
     "./nuxt.config.{js,ts}",
     "./app.vue",
     "./node_modules/tw-elements/dist/js/**/*.js",
-    "./node_modules/flowbite/**/*.js"
+    "./node_modules/flowbite/**/*.js",
+    "./node_modules/flowbite.{js,ts}"
   ],
   theme: {
     extend: {},
   },
   plugins: [
     require("tw-elements/dist/plugin"),
-    require("flowbite/plugin")
+    require("flowbite/plugin"),
+    require('flowbite')
             ]
 }
