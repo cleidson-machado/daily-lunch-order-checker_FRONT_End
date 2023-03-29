@@ -3,6 +3,11 @@
     <div id="wrapperIn" class="w-[600px] mt-16 mx-auto">
       <form id="form" class="bg-white rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
+                <h2 class="text-xl font-medium text-red-700 dark:text-white">
+                    <strong>ENVIO DE PEDIDOS</strong>
+                </h2>
+            </div>
+        <div class="mb-4">
           <h5 class="mb-0 text-base text-neutral-600 dark:text-neutral-200">
             <strong>Embalagem:</strong>
           </h5>
@@ -29,6 +34,9 @@
             </span>
             <span id="CONFIRMATION_SHOW_MSN" class="mb-0 text-base text-blue-900 dark:text-neutral-200" v-if="userList.length >= 2">
                 <strong> {{ txtDataToFindUser }} ... Mult. Ref. Found! Seja mais específico!</strong>
+            </span>
+            <span id="CONFIRMATION_SHOW_MSN" class="mb-0 text-base text-red-400 dark:text-neutral-200" v-if="searchByEmpyField.length === 0">
+                <strong> Informe um Sobrenome ou Email! </strong>
             </span>
           </h5>
             <div id="CONFIRMATION_SHOW_NAME_FOUND">
@@ -81,15 +89,19 @@
                 text-sm px-4 py-2 
                 dark:bg-blue-600 
                 dark:hover:bg-blue-700 
-                dark:focus:ring-blue-800">BUSCA</button>
+                dark:focus:ring-blue-800">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <span class="sr-only">BUSCA</span>
+              </button>
             </div>
         </div>
         <div class="mb-4" v-if="userList.length === 1 && saveSuccessfully.length === 0">
           <div class="flex items-center justify-self-start">
-              <button 
+              <button
+                  v-for="user in userList" v-bind:key="user.id" 
                   v-on:click="saveTheNewOrder"
                   data-tooltip-target="tooltip-no-arrow" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  FINALIZAR o PEDIDO!
+                  FINALIZAR o PEDIDO para: {{ user.firstName }} {{ user.lastName }}
               </button>
             </div>
         </div>
@@ -125,7 +137,7 @@ import { initFlowbite } from 'flowbite'
 
             //DATA DO CREATE A NEW ORDER.... IS SEND TO THIS MODAL BY THE INDEX PAGE
             itemPrice: localStorage.getItem('theOrderValue'),
-            itemAmount: '2',
+            itemAmount: '1',
             itemId: localStorage.getItem('theLunchMealId'),
             //USERID GET BY THE SEARCH
 
@@ -139,6 +151,10 @@ import { initFlowbite } from 'flowbite'
             //USER DATA LIST MARK.... USED TO SHOW WHEN THE USER IS NOT FOUND
             userListNotFound: ['CLEAR'],
 
+            //USED FOR MSN TO USER
+            searchByEmpyField: ['NO_EMPTY'],
+
+            //USED FOR MSN TO USER
             saveSuccessfully: [],
 
             //USER ID SELECTED
@@ -149,7 +165,7 @@ import { initFlowbite } from 'flowbite'
         }
     },
 
-    mounted() {
+    mounted(){
         //CREATE HERE TO POPULATE THE COMBO SELECT ON LOADING PAGE..
         //this.selectAllUserToOrder()
         initFlowbite();
@@ -163,6 +179,7 @@ import { initFlowbite } from 'flowbite'
         this.txtDataToFindUser = '' //CLEAR THE FIELD USED ON A SEARCH ACTION
         this.userListNotFound = ['CLEAR']
         this.saveSuccessfully = []
+        //this.searchByEmpyField = []
       },
 
       handleClose(e){
@@ -170,29 +187,36 @@ import { initFlowbite } from 'flowbite'
         {
           this.$emit('close-modal')
           this.clearForm()
+          this.searchByEmpyField = ['NO_EMPTY']
         }
       },
 
       //OK.. WORKING GOOD!!
       async fechUserDataByLastNameOrEmail(){
 
-        //HERE CREATE A MENSAGEN WHEN THE USER SEND A NULL OR EMPTY SEARCH ON THE SEARCH FILELD!!!!
-        //AND STOP THE ACTIONS BELLOW
-
-      await this.$axios.$get('/foodapi/user/listBy/lastNameOrEmail/'+ this.txtDataToFindUser)
-        .then( response => {
-          this.userList = response
-            //console.log('kkkkk: ', response.length)
-          if (response.length === 0){
-            //console.log('VEIO ZERADO..')
-            this.userListNotFound = []
-          } else {
-            this.userListNotFound = ['CLEAR']
-          }
-        })
-        .catch(err => {
-        console.log(err)
-        })
+        // IF I FOUND SOMETHING ON THE INPUT TO PERFORM A SEARCH ACTION
+        if (this.txtDataToFindUser) {
+          await this.$axios.$get('/foodapi/user/listBy/lastNameOrEmail/'+ this.txtDataToFindUser)
+            .then( response => {
+              this.userList = response
+                //console.log('kkkkk: ', response.length)
+              if (response.length === 0){
+                //console.log('VEIO ZERADO..')
+                this.userListNotFound = []
+                this.searchByEmpyField = ['NO_EMPTY']
+              } else {
+                this.userListNotFound = ['CLEAR']
+                this.searchByEmpyField = ['NO_EMPTY']
+              }
+            })
+            .catch(err => {
+            console.log(err)
+            })
+        } else {
+          //RETURN A MSN
+          this.searchByEmpyField = []
+          console.log('EMPTY FIELD')
+        }
       },
 
       //SAVE THE ORDER A LUNCH... MELHORAR!!???
@@ -217,7 +241,7 @@ import { initFlowbite } from 'flowbite'
       },
 
       //GET USER LIST FOR ORDER A LUNCH... TEST TO USE ON THE SELECT FIELD
-      async selectAllUserToOrder() {
+      async selectAllUserToOrder(){
         await this.$axios.$get('/foodapi/user/listAll')
         .then( response => {
           this.userList = response
