@@ -108,7 +108,7 @@
                                 <!-- END DADOS NUMÉRICOS -->
                             </div>
 
-                            <order-modal-1 v-show="showModal" @close-modal="showModal = false"/>
+                            <order-modal-1 v-show="showModal" @close-modal="showModal = false"/> <!-- INSERT OF THE MODAL CODE -->
 
                 </div> 
 
@@ -228,10 +228,10 @@ export default Vue.extend({
         //localStorage.setItem('theUserOrderId', 'f4da5de2-a214-4097-865e-199b77af9530')
 
         //TEMP TEST USER CLEIDSON ID 
-        localStorage.setItem('theUserOrderId', '98af8669-0abf-427b-93d8-74dc02143bf4')
+        //localStorage.setItem('theUserOrderId', '98af8669-0abf-427b-93d8-74dc02143bf4')
 
         //TEMP AMOUNT FOR CALC STUFF
-        localStorage.setItem('theAmount', '88')
+        //localStorage.setItem('theAmount', '88')
 
         //TXT DATA TO VIEW ONLY ON MODAL
         localStorage.setItem('theLunchMealName', this.menuList[0].name)

@@ -40,7 +40,9 @@
             </div>
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" 
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" 
+                    stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
                 <input type="search" id="default-search" 
                 v-model="txtDataToFindUser"
@@ -82,25 +84,27 @@
                 dark:focus:ring-blue-800">BUSCA</button>
             </div>
         </div>
-        <div class="mb-4" v-if="userList.length === 1">
+        <div class="mb-4" v-if="userList.length === 1 && saveSuccessfully.length === 0">
           <div class="flex items-center justify-self-start">
               <button 
                   v-on:click="saveTheNewOrder"
-                  type="button"
-                  class="text-white 
-                  bg-red-700 
-                  hover:bg-blue-80
-                  0 focus:ring-4 
-                  focus:ring-blue-300 
-                  font-medium rounded-lg 
-                  text-sm px-5 py-2.5 mr-2 mb-2 
-                  dark:bg-red-600
-                  dark:hover:bg-red-700 
-                  focus:outline-none 
-                  dark:focus:ring-red-800">
-                  <span>FINALIZAR o PEDIDO!</span>
+                  data-tooltip-target="tooltip-no-arrow" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  FINALIZAR o PEDIDO!
               </button>
             </div>
+        </div>
+        <div class="mb-4" v-if="saveSuccessfully.length != 0">
+            <div id="toast-success" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+              <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span class="sr-only">Check icon</span>
+              </div>
+              <div class="ml-3 text-sm font-normal">OK PEDIDO GERADO!</div>
+              <button v-on:click="clearForm" type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
+                  <span class="sr-only">Close</span>
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </button>
+          </div>
         </div>
       </form>
     </div>
@@ -119,19 +123,23 @@ import { initFlowbite } from 'flowbite'
     data: () => {
         return {
 
-            //DATA DO CREATE A NEW ORDE.... JUST A TEST
+            //DATA DO CREATE A NEW ORDER.... IS SEND TO THIS MODAL BY THE INDEX PAGE
             itemPrice: localStorage.getItem('theOrderValue'),
-            itemAmount: localStorage.getItem('theAmount'),
+            itemAmount: '2',
             itemId: localStorage.getItem('theLunchMealId'),
-            //itemUser: localStorage.getItem('theUserOrderId'),
+            //USERID GET BY THE SEARCH
 
             //TXT DATA TO VIEW ONLY ON MODAL
             itemLunchMealName: localStorage.getItem('theLunchMealName'),
             itemLunchBoxlName: localStorage.getItem('theLunchBoxName'),
 
-            //USER DATA LOAD... LOAD WHEN THE INDEX MAIN IS LOAD
+            //USER DATA LIST... DEFAULT IS EMPTY WHEN THE INDEX MAIN IS CREATED
             userList: [],
+
+            //USER DATA LIST MARK.... USED TO SHOW WHEN THE USER IS NOT FOUND
             userListNotFound: ['CLEAR'],
+
+            saveSuccessfully: [],
 
             //USER ID SELECTED
             selectedUserId: '',
@@ -154,6 +162,7 @@ import { initFlowbite } from 'flowbite'
         this.userList = [] //CLEAR THE DATA LIST OF USER FIND BY SEARCH
         this.txtDataToFindUser = '' //CLEAR THE FIELD USED ON A SEARCH ACTION
         this.userListNotFound = ['CLEAR']
+        this.saveSuccessfully = []
       },
 
       handleClose(e){
@@ -166,10 +175,14 @@ import { initFlowbite } from 'flowbite'
 
       //OK.. WORKING GOOD!!
       async fechUserDataByLastNameOrEmail(){
+
+        //HERE CREATE A MENSAGEN WHEN THE USER SEND A NULL OR EMPTY SEARCH ON THE SEARCH FILELD!!!!
+        //AND STOP THE ACTIONS BELLOW
+
       await this.$axios.$get('/foodapi/user/listBy/lastNameOrEmail/'+ this.txtDataToFindUser)
         .then( response => {
           this.userList = response
-          console.log('kkkkk: ', response.length)
+            //console.log('kkkkk: ', response.length)
           if (response.length === 0){
             //console.log('VEIO ZERADO..')
             this.userListNotFound = []
@@ -184,8 +197,9 @@ import { initFlowbite } from 'flowbite'
 
       //SAVE THE ORDER A LUNCH... MELHORAR!!???
       async saveTheNewOrder(){
+        const calcPrice = (parseFloat (this.itemPrice) * parseInt(this.itemAmount));
         await this.$axios.$post('/foodapi/order-for-lunch/add', {
-            orderValue: this.itemPrice,
+            orderValue: parseFloat(calcPrice),
             amount: parseInt(this.itemAmount),
             lunchMealId: this.itemId,
             userOrderId: this.userList[0].id,
@@ -194,6 +208,8 @@ import { initFlowbite } from 'flowbite'
         //RETORNA OS DADOS DA ORDEM SALVA... COMO UTILIZAR NO APP?
         console.log(response)
         console.log('User_ID_Selected:' + this.userList[0].id)
+        console.log('PREÇO CALCULADO: ' + calcPrice)
+        this.saveSuccessfully = ['SAVED']
         })
         .catch(err => {
         console.log(err)
