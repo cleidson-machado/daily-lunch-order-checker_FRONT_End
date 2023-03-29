@@ -39,13 +39,6 @@
                 <strong> Informe um Sobrenome ou Email! </strong>
             </span>
           </h5>
-            <div id="CONFIRMATION_SHOW_NAME_FOUND">
-              <p class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50" v-if="userList.length === 1">
-                <strong v-for="user in userList" v-bind:key="user.id">
-                    {{ user.firstName }} {{ user.lastName }}
-                </strong>
-              </p>
-            </div>
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" 
