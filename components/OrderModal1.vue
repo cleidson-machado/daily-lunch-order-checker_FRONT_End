@@ -3,7 +3,7 @@
     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
     <div class="relative p-4 w-full h-full max-w-4xl md:h-auto">
       <!-- Modal content -->
-      <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+      <div class="relative p-4 bg-gray-200 rounded-lg shadow dark:bg-gray-800 sm:p-5">
         <!-- Modal header -->
         <div class="flex justify-between mb-4 rounded-t sm:mb-5">
           <div class="text-lg text-gray-900 md:text-xl dark:text-white">
@@ -66,7 +66,7 @@
             <!-- END MSN_003 -->
             <!-- START MSN_004 -->
             <span id="CONFIRMATION_SHOW_MSN_4" v-if="searchByEmpyField.length === 0">
-              <span class="text-red-400"> Informe um Sobrenome ou Email! </span>
+              <span class="text-red-400"> Execute uma Busca primeiro Informando um Sobrenome ou Email! </span>
             </span>
             <!-- END MSN_004 -->
             <!-- END MSN AREA ######################################## -->
@@ -99,11 +99,12 @@
                 <span class="sr-only">Search</span>
               </button>
             </form>
+            <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"></dd>
           </div>
           <!-- END SEARCH AREA -->
-          <!-- START MSN AREA -->
-          <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"></dd>
+          <!-- START TOAST CONFIRMATION AREA_01 -->
           <div class="mb-4" v-if="saveSuccessfully.length != 0">
+
             <div id="toast-success"
               class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
               role="alert">
@@ -131,7 +132,69 @@
               </button>
             </div>
           </div>
-          <!-- START MSN AREA -->
+          <!-- END TOAST CONFIRMATION AREA_01 -->
+          <!-- ############################## -->
+          <!-- START TOAST CONFIRMATION AREA_02 -->
+          <div class="mb-4" v-if="foundMultipleDataMsn.length === 0">
+            <div id="toast-warning"
+              class="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+              role="alert">
+              <div
+                class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Warning icon</span>
+              </div>
+              <div class="ml-3 text-sm font-normal">Ped. NEGADO! Mult. Data Found!</div>
+              <button v-on:click="clearForm" type="button"
+                class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                data-dismiss-target="#toast-warning" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!-- END TOAST CONFIRMATION AREA_02 -->
+          <!-- ############################## -->
+          <!-- START TOAST CONFIRMATION AREA_03 -->
+          <div class="mb-4" v-if="foundErrorOnSaveAction.length != 0">
+            <div id="toast-danger"
+              class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+              role="alert">
+              <div
+                class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Error icon</span>
+              </div>
+              <div class="ml-3 text-sm font-normal">{{ foundErrorOnSaveAction }}</div>
+              <button v-on:click="clearForm" type="button"
+                class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                data-dismiss-target="#toast-danger" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!-- END TOAST CONFIRMATION AREA_03 -->
         </dl>
         <div class="flex justify-between items-center">
           <div class="flex items-center space-x-3 sm:space-x-4">
@@ -196,7 +259,7 @@ export default Vue.extend({
       userList: [],
 
       //USER DATA LIST MARK.... USED TO SHOW WHEN THE USER IS NOT FOUND
-      userListNotFound: ['CLEAR'],
+      userListNotFound: ['NO_EMPTY'],
 
       //USED FOR MSN TO USER
       searchByEmpyField: ['NO_EMPTY'],
@@ -209,12 +272,18 @@ export default Vue.extend({
 
       //LAST NAME OR EMAIL FOR SEARCH
       txtDataToFindUser: '',
+
+      //USED WHEN SEND A MULTIPLE DATA TO SAVE ACTION
+      foundMultipleDataMsn: ['NO_EMPTY'],
+
+      //USER WHEN SEND A SAVE ACTION AND FOUND ERROR
+      foundErrorOnSaveAction: [],
+
     };
   },
 
   mounted() {
-    //CREATE HERE TO POPULATE THE COMBO SELECT ON LOADING PAGE..
-    //this.selectAllUserToOrder()
+    //this.selectAllUserToOrder() //IT IS A TEST... CREATE HERE TO POPULATE THE COMBO SELECT ON LOADING PAGE..
     initFlowbite();
   },
 
@@ -223,17 +292,11 @@ export default Vue.extend({
     clearForm() {
       this.userList = []; //CLEAR THE DATA LIST OF USER FIND BY SEARCH
       this.txtDataToFindUser = ''; //CLEAR THE FIELD USED ON A SEARCH ACTION
-      this.userListNotFound = ['CLEAR'];
+      this.userListNotFound = ['NO_EMPTY'];
       this.saveSuccessfully = [];
       this.searchByEmpyField = ['NO_EMPTY'];
-    },
-
-    handleClose(e) {
-      if (e.target.id === 'wrapper' || e.target.id === 'wrapperIn') {
-        //this.$emit('close-modal');
-        this.clearForm();
-        this.searchByEmpyField = ['NO_EMPTY'];
-      }
+      this.foundMultipleDataMsn = ['NO_EMPTY'];
+      this.foundErrorOnSaveAction = [];
     },
 
     //OK.. WORKING GOOD!!
@@ -244,13 +307,11 @@ export default Vue.extend({
           .$get('/foodapi/user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
           .then((response) => {
             this.userList = response;
-            //console.log('kkkkk: ', response.length)
             if (response.length === 0) {
-              //console.log('VEIO ZERADO..')
               this.userListNotFound = [];
               this.searchByEmpyField = ['NO_EMPTY'];
             } else {
-              this.userListNotFound = ['CLEAR'];
+              this.userListNotFound = ['NO_EMPTY'];
               this.searchByEmpyField = ['NO_EMPTY'];
             }
           })
@@ -260,13 +321,14 @@ export default Vue.extend({
       } else {
         //RETURN A MSN
         this.searchByEmpyField = [];
-        console.log('EMPTY FIELD');
+        //console.log('EMPTY FIELD by SEARCH');
       }
     },
 
     //SAVE THE ORDER A LUNCH... MELHORAR!!???
     async saveTheNewOrder() {
-      if (this.txtDataToFindUser) {
+      //debugger
+      if (this.userList.length === 1) {
         const calcPrice = parseFloat(this.itemPrice) * parseInt(this.itemAmount);
         await this.$axios
           .$post('/foodapi/order-for-lunch/add', {
@@ -276,23 +338,26 @@ export default Vue.extend({
             userOrderId: this.userList[0].id,
           })
           .then((response) => {
-            //RETORNA OS DADOS DA ORDEM SALVA... COMO UTILIZAR NO APP?
-            console.log(response);
-            console.log('User_ID_Selected:' + this.userList[0].id);
-            console.log('PREÇO CALCULADO: ' + calcPrice);
-            this.saveSuccessfully = ['SAVED'];
+            //THE ORDER CONFIRMATION
+            this.saveSuccessfully = [response.length];
           })
           .catch((err) => {
-            console.log(err);
+            console.log('FOUND A ERROR TO SAVE:' + err);
+            this.foundErrorOnSaveAction = err
           });
       } else {
         //RETURN A MSN
-        this.searchByEmpyField = [];
-        console.log('EMPTY FIELD');
+        if (this.userList.length >= 2) {
+          this.foundMultipleDataMsn = [];
+        } else {
+          this.searchByEmpyField = [];
+          //console.log('EMPTY FIELD by SAVE ACTION');
+        }
       }
     },
 
-    //GET USER LIST FOR ORDER A LUNCH... TEST TO USE ON THE SELECT FIELD
+    //GET USER LIST FOR ORDER A LUNCH... TEST TO USE ON THE SELECT COMBO FIELD
+    //IT IS A TEST... CREATE HERE TO POPULATE THE COMBO SELECT ON LOADING PAGE..
     async selectAllUserToOrder() {
       await this.$axios
         .$get('/foodapi/user/listAll')
