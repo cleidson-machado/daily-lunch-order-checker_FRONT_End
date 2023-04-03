@@ -121,15 +121,12 @@
       </div>
     </div>
     <!-- END ELSE NA DIV -->
-
-    <orders-data-table />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import OrderLunchModal from '@/components/OrderModal1.vue';
-import OrdersDataTable from '@/components/OrdersDataTable1.vue';
 import { initFlowbite } from 'flowbite';
 
 import * as dayjs from 'dayjs';
@@ -140,7 +137,6 @@ export default Vue.extend({
 
   components: {
     OrderLunchModal,
-    OrdersDataTable,
   },
 
   data: () => {

@@ -133,7 +133,7 @@ import * as dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 
 export default Vue.extend({
-  name: 'TheMenuForToday',
+  name: 'TheMenuForTodayFit',
 
   components: {
     OrderLunchModal,

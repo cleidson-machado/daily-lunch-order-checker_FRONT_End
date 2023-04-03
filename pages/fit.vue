@@ -7,7 +7,7 @@ import Vue from 'vue'
 import Spa2 from '~/components/SinglePageApp2.vue';
 
 export default Vue.extend({
-  name: 'IndexPage',
+  name: 'FitPage',
   components: {
     Spa2
   }
