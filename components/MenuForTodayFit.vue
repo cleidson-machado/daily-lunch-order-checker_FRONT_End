@@ -116,7 +116,7 @@
           <!-- END DADOS NUMÉRICOS -->
         </div>
 
-        <order-modal-1 />
+        <order-lunch-modal-fit />
         <!-- INSERT OF THE MODAL CODE -->
       </div>
     </div>
@@ -126,7 +126,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import OrderLunchModal from '@/components/OrderModal1.vue';
+import OrderLunchModalFit from '@/components/OrderModal2.vue';
 import { initFlowbite } from 'flowbite';
 
 import * as dayjs from 'dayjs';
@@ -136,7 +136,7 @@ export default Vue.extend({
   name: 'TheMenuForTodayFit',
 
   components: {
-    OrderLunchModal,
+    OrderLunchModalFit,
   },
 
   data: () => {
@@ -153,6 +153,7 @@ export default Vue.extend({
 
   mounted() {
     initFlowbite();
+    localStorage.clear();
   },
 
   //NÃO CARREGA OS DADOS NO MODAL EM SESSÃO ZERADA!.. VERIFICAR?

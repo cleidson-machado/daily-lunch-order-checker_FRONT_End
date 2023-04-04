@@ -1,7 +1,7 @@
 <template>
   <div>
     <the-menu-for-today-fit /> <!-- HERE-COMPONENT -->
-    <order-table /> <!-- HERE-COMPONENT -->
+    <!-- <order-table /> HERE-COMPONENT -->
   </div>
 </template>
 

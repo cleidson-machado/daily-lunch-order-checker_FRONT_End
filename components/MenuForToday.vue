@@ -44,13 +44,13 @@
 
           <div
             class="flex flex-row auto-cols-max auto-rows-auto gap-2 bg-gray-300 border-solid border-4 border-gray-300 rounded-md ...">
-            <div class="basis-96" v-for="menu in menuList" v-bind:key="menu.id">
+            <div class="basis-96" v-for="(menu, index) in menuList" v-bind:key="index">
               <img class="mt-1 mb-1 rounded-lg shadow-lg object-fill h-48 w-96 ..."
-                v-bind:src="menu.lunchBox.imageLinkPath" v-if="menuList.length" />
+                v-bind:src="menu.lunchBox.imageLinkPath" />
               <span class="font-extralight text-xs text-black"> imagem ilustrativa!... </span>
             </div>
 
-            <div class="basis-full" v-for="menu in menuList" v-bind:key="menu.id">
+            <div class="basis-full" v-for="(menu, index) in menuList" v-bind:key="index + 1">
               <div class="txt-label-item">Embalagem:</div>
               <div class="txt-title-food">{{ menu.lunchBox.name }}</div>
               <p class="txt-content">{{ menu.lunchBox.description }}</p>
@@ -61,13 +61,12 @@
         <div class="container max-w-screen-lg mx-auto px-1">
           <div
             class="flex flex-row auto-cols-max auto-rows-auto gap-2 bg-gray-300 border-solid border-4 border-gray-300 rounded-md ...">
-            <div class="basis-96" v-for="menu in menuList" v-bind:key="menu.id">
-              <img class="mt-1 mb-1 rounded-lg shadow-lg object-fill h-48 w-96 ..." v-bind:src="menu.imageLinkPath"
-                v-if="menuList.length" />
+            <div class="basis-96" v-for="(menu, index) in menuList" v-bind:key="index + 2">
+              <img class="mt-1 mb-1 rounded-lg shadow-lg object-fill h-48 w-96 ..." v-bind:src="menu.imageLinkPath" />
               <span class="font-extralight text-xs text-black"> imagem ilustrativa!... </span>
             </div>
 
-            <div class="basis-full" v-for="menu in menuList" v-bind:key="menu.id">
+            <div class="basis-full" v-for="(menu, index) in menuList" v-bind:key="index + 3">
               <div class="txt-label-item">
                 Cardápio {{ menu.type }} de Hoje {{ todayDateBr }} (
                 <span class="txt-content">{{ todayNameOfWeekBr }}</span> ):
@@ -81,7 +80,7 @@
         <div class="container max-w-screen-lg mx-auto px-1">
           <!-- START DADOS NUMÉRICOS -->
           <div class="grid grid-cols-3 gap-0 bg-gray-300 border-solid border-4 border-violet-600 rounded-md ...">
-            <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="menu in menuList" v-bind:key="menu.id">
+            <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="(menu, index) in menuList" v-bind:key="index + 4">
               <div class="txt-title-food text-center">
                 CALORIAS MÉDIAS <span class="txt-label-item"> ( Cal )</span>
               </div>
@@ -93,7 +92,7 @@
               </div>
             </div>
 
-            <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="menu in menuList" v-bind:key="menu.id">
+            <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="(menu, index) in menuList" v-bind:key="index + 5">
               <div class="txt-title-food text-center">
                 PESO MÉDIO<span class="txt-label-item"> ( g )</span>
               </div>
@@ -103,7 +102,7 @@
               <div class="font-extralight text-center text-xs text-black">pessagem estimada...</div>
             </div>
 
-            <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="menu in menuList" v-bind:key="menu.id">
+            <div class="grid grid-cols-1 gap-0 mt-4 mb-4" v-for="(menu, index) in menuList" v-bind:key="index + 6">
               <div class="txt-title-food text-center">
                 PREÇO MÉDIO<span class="txt-label-item"> ( R$ )</span>
               </div>
@@ -116,7 +115,7 @@
           <!-- END DADOS NUMÉRICOS -->
         </div>
 
-        <order-modal-1 />
+        <order-lunch-modal />
         <!-- INSERT OF THE MODAL CODE -->
       </div>
     </div>
@@ -146,20 +145,19 @@ export default Vue.extend({
       todayNameOfWeekBr: '',
       infoTextMsn: '',
       errorCode: 0,
-      showModal: false,
       txtDataTypeDefault: 'NORMAL',
     };
   },
 
   mounted() {
     initFlowbite();
+    localStorage.clear();
   },
 
   //NÃO CARREGA OS DADOS NO MODAL EM SESSÃO ZERADA!.. VERIFICAR?
   created() {
     this.nameOfDayWeekToday();
     this.fetchMenuDataForToday();
-    //this.sendDataForModal()
   },
 
   watch: {},
@@ -220,7 +218,6 @@ export default Vue.extend({
     //SEND A NEW ORDER...
     sendNewOrderForToday() {
       //OPEN DE MODAL VIEW
-      this.showModal = true;
       this.sendDataForModal();
     },
 
