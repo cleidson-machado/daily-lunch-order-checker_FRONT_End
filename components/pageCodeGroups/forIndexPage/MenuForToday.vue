@@ -115,8 +115,9 @@
           <!-- END DADOS NUMÉRICOS -->
         </div>
 
-        <order-lunch-modal />
         <!-- INSERT OF THE MODAL CODE -->
+        <order-lunch-modal />
+        <index-admin-modal-1 />
       </div>
     </div>
     <!-- END ELSE NA DIV -->
@@ -126,6 +127,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import OrderLunchModal from '@/components/pageCodeGroups/forIndexPage/OrderModal1.vue';
+import indexAdminModal1 from '@/components/pageCodeGroups/forAdminPage/adminModal1.vue';
 import { initFlowbite } from 'flowbite';
 
 import * as dayjs from 'dayjs';
@@ -136,6 +138,7 @@ export default Vue.extend({
 
   components: {
     OrderLunchModal,
+    indexAdminModal1,
   },
 
   data: () => {
