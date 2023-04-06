@@ -26,18 +26,18 @@
         <div class="container max-w-screen-lg mx-auto px-1">
           <div class="flex justify-between ...">
             <div class="txt-title-app text-left">
-              Reserva de Refeições - Operacional TI
-              <span class="text-red-700 text-base">( Joaquin Murtinho )</span>
+              Reserva de Refeições FIT - Operacional TI
+              <span class="text-white text-base">( Joaquin Murtinho )</span>
             </div>
             <div class="order-first">
               <button data-modal-target="new-order-modal" data-modal-toggle="new-order-modal"
-                class="btn btn-red min-h-full min-w-full" type="button">
+                class="btn btn-blue min-h-full min-w-full" type="button">
                 <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path
                     d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z">
                   </path>
                 </svg>
-                <span>REALIZAR PEDIDO!</span>
+                <span>REALIZAR PEDIDO FIT!</span>
               </button>
             </div>
           </div>
@@ -115,7 +115,7 @@
           <!-- END DADOS NUMÉRICOS -->
         </div>
 
-        <order-lunch-modal />
+        <order-lunch-modal-fit />
         <!-- INSERT OF THE MODAL CODE -->
       </div>
     </div>
@@ -125,17 +125,17 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import OrderLunchModal from '@/components/OrderModal1.vue';
+import OrderLunchModalFit from '@/components/pageCodeGroups/forFitPage/OrderModal2.vue';
 import { initFlowbite } from 'flowbite';
 
 import * as dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 
 export default Vue.extend({
-  name: 'TheMenuForToday',
+  name: 'TheMenuForTodayFit',
 
   components: {
-    OrderLunchModal,
+    OrderLunchModalFit,
   },
 
   data: () => {
@@ -145,7 +145,7 @@ export default Vue.extend({
       todayNameOfWeekBr: '',
       infoTextMsn: '',
       errorCode: 0,
-      txtDataTypeDefault: 'NORMAL',
+      txtDataTypeDefault: 'FIT',
     };
   },
 
@@ -202,7 +202,7 @@ export default Vue.extend({
           this.sendDataForModal();
         } else {
           this.infoTextMsn =
-            'NÃO EXISTEM!!!, AINDA, OPÇÕES DE MENU CRIADOS PARA: ' +
+            'NÃO EXISTEM!!!, AINDA, OPÇÕES DE MENU | FIT | CRIADOS PARA: ' +
             '| ' +
             this.todayNameOfWeekBr +
             ' |';

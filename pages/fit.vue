@@ -4,7 +4,7 @@
 
 <script>
 import Vue from 'vue'
-import Spa2 from '~/components/SinglePageApp2.vue';
+import Spa2 from '~/components/pageCodeGroups/forFitPage/SinglePageApp2.vue';
 
 export default Vue.extend({
   name: 'FitPage',
