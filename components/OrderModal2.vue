@@ -299,6 +299,33 @@ export default Vue.extend({
 
     //OK.. WORKING GOOD!!
     async fechUserDataByLastNameOrEmail() {
+      //debugger
+      try {
+        await this.$axios
+          .$get('/foodapi/user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
+          .then((response) => {
+            this.userList = response;
+            if (response.length === 1) {
+              this.userListNotFound = ['NO_EMPTY'];
+              this.searchByEmpyField = ['NO_EMPTY'];
+            }
+          })
+          .catch((err) => {
+            if (err.response.status === 400) {
+              this.userListNotFound = [];
+              console.log('USER NOT FOUND!')
+            } if (err.response.status === 404) {
+              this.searchByEmpyField = [];
+              console.log('EMPTY FIELD WAS BEEN FOUND, CHECK URI ON SWAGGER!')
+            }
+          })
+      } catch (error) {
+        console.log('STRANGER THINGS HAPPEN: ' + error)
+      }
+    },
+
+    //OK.. WORKING GOOD!!.. USED WHEN THE API DOES NOT RETURN ERROR WHEN USER IS NOT FOUND
+    async fechUserDataByLastNameOrEmail2() {
       // IF I FOUND SOMETHING ON THE INPUT TO PERFORM A SEARCH ACTION
       if (this.txtDataToFindUser) {
         await this.$axios
