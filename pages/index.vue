@@ -2,7 +2,7 @@
   <spa-1 />
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Spa1 from '~/components/pageCodeGroups/forIndexPage/SinglePageApp1.vue';
 

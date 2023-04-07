@@ -2,7 +2,7 @@
   <spa-2 /> <!-- HERE-FIT-CONTENT -->
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Spa2 from '~/components/pageCodeGroups/forFitPage/SinglePageApp2.vue';
 
