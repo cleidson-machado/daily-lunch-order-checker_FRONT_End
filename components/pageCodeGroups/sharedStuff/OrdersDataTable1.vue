@@ -1,7 +1,6 @@
 
 <template>
     <div>
-
         <div v-if="ordersList.length === 0">
             <!-- START SHOW A ERROR -->
             <div class="pt-6">
@@ -17,11 +16,12 @@
         </div>
 
         <div v-else>
-            <div class="container max-w-screen-lg mx-auto px-1 mt-10 mb-28">
+            <div class="container max-w-screen-lg mx-auto px-1 mt-6 mb-28">
 
                 <!-- START CABEÇALHO DA TABELA COM HISTÓRICO DE PEDIDOS RECENTES E DO BTN DE RELAÇÃO DE PEDIDOS -->
                 <div class="flex justify-between ...">
-                    <div><span class="txt-title-app">Histórico de Pedidos Recentes...</span></div>
+                    <div><span class="txt-title-app">Histórico dos {{ amountItemsFound }} Pedidos Mais Recentes...</span>
+                    </div>
                     <div class="order-first">
                         <button class="btn btn-blue">
                             <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -110,9 +110,17 @@
                                     </svg>
                                 </button>
                             </li>
+                            <!-- START OF THE PAGE BUTTONS GROUP -->
+                            <li v-for="(item, index) in new Array(numberPages)" v-bind:key="index">
+                                <button v-on:click="changePageBtn(index + 1)"
+                                    class="flex items-center justify-center h-full py-1.5 px-3 ml-1 text-white bg-violet-800 border border-gray-300 hover:bg-violet-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:bg-red-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                    <span>{{ index + 1 }}</span>
+                                </button>
+                            </li>
+                            <!-- END OF THE PAGE BUTTONS GROUP -->
                             <li>
                                 <button v-on:click="changePage(1)" :disabled="stopNext < groupingNumber"
-                                    class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-white bg-violet-800 rounded-r-lg border border-gray-300 hover:bg-violet-600 hover:text-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                    class="flex items-center justify-center h-full py-1.5 px-3 ml-1 leading-tight text-white bg-violet-800 rounded-r-lg border border-gray-300 hover:bg-violet-600 hover:text-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                     <span class="sr-only">Next</span>
                                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -146,6 +154,7 @@ export default Vue.extend({
         pageEnd: 0,
         amountItemsFound: 0,
         stopNext: 0,
+        numberPages: 0,
     }),
 
     created() {
@@ -158,10 +167,12 @@ export default Vue.extend({
             const end = this.currentPage * this.groupingNumber
             const result = this.ordersList.slice(star, end)
             //console.log(star, end)
-            console.table(result)
+            //console.table(result)
             this.pageStart = star
             this.pageEnd = end
             this.stopNext = result.length
+            this.numberPages = Math.ceil(this.amountItemsFound / this.groupingNumber) //HERE IS A CALCULATION FOR THE NUMBER OF PAGES
+            //console.log('Quantidade de páginas: ' + this.numberPages)
             return result
         }
 
@@ -190,6 +201,10 @@ export default Vue.extend({
             this.currentPage = this.currentPage + num
         },
 
+        changePageBtn(num) {
+            this.currentPage = num
+        },
+
         //BKP ORIGINAL INITIAL TEMPORARY METHOD
         async fetchOrdersDataBKP() {
             const orders = this.$axios.$get('/foodapi/order-for-lunch/listAll');
@@ -205,7 +220,7 @@ export default Vue.extend({
         formatUpperCase(theFieldValue) {
             const theOne = theFieldValue
             return theOne.toUpperCase()
-        }
+        },
 
     }
 
