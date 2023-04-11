@@ -21,7 +21,7 @@
 
                 <!-- START CABEÇALHO DA TABELA COM HISTÓRICO DE PEDIDOS RECENTES E DO BTN DE RELAÇÃO DE PEDIDOS -->
                 <div class="flex justify-between ...">
-                    <div><span class="txt-title-app">Histórico dos 15 Últimos Pedidos Recentes...</span></div>
+                    <div><span class="txt-title-app">Histórico de Pedidos Recentes...</span></div>
                     <div class="order-first">
                         <button class="btn btn-blue">
                             <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -80,11 +80,10 @@
                             v-if="stopNext == groupingNumber">
                             Exibindo de
                             <span class="font-semibold text-gray-900 dark:text-white">
-                                {{ pageStart }} até {{ pageEnd }}
+                                {{ pageStart + 1 }}-{{ pageEnd }}
                             </span>
-                            do total de
+                            de
                             <span class="font-semibold text-gray-900 dark:text-white">{{ amountItemsFound }}</span>
-                            registros.
                         </span>
                         <span class="text-sm font-semibold text-gray-700 dark:text-gray-400"
                             v-if="stopNext < groupingNumber">
@@ -159,7 +158,7 @@ export default Vue.extend({
             const end = this.currentPage * this.groupingNumber
             const result = this.ordersList.slice(star, end)
             //console.log(star, end)
-            //console.log(result)
+            console.table(result)
             this.pageStart = star
             this.pageEnd = end
             this.stopNext = result.length

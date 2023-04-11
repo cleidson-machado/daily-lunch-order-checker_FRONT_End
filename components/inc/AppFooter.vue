@@ -4,7 +4,7 @@
             fixed left-0 bottom-0
             flex justify-center items-center
             text-white text-2xl
-                                                                    ">
+                                                                                  ">
 
     <div
       class="inline-flex shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
@@ -25,23 +25,15 @@
         RELATÓRIOS
       </button>
     </div>
-
-    <!-- <admin-modal-1 /> MODAL DONT WORK HERE -->
-
   </footer>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import AdminModal1 from '~/components/pageCodeGroups/forAdminPage/adminModal1.vue';
 import { initFlowbite } from 'flowbite';
 
 export default Vue.extend({
   name: 'AppFooter',
-
-  components: {
-    AdminModal1,
-  },
 
   mounted() {
     initFlowbite();
