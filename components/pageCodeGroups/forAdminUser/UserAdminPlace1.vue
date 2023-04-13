@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="p-3 sm:p-5">
+        <section class="p-3 mt-0 mb-20 sm:p-5">
             <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
                 <!-- Start coding here -->
                 <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -134,7 +134,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="border-b dark:border-gray-700" v-for="(user, index) in usersList"
+                                <tr class="border-b dark:border-gray-700" v-for="(user, index) in filteredList"
                                     v-bind:key="index">
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -163,7 +163,7 @@
                                                         d="M4.5 6A1.5 1.5 0 003 7.5v9A1.5 1.5 0 004.5 18h7a1.5 1.5 0 001.5-1.5v-5.879a1.5 1.5 0 00-.44-1.06L9.44 6.439A1.5 1.5 0 008.378 6H4.5z">
                                                     </path>
                                                 </svg>
-                                                <span class="sr-only"><strong>V</strong>iew</span>
+                                                <span class=""><strong>V</strong></span>
                                             </button>
                                             <div id="tooltip-for-view" role="tooltip"
                                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -182,7 +182,7 @@
                                                         d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z">
                                                     </path>
                                                 </svg>
-                                                <span class="sr-only"><strong>E</strong>dit</span>
+                                                <span class=""><strong>E</strong>dit</span>
                                             </button>
                                             <div id="tooltip-for-review" role="tooltip"
                                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -198,7 +198,7 @@
                                                         d="M5.25 3A2.25 2.25 0 003 5.25v9.5A2.25 2.25 0 005.25 17h9.5A2.25 2.25 0 0017 14.75v-9.5A2.25 2.25 0 0014.75 3h-9.5z">
                                                     </path>
                                                 </svg>
-                                                <span class="sr-only">Delete</span>
+                                                <span class=""><strong>D</strong></span>
                                             </button>
                                             <div id="tooltip-dark" role="tooltip"
                                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -282,8 +282,6 @@ export default Vue.extend({
         pageEnd: 0,
         amountItemsFound: 0,
         stopNext: 0,
-        idLabelledbyName: '',
-        idTogglebyName: '',
         numberPages: 0,
     }),
 
@@ -300,6 +298,7 @@ export default Vue.extend({
             this.pageEnd = end
             this.stopNext = result.length
             this.numberPages = Math.ceil(this.amountItemsFound / this.groupingNumber) //HERE IS A CALCULATION FOR THE NUMBER OF PAGES
+            return result
         }
     },
 
@@ -313,8 +312,6 @@ export default Vue.extend({
                 .then(response => {
                     this.usersList = response
                     this.amountItemsFound = response.length
-                    this.idLabelledbyName = 'user-dbase-dropdown-button-'
-                    this.idTogglebyName = 'user-dropdown-'
                 })
                 .catch(err => {
                     console.log('Error getting all data from API:', err)
