@@ -27,7 +27,7 @@
                     <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Utilize uma das Opções Abaixo!</p>
                     <ul class="my-4 space-y-3">
                         <li>
-                            <a href="/user"
+                            <a href="/users"
                                 class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-300 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-people-fill" viewBox="0 0 16 16">
@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="/orders"
                                 class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-300 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-check-square-fill" viewBox="0 0 16 16">

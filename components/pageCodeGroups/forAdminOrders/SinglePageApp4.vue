@@ -1,21 +1,22 @@
 <template>
     <div>
-        <user-admin-place-1 />
+        <orders-admin-place-1 />
         <admin-modal-1 />
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import UserAdminPlace1 from '@/components/pageCodeGroups/forAdminUser/UserAdminPlace1.vue';
+import OrdersAdminPlace1 from '@/components/pageCodeGroups/forAdminOrders/OrdersAdminPlace1.vue'
 import AdminModal1 from '~/components/pageCodeGroups/forAdminPage/adminModal1.vue';
 
 export default Vue.extend({
-    name: 'SinglePageApp3',
+    name: 'SinglePageApp4',
 
     components: {
         AdminModal1,
-        UserAdminPlace1
+        OrdersAdminPlace1,
+
     },
 
     mounted() {

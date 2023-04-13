@@ -186,17 +186,23 @@
                             </tbody>
                         </table>
                     </div>
+                    <!-- START PAGINATION BUTTONS AND INFO TEXT -->
                     <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
                         aria-label="Table navigation">
                         <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                            Showing
-                            <span class="font-semibold text-gray-900 dark:text-white">1-10</span>
-                            of
-                            <span class="font-semibold text-gray-900 dark:text-white">1000</span>
+                            Exibindo
+                            <span class="font-semibold text-gray-900 dark:text-white">
+                                {{ pageStart + 1 }}-{{ pageEnd }}
+                            </span>
+                            de
+                            <span class="font-semibold text-gray-900 dark:text-white">
+                                {{ amountItemsFound }}
+                            </span>
+                            registros
                         </span>
                         <ul class="inline-flex items-stretch -space-x-px">
                             <li>
-                                <a href="#"
+                                <button v-on:click="changePage(-1)" :disabled="currentPage === 1"
                                     class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                     <span class="sr-only">Previous</span>
                                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
@@ -205,30 +211,18 @@
                                             d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                </a>
+                                </button>
                             </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                            <!-- START OF THE PAGE BUTTONS GROUP -->
+                            <li v-for="(item, index) in new Array(numberPages)" v-bind:key="index">
+                                <button v-on:click="changePageBtn(index + 1)"
+                                    class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">
+                                    <span>{{ index + 1 }}</span>
+                                </button>
                             </li>
+                            <!-- END OF THE PAGE BUTTONS GROUP -->
                             <li>
-                                <a href="#"
-                                    class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                            </li>
-                            <li>
-                                <a href="#" aria-current="page"
-                                    class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
-                            </li>
-                            <li>
-                                <a href="#"
+                                <button v-on:click="changePage(1)" :disabled="stopNext < groupingNumber"
                                     class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                     <span class="sr-only">Next</span>
                                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
@@ -237,10 +231,11 @@
                                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                </a>
+                                </button>
                             </li>
                         </ul>
                     </nav>
+                    <!-- END PAGINATION BUTTONS AND INFO TEXT -->
                 </div>
             </div>
         </section>
@@ -264,10 +259,23 @@ export default Vue.extend({
         stopNext: 0,
         idLabelledbyName: '',
         idTogglebyName: '',
+        numberPages: 0,
     }),
 
     created() {
         this.fetchUsersData()
+    },
+
+    computed: {
+        filteredList() {
+            const star = (this.currentPage - 1) * this.groupingNumber
+            const end = this.currentPage * this.groupingNumber
+            const result = this.usersList.slice(star, end)
+            this.pageStart = star
+            this.pageEnd = end
+            this.stopNext = result.length
+            this.numberPages = Math.ceil(this.amountItemsFound / this.groupingNumber) //HERE IS A CALCULATION FOR THE NUMBER OF PAGES
+        }
     },
 
     mounted() {
@@ -297,7 +305,15 @@ export default Vue.extend({
         formatUpperCase(theFieldValue) {
             const theOne = theFieldValue
             return theOne.toUpperCase()
-        }
+        },
+
+        changePage(num) {
+            this.currentPage = this.currentPage + num
+        },
+
+        changePageBtn(num) {
+            this.currentPage = num
+        },
 
     },
 
