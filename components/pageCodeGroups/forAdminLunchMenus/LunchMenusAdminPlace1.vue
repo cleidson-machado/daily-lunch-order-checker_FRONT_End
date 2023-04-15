@@ -3,7 +3,7 @@
         <section>
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-0">
                 <h2 class="mb-0 mt-4 font-extrabold tracking-tight leading-none text-violet-800 lg:text-2xl">
-                    Administrative Panel of Meals or Menus
+                    Administrative Panel of Lunch or Menus
                 </h2>
             </div>
         </section>
@@ -33,7 +33,8 @@
                         </div>
                         <div
                             class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                            <button type="button"
+                            <button type="button" data-modal-target="new-lunch-menu-modal"
+                                data-modal-toggle="new-lunch-menu-modal"
                                 class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                                 <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -92,35 +93,49 @@
                                             <input id="apple" type="checkbox" value=""
                                                 class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="apple"
-                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Apple
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">MONDAY
                                                 (56)</label>
                                         </li>
                                         <li class="flex items-center">
                                             <input id="fitbit" type="checkbox" value=""
                                                 class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="fitbit"
-                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Microsoft
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">TUESDAY
                                                 (16)</label>
                                         </li>
                                         <li class="flex items-center">
                                             <input id="razor" type="checkbox" value=""
                                                 class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="razor"
-                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Razor
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">WEDNESDAY
                                                 (49)</label>
                                         </li>
                                         <li class="flex items-center">
                                             <input id="nikon" type="checkbox" value=""
                                                 class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="nikon"
-                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Nikon
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">THURSDAY
                                                 (12)</label>
                                         </li>
                                         <li class="flex items-center">
                                             <input id="benq" type="checkbox" value=""
                                                 class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="benq"
-                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">BenQ
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">FRIDAY
+                                                (74)</label>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <input id="benq" type="checkbox" value=""
+                                                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label for="benq"
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">SATURDAY
+                                                (74)</label>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <input id="benq" type="checkbox" value=""
+                                                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label for="benq"
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">SUNDAY
                                                 (74)</label>
                                         </li>
                                     </ul>
@@ -272,16 +287,23 @@
                 </div>
             </div>
         </section>
+        <lunch-menu-modal-1 />
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { initFlowbite } from 'flowbite';
+import LunchMenuModal1 from './LunchMenuModal1.vue';
 import * as dayjs from 'dayjs'
+
 
 export default Vue.extend({
     name: 'LunchMenusAdminPlace1',
+
+    components: {
+        LunchMenuModal1,
+    },
 
     data: () => ({
         lunchMenusList: [],
