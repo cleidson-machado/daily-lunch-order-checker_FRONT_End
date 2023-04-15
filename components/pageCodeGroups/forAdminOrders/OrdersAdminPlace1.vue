@@ -1,5 +1,12 @@
 <template>
     <div>
+        <section>
+            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-0">
+                <h2 class="mb-0 mt-4 font-extrabold tracking-tight leading-none text-violet-800 lg:text-2xl">
+                    Administrative Panel of Orders
+                </h2>
+            </div>
+        </section>
         <section class="p-3 mt-0 mb-20 sm:p-5">
             <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
                 <!-- Start coding here -->
