@@ -1,3 +1,4 @@
+## Completo com FORM
 <template>
     <div>
         <!-- Main modal -->
@@ -5,6 +6,7 @@
             class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-2xl max-h-full">
                 <!-- Modal content -->
+
                 <div class="relative bg-gray-200 rounded-lg shadow dark:bg-gray-700">
                     <!-- Modal header -->
                     <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
@@ -23,109 +25,108 @@
                         </button>
                     </div>
                     <!-- START Modal body -->
-                    <form @submit.prevent>
-                        <div class=" p-3 space-y-0">
 
-                            <div class="grid grid-cols-3 gap-4">
-                                <div class="mb-3 col-span-2 ...">
-                                    <label for="Name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                                        Name</label>
-                                    <input id="Name"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="name@flowbite.com">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="type" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                                        Type</label>
-                                    <select id="type" data-te-select-init
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option value="" hidden selected></option>
-                                        <option value="1">NORMAL</option>
-                                        <option value="2">FIT</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Calories"
-                                        class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                                        Calories</label>
-                                    <input type="text" id="Calories"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="name@flowbite.com">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Weight"
-                                        class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                                        Weight</label>
-                                    <input type="text" id="Weight"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="name@flowbite.com">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Price" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                                        Price</label>
-                                    <input type="text" id="Price"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="name@flowbite.com">
-                                </div>
-                                <div class="mb-3 col-span-2 ...">
-                                    <label for="DessertName"
-                                        class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                                        Dessert Name</label>
-                                    <input type="text" id="DessertName"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="name@flowbite.com">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="nameDayWeek" class="mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                                        Name Day Week
-                                    </label>
-                                    <select id="nameDayWeek" data-te-select-init
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option value="" hidden selected></option>
-                                        <option value="1">MONDAY</option>
-                                        <option value="2">TUESDAY</option>
-                                        <option value="3">WEDNESDAY</option>
-                                        <option value="4">THURSDAY</option>
-                                        <option value="5">FRIDAY</option>
-                                        <option value="4">SUNDAY (Day Off)</option>
-                                        <option value="5">SATURDAY (Day Off)</option>
-                                    </select>
-                                </div>
-                                <div class="mb-1 col-span-3 ...">
-                                    <label for="Description"
-                                        class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                                        Description</label>
-                                    <textarea id="Description" rows="4"
-                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Leave a comment..."></textarea>
-                                </div>
-                                <!-- START IMAGE UPLOAD AREA WHITH tailwind-elements -->
-                                <div class="mb-2 col-span-3 ...">
-                                    <label for="formFile" class="mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                                        Please Send a Image for This Lunch / Menu...
-                                    </label>
-                                    <input
-                                        class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-                                        type="file" id="formFile" />
-                                </div>
-                                <!-- START IMAGE UPLOAD AREA WHITH tailwind-elements -->
+                    <div class=" p-3 space-y-0">
+
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="mb-3 col-span-2 ...">
+                                <label for="Name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                    Name</label>
+                                <input id="Name" v-model="menuName"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="name@flowbite.com">
                             </div>
-
+                            <div class="mb-3">
+                                <label for="Type" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                    Type</label>
+                                <select id="Type" data-te-select-init
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" hidden selected></option>
+                                    <option value="1">NORMAL</option>
+                                    <option value="2">FIT</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Calories" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                    Calories</label>
+                                <input type="text" id="Calories"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="name@flowbite.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Weight" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                    Weight</label>
+                                <input type="text" id="Weight"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="name@flowbite.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Price" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                    Price</label>
+                                <input type="text" id="Price"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="name@flowbite.com">
+                            </div>
+                            <div class="mb-3 col-span-2 ...">
+                                <label for="DessertName"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                    Dessert Name</label>
+                                <input type="text" id="DessertName"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="name@flowbite.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nameDayWeek" class="mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                    Name Day Week
+                                </label>
+                                <select id="nameDayWeek" data-te-select-init
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" hidden selected></option>
+                                    <option value="1">MONDAY</option>
+                                    <option value="2">TUESDAY</option>
+                                    <option value="3">WEDNESDAY</option>
+                                    <option value="4">THURSDAY</option>
+                                    <option value="5">FRIDAY</option>
+                                    <option value="4">SUNDAY (Day Off)</option>
+                                    <option value="5">SATURDAY (Day Off)</option>
+                                </select>
+                            </div>
+                            <div class="mb-1 col-span-3 ...">
+                                <label for="Description"
+                                    class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                    Description</label>
+                                <textarea id="Description" rows="4"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Leave a comment..."></textarea>
+                            </div>
+                            <!-- START IMAGE UPLOAD AREA WHITH tailwind-elements -->
+                            <div class="mb-2 col-span-3 ...">
+                                <label for="formFile" class="mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                    Please Send a Image for This Lunch / Menu...
+                                </label>
+                                <input
+                                    class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
+                                    type="file" id="formFile" />
+                            </div>
+                            <!-- START IMAGE UPLOAD AREA WHITH tailwind-elements -->
                         </div>
-                    </form>
+
+                    </div>
+
                     <!-- END Modal body -->
                     <!-- ######################## -->
                     <!-- START Modal footer -->
                     <div class="flex items-center p-3 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                        <button data-modal-hide="defaultModal" type="button" v-on:click="saveTheNewMenuLunch"
+                        <button data-modal-hide="new-lunch-menu-modal" v-on:click="saveTheNewMenuLunch"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             SAVE MENU
                         </button>
-                        <button data-modal-hide="defaultModal" type="button"
+                        <button data-modal-hide="new-lunch-menu-modal" type="button"
                             class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
                     </div>
                     <!-- START Modal footer -->
                 </div>
+
             </div>
         </div>
     </div>
@@ -134,25 +135,31 @@
 <script lang="ts">
 import Vue from 'vue';
 import { initFlowbite } from 'flowbite';
+import { name } from 'dayjs/locale/pt-br';
 
 export default Vue.extend({
     name: 'LunchMenuModal1',
 
     data: () => {
         return {
-            menuName: 'TEST NAME MENU',
-            menuType: 'NORMAL',
-            menuAverageCalories: 999.5,
-            menuAverageWeight: 777,
-            menuAveragePrice: 11.35,
-            menuDessertName: 'um doce',
-            menuNameDayWeek: '',
-            menuDescription: 'txt...txt...txt...txt...txt...',
-            menuRateQualityNumber: '',
-            menuImageLinkPath: '',
-            menuLunchBoxId: '',
-            foundErrorOnSaveAction: [],
-            saveSuccessfully: [],
+            el: '#theform',
+            form: {
+                menuName: '',
+                menuType: '',
+                menuAverageCalories: 0,
+                menuAverageWeight: 0,
+                menuAveragePrice: 0,
+                menuDessertName: '',
+                menuNameDayWeek: '',
+                menuDescription: '',
+                menuRateQualityNumber: 0,
+                menuImageLinkPath: '',
+                menuLunchBoxId: '',
+            },
+            msnData: {
+                foundErrorOnSaveAction: [],
+                saveSuccessfully: [],
+            }
         };
     },
 
@@ -162,42 +169,43 @@ export default Vue.extend({
 
     methods: {
         async saveTheNewMenuLunch() {
-            //debugger
-            await this.$axios
-                .$post('/foodapi/lunch-meal-menu/add', {
 
-                    name: this.menuName,
-                    type: this.menuType,
+            //this.menuName = 'TESTE OK plus',
+            this.menuType = 'NORMAL',
+                this.menuAverageCalories = 999.5,
+                this.menuAverageWeight = 777,
+                this.menuAveragePrice = 11.35,
+                this.menuDessertName = 'um doce',
+                this.menuNameDayWeek = 'MONDAY',
+                this.menuDescription = 'txt...txt...txt...txt...txt...',
+                this.menuRateQualityNumber = 1,
+                this.menuImageLinkPath = 'WednesdayMenu.png',
+                this.menuLunchBoxId = '412cabe5-1f7d-4cd9-9774-e4657c9cbcb7',
 
-                    averageCalories: this.menuAverageCalories,
-                    averageWeight: this.menuAverageWeight,
-                    averagePrice: this.menuAveragePrice,
+                //console.log(this.menuName)
 
-                    dessertName: this.menuDessertName,
-
-                    //nameDayWeek: this.menuNameDayWeek,
-                    nameDayWeek: 'MONDAY',
-
-                    description: this.menuDescription,
-
-                    //rateQualityNumber: this.menuRateQualityNumber,
-                    rateQualityNumber: 1,
-
-                    //imageLinkPath: this.menuImageLinkPath,
-                    imageLinkPath: 'WednesdayMenu.png',
-
-                    //lunchBoxId: this.menuLunchBoxId,
-                    lunchBoxId: '412cabe5-1f7d-4cd9-9774-e4657c9cbcb7',
-                })
-                .then((response) => {
-                    //THE SAVE CONFIRMATION
-                    this.saveSuccessfully = [response.length];
-                })
-                .catch((err) => {
-                    console.log('FOUND A ERROR TO SAVE:' + err);
-                    this.foundErrorOnSaveAction = err
-                });
-
+                await this.$axios
+                    .$post('/foodapi/lunch-meal-menu/add', {
+                        name: this.menuName,
+                        type: this.menuType,
+                        averageCalories: this.menuAverageCalories,
+                        averageWeight: this.menuAverageWeight,
+                        averagePrice: this.menuAveragePrice,
+                        dessertName: this.menuDessertName,
+                        nameDayWeek: this.menuNameDayWeek,
+                        description: this.menuDescription,
+                        rateQualityNumber: this.menuRateQualityNumber,
+                        imageLinkPath: this.menuImageLinkPath,
+                        lunchBoxId: this.menuLunchBoxId,
+                    })
+                    .then((response) => {
+                        //THE SAVE CONFIRMATION
+                        this.saveSuccessfully = [response.length];
+                    })
+                    .catch((err) => {
+                        console.log('FOUND A ERROR TO SAVE:' + err);
+                        this.foundErrorOnSaveAction = err
+                    });
         }
     }
 })
