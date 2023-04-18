@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Main modal -->
-        <div id="new-lunch-menu-modal" data-modal-placement="top-center" tabindex="-1"
+        <div id="lunch-menu-modal-view" data-modal-placement="top-center" tabindex="-1"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
             <div class="relative w-full max-w-2xl max-h-full">
                 <!-- Modal content -->
@@ -14,7 +14,7 @@
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-hide="new-lunch-menu-modal">
+                            data-modal-hide="lunch-menu-modal-view">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -38,41 +38,35 @@
                             <div class="mb-0 col-span-2 ...">
                                 <label for="Box" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Box</label>
-                                <select v-model="menuLunchBoxId" id="Box"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option v-for="(box, index) in listLunchBox" v-bind:key="index" v-bind:value="box.id">
-                                        {{ box.name }}
-                                    </option>
-                                </select>
+                                <input id="Box"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="xxxxx">
                             </div>
                             <div class="mb-0">
                                 <label for="Type" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Type</label>
-                                <select id="Type" v-model="menuType"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="" hidden selected></option>
-                                    <option value="NORMAL">NORMAL</option>
-                                    <option value="FIT">FIT</option>
-                                </select>
+                                <input id="Type"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="xxxxx">
                             </div>
                             <div class="mb-0">
                                 <label for="Calories" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Calories</label>
-                                <input type="text" id="Calories" v-model="menuAverageCalories"
+                                <input type="text" id="Calories"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="123">
                             </div>
                             <div class="mb-0">
                                 <label for="Weight" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Weight</label>
-                                <input type="text" id="Weight" v-model="menuAverageWeight"
+                                <input type="text" id="Weight"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="123">
                             </div>
                             <div class="mb-0">
                                 <label for="Price" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Price</label>
-                                <input type="text" id="Price" v-model="menuAveragePrice"
+                                <input type="text" id="Price"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="123">
                             </div>
@@ -80,7 +74,7 @@
                                 <label for="DessertName"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Dessert Name</label>
-                                <input type="text" id="DessertName" v-model="menuDessertName"
+                                <input type="text" id="DessertName"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Nome Resumido da Sobremesa">
                             </div>
@@ -88,23 +82,15 @@
                                 <label for="nameDayWeek" class="mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Name Day Week
                                 </label>
-                                <select id="nameDayWeek" data-te-select-init v-model="menuNameDayWeek"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="" hidden selected></option>
-                                    <option value="MONDAY">MONDAY</option>
-                                    <option value="TUESDAY">TUESDAY</option>
-                                    <option value="WEDNESDAY">WEDNESDAY</option>
-                                    <option value="THURSDAY">THURSDAY</option>
-                                    <option value="FRIDAY">FRIDAY</option>
-                                    <option value="SUNDAY">SUNDAY (Day Off)</option>
-                                    <option value="SATURDAY">SATURDAY (Day Off)</option>
-                                </select>
+                                <input type="text" id="nameDayWeek"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="zzzzzz">
                             </div>
                             <div class="mb-0 col-span-3 ...">
                                 <label for="Description"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Description</label>
-                                <textarea id="Description" rows="4" v-model="menuDescription"
+                                <textarea id="Description" rows="4"
                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Descrição do Menu..."></textarea>
                             </div>
@@ -126,7 +112,7 @@
                     <!-- ######################## -->
                     <!-- START Modal footer -->
                     <div class="flex items-center p-3 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                        <button data-modal-hide="new-lunch-menu-modal" v-on:click="saveTheNewMenuLunch"
+                        <button data-modal-hide="new-lunch-menu-modal"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             SAVE MENU
                         </button>
@@ -147,7 +133,7 @@ import Vue from 'vue';
 import { initFlowbite } from 'flowbite';
 
 export default Vue.extend({
-    name: 'LunchMenuModal1',
+    name: 'LunchMenuModal2View',
 
     data: () => {
         return {
@@ -174,62 +160,16 @@ export default Vue.extend({
 
     mounted() {
         initFlowbite();
-        this.selectAllUserToOrder();
+
+    },
+
+    created() {
+
     },
 
     methods: {
-        async saveTheNewMenuLunch() {
-
-            //this.menuName = 'TESTE OK plus',
-            //this.menuType = 'NORMAL',
-            //this.menuAverageCalories = 999.5,
-            //this.menuAverageWeight = 777,
-            //this.menuAveragePrice = 11.35,
-            //this.menuDessertName = 'um doce',
-            //this.menuNameDayWeek = 'MONDAY',
-            //this.menuDescription = 'txt...txt...txt...txt...txt...',
-            //this.menuRateQualityNumber = 1,
-            //this.menuImageLinkPath = 'WednesdayMenu.png',
-            //this.menuLunchBoxId = '412cabe5-1f7d-4cd9-9774-e4657c9cbcb7',
-
-            console.log(this.menuName);
-            console.log(this.menuLunchBoxId);
-
-            await this.$axios
-                .$post('/foodapi/lunch-meal-menu/add', {
-                    name: this.menuName,
-                    type: this.menuType,
-                    averageCalories: this.menuAverageCalories,
-                    averageWeight: this.menuAverageWeight,
-                    averagePrice: this.menuAveragePrice,
-                    dessertName: this.menuDessertName,
-                    nameDayWeek: this.menuNameDayWeek,
-                    description: this.menuDescription,
-                    rateQualityNumber: this.menuRateQualityNumber,
-                    imageLinkPath: this.menuImageLinkPath,
-                    lunchBoxId: this.menuLunchBoxId,
-                })
-                .then((response) => {
-                    //THE SAVE CONFIRMATION
-                    this.saveSuccessfully = [response.length];
-                })
-                .catch((err) => {
-                    console.log('FOUND A ERROR TO SAVE_1:' + err);
-                    this.foundErrorOnSaveAction = err
-                });
-
-        },
-
-        async selectAllUserToOrder() {
-            await this.$axios
-                .$get('/foodapi/lunch-box-type/listAll')
-                .then((response) => {
-                    this.listLunchBox = response;
-                })
-                .catch((err) => {
-                    console.log('FOUND A ERROR TO SAVE_2:' + err);
-                    this.foundErrorOnListBoxAction = err
-                });
+        setMenuData() {
+            console.log('PASSEI AQUI NO MODAL VIEW' + 1)
         },
 
     }
