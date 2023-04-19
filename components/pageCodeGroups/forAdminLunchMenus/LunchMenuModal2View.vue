@@ -10,7 +10,7 @@
                     <!-- Modal header -->
                     <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                            Add a New Lunch / Menu
+                            View Lunch / Menu <span class="font-light text-xs text-red-700">ID: {{ menuId }}</span>
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -23,7 +23,7 @@
                             <span class="sr-only">Close modal</span>
                         </button>
                     </div>
-                    <!-- START Modal body -->
+                    <!-- START Modal_body -->
 
                     <div class=" p-3 space-y-0">
 
@@ -32,93 +32,93 @@
                                 <label for="Name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Name
                                 </label>
-                                <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <p id="Name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <strong>{{ menuName }}</strong>
                                 </p>
                             </div>
                             <div class="mb-0 col-span-2 ...">
                                 <label for="Box" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Box</label>
-                                <input id="Box"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="xxxxx">
+                                <p id="Box" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <strong>{{ menuLunchBoxName }}</strong>
+                                </p>
                             </div>
                             <div class="mb-0">
                                 <label for="Type" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Type</label>
-                                <input id="Type"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="xxxxx">
+                                <p id="Type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <strong>{{ menuType }}</strong>
+                                </p>
                             </div>
                             <div class="mb-0">
                                 <label for="Calories" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Calories</label>
-                                <input type="text" id="Calories"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="123">
+                                <p id="Calories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <strong>{{ menuAverageCalories }}</strong>
+                                </p>
                             </div>
                             <div class="mb-0">
                                 <label for="Weight" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Weight</label>
-                                <input type="text" id="Weight"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="123">
+                                <p id="Weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <strong>{{ menuAverageWeight }}</strong>
+                                </p>
                             </div>
                             <div class="mb-0">
                                 <label for="Price" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Price</label>
-                                <input type="text" id="Price"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="123">
+                                <p id="Price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <strong>{{ menuAveragePrice }}</strong>
+                                </p>
                             </div>
                             <div class="mb-0 col-span-2 ...">
                                 <label for="DessertName"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Dessert Name</label>
-                                <input type="text" id="DessertName"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Nome Resumido da Sobremesa">
+                                <p id="DessertName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <strong>{{ menuDessertName }}</strong>
+                                </p>
                             </div>
                             <div class="mb-0">
                                 <label for="nameDayWeek" class="mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Name Day Week
                                 </label>
-                                <input type="text" id="nameDayWeek"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="zzzzzz">
+                                <p id="nameDayWeek" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <strong>{{ menuNameDayWeek }}</strong>
+                                </p>
                             </div>
                             <div class="mb-0 col-span-3 ...">
                                 <label for="Description"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Description</label>
-                                <textarea id="Description" rows="4"
-                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Descrição do Menu..."></textarea>
+                                <p id="Description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <strong>{{ menuDescription }}</strong>
+                                </p>
                             </div>
-                            <!-- START IMAGE UPLOAD AREA WHITH tailwind-elements -->
+
                             <div class="mb-0 col-span-3 ...">
-                                <label for="formFile" class="mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                                    Please Send a Image for This Lunch / Menu...
-                                </label>
-                                <input
-                                    class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-                                    type="file" id="formFile" />
+                                || <span class="font-light text-xs text-red-700">Rate_Num: {{ menuRateQualityNumber }}</span> ||
+                                <span class="font-light text-xs text-red-700">Img_Link: {{ menuImageLinkPath }}</span> ||
+                                
                             </div>
-                            <!-- START IMAGE UPLOAD AREA WHITH tailwind-elements -->
+
+                            <div class="mb-0 col-span-3 ...">
+                                || <span class="font-light text-xs text-red-700">Create_At: {{ menuCreatedAt }}</span> ||
+                                <span class="font-light text-xs text-red-700">Update_At: {{ menuUpdatedAt }}</span> ||
+                            </div>
+
                         </div>
 
                     </div>
 
-                    <!-- END Modal body -->
+                    <!-- END Modal_body -->
                     <!-- ######################## -->
                     <!-- START Modal footer -->
                     <div class="flex items-center p-3 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                        <button data-modal-hide="new-lunch-menu-modal"
+                        <button type="button" data-modal-hide="lunch-menu-modal-view" 
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            SAVE MENU
+                            OK - Close
                         </button>
-                        <button data-modal-hide="new-lunch-menu-modal" type="button"
-                            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
                     </div>
                     <!-- START Modal footer -->
                 </div>
@@ -136,21 +136,26 @@ import { initFlowbite } from 'flowbite';
 export default Vue.extend({
     name: 'LunchMenuModal2View',
 
-    props: ["menuId", "menuName"],
+    props: [
+            "menuId", 
+            "menuName", 
+            "menuLunchBoxName",
+            "menuType", 
+            "menuAverageCalories", 
+            "menuAverageWeight", 
+            "menuAveragePrice", 
+            "menuDessertName", 
+            "menuNameDayWeek", 
+            "menuDescription", 
+            "menuRateQualityNumber", 
+            "menuImageLinkPath",
+            "menuCreatedAt",
+            "menuUpdatedAt",
+        ],
 
     data: () => {
         return {
-            //menuName: '',
-            menuType: '',
-            menuAverageCalories: 0,
-            menuAverageWeight: 0,
-            menuAveragePrice: 0,
-            menuDessertName: '',
-            menuNameDayWeek: '',
-            menuDescription: '',
-            menuRateQualityNumber: 0,
-            menuImageLinkPath: '',
-            menuLunchBoxId: '',
+
         };
     },
 

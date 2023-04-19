@@ -175,7 +175,24 @@
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         <div class="inline-flex rounded-md shadow-sm" role="group">
                                             <button type="button" data-modal-target="lunch-menu-modal-view"
-                                                data-modal-toggle="lunch-menu-modal-view" v-on:click="getMenuById(lunch.id, lunch.name)"
+                                                data-modal-toggle="lunch-menu-modal-view" v-on:click="
+                                                getMenuById(
+                                                    lunch.id, 
+                                                    lunch.name,
+                                                    lunch.lunchBox.name,
+                                                    lunch.type,
+                                                    lunch.averageCalories,
+                                                    lunch.averageWeight,
+                                                    lunch.averagePrice,
+                                                    lunch.dessertName,
+                                                    lunch.nameDayWeek,
+                                                    lunch.description,
+                                                    lunch.rateQualityNumber,
+                                                    lunch.imageLinkPath,
+                                                    lunch.createdAt,
+                                                    lunch.updatedAt,
+                                                    //lunch.lunchBoxId,
+                                                    )"
                                                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                                                 <svg aria-hidden="true" class="w-4 h-4 mr-0 fill-current"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -289,7 +306,21 @@
             </div>
         </section>
         <lunch-menu-modal-1 />
-        <lunch-menu-modal-2-view :menuId="idFromModal" :menuName="nameFromModal" />
+        <lunch-menu-modal-2-view 
+        :menuId="menuIdModal" 
+        :menuName="menuNameModal"
+        :menuLunchBoxName="menuLunchBoxNameModal"
+        :menuType="menuTypeModal"
+        :menuAverageCalories="menuAverageCaloriesModal"
+        :menuAverageWeight="menuAverageWeightModal"
+        :menuAveragePrice="menuAveragePriceModal"
+        :menuDessertName="menuDessertNameModal"
+        :menuNameDayWeek="menuNameDayWeekModal"
+        :menuDescription="menuDescriptionModal"
+        :menuRateQualityNumber="menuRateQualityNumberModal"
+        :menuImageLinkPath="menuImageLinkPathModal"
+        :menuCreatedAt="menuCreatedAtModal"
+        :menuUpdatedAt="menuUpdatedAtModal"/>
     </div>
 </template>
 
@@ -310,6 +341,8 @@ export default Vue.extend({
     },
 
     data: () => ({
+
+        //TABLE DATA
         lunchMenusList: [],
         groupingNumber: 10,
         currentPage: 1,
@@ -319,9 +352,22 @@ export default Vue.extend({
         stopNext: 0,
         numberPages: 0,
 
-        //object
-        idFromModal: '',
-        nameFromModal: ''
+        //FORM MODAL OBJECT FOR VIEW ONLY
+        menuIdModal: '',
+        menuNameModal: '',
+        menuLunchBoxNameModal: '',
+        menuTypeModal: '',
+        menuAverageCaloriesModal: '',
+        menuAverageWeightModal: '',
+        menuAveragePriceModal: '',
+        menuDessertNameModal: '',
+        menuNameDayWeekModal: '',
+        menuDescriptionModal: '',
+        menuRateQualityNumberModal: '',
+        menuImageLinkPathModal: '',
+        menuCreatedAtModal: '',
+        menuUpdatedAtModal: '',
+        //menuLunchBoxIdModal: '',
     }),
 
     created() {
@@ -338,7 +384,6 @@ export default Vue.extend({
             this.pageEnd = end
             this.stopNext = result.length
             this.numberPages = Math.ceil(this.amountItemsFound / this.groupingNumber) //HERE IS A CALCULATION FOR THE NUMBER OF PAGES
-            //console.log(result) //DON'T WORK YET??
             return result
         }
 
@@ -381,9 +426,21 @@ export default Vue.extend({
             this.currentPage = num
         },
 
-        async getMenuById(theIdValue, theNameValue) {
-            this.idFromModal = theIdValue
-            this.nameFromModal = theNameValue
+        async getMenuById(id, name, lunchBname, type, aveCal, aveWeig, avePri, desNam, dayNam, descPt, rateNum, igmLink, creAt, updAt) {
+            this.menuIdModal = id
+            this.menuNameModal = name
+            this.menuLunchBoxNameModal = lunchBname
+            this.menuTypeModal = type
+            this.menuAverageCaloriesModal = aveCal
+            this.menuAverageWeightModal = aveWeig
+            this.menuAveragePriceModal = avePri
+            this.menuDessertNameModal = desNam
+            this.menuNameDayWeekModal = dayNam
+            this.menuDescriptionModal = descPt
+            this.menuRateQualityNumberModal = rateNum
+            this.menuImageLinkPathModal = igmLink
+            this.menuCreatedAtModal = creAt
+            this.menuUpdatedAtModal = updAt
         },
     }
 
