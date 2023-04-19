@@ -215,7 +215,7 @@ export default Vue.extend({
       }
     },
 
-    //SEND A NEW ORDER...
+    //SEND A NEW ORDER... JUST A TEST?.. REMOVE IT!
     sendNewOrderForToday() {
       //OPEN DE MODAL VIEW
       this.sendDataForModal();

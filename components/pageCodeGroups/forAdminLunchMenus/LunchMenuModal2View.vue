@@ -30,10 +30,11 @@
                         <div class="grid grid-cols-3 gap-4">
                             <div class="mb-0 col-span-3 ...">
                                 <label for="Name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                                    Name</label>
-                                <input id="Name" v-model="menuName"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Nome do Menu">
+                                    Name
+                                </label>
+                                <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <strong>{{ menuName }}</strong>
+                                </p>
                             </div>
                             <div class="mb-0 col-span-2 ...">
                                 <label for="Box" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
@@ -135,9 +136,11 @@ import { initFlowbite } from 'flowbite';
 export default Vue.extend({
     name: 'LunchMenuModal2View',
 
+    props: ["menuId", "menuName"],
+
     data: () => {
         return {
-            menuName: '',
+            //menuName: '',
             menuType: '',
             menuAverageCalories: 0,
             menuAverageWeight: 0,
@@ -148,13 +151,6 @@ export default Vue.extend({
             menuRateQualityNumber: 0,
             menuImageLinkPath: '',
             menuLunchBoxId: '',
-
-            listLunchBox: [],
-
-            foundErrorOnSaveAction: [],
-            foundErrorOnListBoxAction: [],
-            saveSuccessfully: [],
-
         };
     },
 
@@ -167,12 +163,6 @@ export default Vue.extend({
 
     },
 
-    methods: {
-        setMenuData() {
-            console.log('PASSEI AQUI NO MODAL VIEW' + 1)
-        },
-
-    }
 })
 </script>
 

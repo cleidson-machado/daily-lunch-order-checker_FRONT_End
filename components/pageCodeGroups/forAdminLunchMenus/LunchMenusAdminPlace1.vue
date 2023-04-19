@@ -175,7 +175,7 @@
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         <div class="inline-flex rounded-md shadow-sm" role="group">
                                             <button type="button" data-modal-target="lunch-menu-modal-view"
-                                                data-modal-toggle="lunch-menu-modal-view" v-on:click="getMenuById(lunch.id)"
+                                                data-modal-toggle="lunch-menu-modal-view" v-on:click="getMenuById(lunch.id, lunch.name)"
                                                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                                                 <svg aria-hidden="true" class="w-4 h-4 mr-0 fill-current"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -289,7 +289,7 @@
             </div>
         </section>
         <lunch-menu-modal-1 />
-        <lunch-menu-modal-2-view />
+        <lunch-menu-modal-2-view :menuId="idFromModal" :menuName="nameFromModal" />
     </div>
 </template>
 
@@ -318,7 +318,10 @@ export default Vue.extend({
         amountItemsFound: 0,
         stopNext: 0,
         numberPages: 0,
-        //btnIdFromObject: '',
+
+        //object
+        idFromModal: '',
+        nameFromModal: ''
     }),
 
     created() {
@@ -343,6 +346,7 @@ export default Vue.extend({
 
     mounted() {
         initFlowbite();
+        //this.fetchOrdersData()
     },
 
     methods: {
@@ -377,27 +381,9 @@ export default Vue.extend({
             this.currentPage = num
         },
 
-        getIdOpenModal(theIdValue) {
-            //console.log(theIdValue)
-            //localStorage.setItem('theLunchMealId', this.menuList[0].id);
-            //localStorage.setItem('btnLunchMealId', theIdValue);
-            //console.log(localStorage.getItem('btnLunchMealId'))
-        },
-
-        async getMenuById(theIdValue) {
-
-            await this.$axios
-                .$get('/foodapi/lunch-meal-menu/' + theIdValue)
-                .then((response) => {
-                    console.table(response)
-                    localStorage.setItem('theLunchMealName', response.name);
-                    console.log(localStorage.getItem('theLunchMealName'));
-                })
-                .catch((err) => {
-                    console.log('FOUND A ERROR TO SAVE_3:' + err);
-                    this.foundErrorOnSaveAction = err
-                });
-
+        async getMenuById(theIdValue, theNameValue) {
+            this.idFromModal = theIdValue
+            this.nameFromModal = theNameValue
         },
     }
 
