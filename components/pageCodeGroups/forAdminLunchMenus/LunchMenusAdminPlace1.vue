@@ -175,9 +175,9 @@
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         <div class="inline-flex rounded-md shadow-sm" role="group">
                                             <button type="button" data-modal-target="lunch-menu-modal-view"
-                                                data-modal-toggle="lunch-menu-modal-view" v-on:click="
-                                                getMenuById(
-                                                    lunch.id, 
+                                                data-modal-toggle="lunch-menu-modal-view"
+                                                data-tooltip-target="tooltip-for-view" v-on:click="getMenuById(
+                                                    lunch.id,
                                                     lunch.name,
                                                     lunch.lunchBox.name,
                                                     lunch.type,
@@ -191,8 +191,7 @@
                                                     lunch.imageLinkPath,
                                                     lunch.createdAt,
                                                     lunch.updatedAt,
-                                                    //lunch.lunchBoxId,
-                                                    )"
+                                                )"
                                                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                                                 <svg aria-hidden="true" class="w-4 h-4 mr-0 fill-current"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -230,7 +229,9 @@
                                                 Data Edition
                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                             </div>
-                                            <button type="button" data-tooltip-target="tooltip-dark"
+                                            <button type="button" data-modal-target="popup-delete-modal"
+                                                data-modal-toggle="popup-delete-modal" data-tooltip-target="tooltip-dark"
+                                                v-on:click="getMenuByIdDelete(lunch.id, lunch.name)"
                                                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-r-md hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                                                 <svg aria-hidden="true" class="w-4 h-4 mr-0 fill-current"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -306,21 +307,14 @@
             </div>
         </section>
         <lunch-menu-modal-1 />
-        <lunch-menu-modal-2-view 
-        :menuId="menuIdModal" 
-        :menuName="menuNameModal"
-        :menuLunchBoxName="menuLunchBoxNameModal"
-        :menuType="menuTypeModal"
-        :menuAverageCalories="menuAverageCaloriesModal"
-        :menuAverageWeight="menuAverageWeightModal"
-        :menuAveragePrice="menuAveragePriceModal"
-        :menuDessertName="menuDessertNameModal"
-        :menuNameDayWeek="menuNameDayWeekModal"
-        :menuDescription="menuDescriptionModal"
-        :menuRateQualityNumber="menuRateQualityNumberModal"
-        :menuImageLinkPath="menuImageLinkPathModal"
-        :menuCreatedAt="menuCreatedAtModal"
-        :menuUpdatedAt="menuUpdatedAtModal"/>
+        <lunch-menu-modal-2-view :menuId="menuIdModal" :menuName="menuNameModal" :menuLunchBoxName="menuLunchBoxNameModal"
+            :menuType="menuTypeModal" :menuAverageCalories="menuAverageCaloriesModal"
+            :menuAverageWeight="menuAverageWeightModal" :menuAveragePrice="menuAveragePriceModal"
+            :menuDessertName="menuDessertNameModal" :menuNameDayWeek="menuNameDayWeekModal"
+            :menuDescription="menuDescriptionModal" :menuRateQualityNumber="menuRateQualityNumberModal"
+            :menuImageLinkPath="menuImageLinkPathModal" :menuCreatedAt="menuCreatedAtModal"
+            :menuUpdatedAt="menuUpdatedAtModal" />
+        <lunch-menu-modal-3-view-delete :menuId="menuIdModal" :menuName="menuNameModal" />
     </div>
 </template>
 
@@ -329,6 +323,7 @@ import Vue from 'vue'
 import { initFlowbite } from 'flowbite';
 import LunchMenuModal1 from './LunchMenuModal1.vue';
 import LunchMenuModal2View from './LunchMenuModal2View.vue';
+import LunchMenuModal3ViewDelete from './LunchMenuModal3Delete.vue';
 import * as dayjs from 'dayjs'
 
 
@@ -338,6 +333,7 @@ export default Vue.extend({
     components: {
         LunchMenuModal1,
         LunchMenuModal2View,
+        LunchMenuModal3ViewDelete,
     },
 
     data: () => ({
@@ -442,6 +438,11 @@ export default Vue.extend({
             this.menuCreatedAtModal = creAt
             this.menuUpdatedAtModal = updAt
         },
+
+        async getMenuByIdDelete(id, name,) {
+            this.menuIdModal = id
+            this.menuNameModal = name
+        }
     }
 
 })
