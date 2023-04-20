@@ -210,7 +210,24 @@
                                                 Data View
                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                             </div>
-                                            <button type="button" data-tooltip-target="tooltip-for-review"
+                                            <button type="button" data-modal-target="new-lunch-menu-modal-update"
+                                                data-modal-toggle="new-lunch-menu-modal-update"
+                                                data-tooltip-target="tooltip-for-review" v-on:click="getMenuById(
+                                                        lunch.id,
+                                                        lunch.name,
+                                                        lunch.lunchBox.name,
+                                                        lunch.type,
+                                                        lunch.averageCalories,
+                                                        lunch.averageWeight,
+                                                        lunch.averagePrice,
+                                                        lunch.dessertName,
+                                                        lunch.nameDayWeek,
+                                                        lunch.description,
+                                                        lunch.rateQualityNumber,
+                                                        lunch.imageLinkPath,
+                                                        lunch.createdAt,
+                                                        lunch.updatedAt,
+                                                    )"
                                                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border-t border-b border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                                                 <svg aria-hidden="true" class="w-4 h-4 mr-0 fill-current"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -306,7 +323,9 @@
                 </div>
             </div>
         </section>
+
         <lunch-menu-modal-1 />
+
         <lunch-menu-modal-2-view :menuId="menuIdModal" :menuName="menuNameModal" :menuLunchBoxName="menuLunchBoxNameModal"
             :menuType="menuTypeModal" :menuAverageCalories="menuAverageCaloriesModal"
             :menuAverageWeight="menuAverageWeightModal" :menuAveragePrice="menuAveragePriceModal"
@@ -314,7 +333,17 @@
             :menuDescription="menuDescriptionModal" :menuRateQualityNumber="menuRateQualityNumberModal"
             :menuImageLinkPath="menuImageLinkPathModal" :menuCreatedAt="menuCreatedAtModal"
             :menuUpdatedAt="menuUpdatedAtModal" />
+
         <lunch-menu-modal-3-view-delete :menuId="menuIdModal" :menuName="menuNameModal" />
+
+        <lunch-menu-modal-4-view-update :menuId="menuIdModal" :menuName="menuNameModal"
+            :menuLunchBoxName="menuLunchBoxNameModal" :menuType="menuTypeModal"
+            :menuAverageCalories="menuAverageCaloriesModal" :menuAverageWeight="menuAverageWeightModal"
+            :menuAveragePrice="menuAveragePriceModal" :menuDessertName="menuDessertNameModal"
+            :menuNameDayWeek="menuNameDayWeekModal" :menuDescription="menuDescriptionModal"
+            :menuRateQualityNumber="menuRateQualityNumberModal" :menuImageLinkPath="menuImageLinkPathModal"
+            :menuCreatedAt="menuCreatedAtModal" :menuUpdatedAt="menuUpdatedAtModal" />
+
     </div>
 </template>
 
@@ -324,6 +353,7 @@ import { initFlowbite } from 'flowbite';
 import LunchMenuModal1 from './LunchMenuModal1.vue';
 import LunchMenuModal2View from './LunchMenuModal2View.vue';
 import LunchMenuModal3ViewDelete from './LunchMenuModal3Delete.vue';
+import LunchMenuModal4ViewUpdate from './LunchMenuModal4Update.vue';
 import * as dayjs from 'dayjs'
 
 
@@ -334,6 +364,7 @@ export default Vue.extend({
         LunchMenuModal1,
         LunchMenuModal2View,
         LunchMenuModal3ViewDelete,
+        LunchMenuModal4ViewUpdate
     },
 
     data: () => ({
