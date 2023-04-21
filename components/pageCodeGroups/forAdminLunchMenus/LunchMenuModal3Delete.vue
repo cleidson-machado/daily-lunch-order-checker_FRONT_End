@@ -75,7 +75,7 @@ export default Vue.extend({
             await this.$axios
                 .$delete('/foodapi/lunch-meal-menu/' + this.menuId)
                 .then((response) => {
-                    console.table(response)
+                    //console.table(response)
                 })
                 .catch((err) => {
                     console.log('FOUND A ERROR TO DELETE:' + err);

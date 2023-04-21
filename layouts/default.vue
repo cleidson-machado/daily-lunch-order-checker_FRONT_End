@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppHeader /> <!-- HERE-COMPONENT -->
-    <Nuxt /> <!-- O CONTEÚDO VEM DESSE CARA (pages\index.vue) ELE TB CONTÉM A TABELA E O MENU -->
+    <Nuxt /> <!-- CARREGA DO CONTEÚDO DE TODAS AS ROTAS! -->
     <AppFooter /> <!--  HERE-COMPONENT -->
   </div>
 </template>

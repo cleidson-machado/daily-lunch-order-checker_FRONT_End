@@ -209,7 +209,7 @@ export default Vue.extend({
         async fetchOrdersDataBKP() {
             const orders = this.$axios.$get('/foodapi/order-for-lunch/listAll');
             this.ordersList = await orders;
-            console.table(orders);//TEST
+            //console.table(orders);//TEST
         },
 
         formatDateByDayJs(apiDateValue) {

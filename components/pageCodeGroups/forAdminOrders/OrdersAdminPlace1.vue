@@ -317,7 +317,7 @@ export default Vue.extend({
                 .then(response => {
                     this.ordersList = response
                     this.amountItemsFound = response.length
-                    console.table(response)
+                    //console.table(response)
                 })
                 .catch(err => {
                     console.log('Error getting all data from API:', err)
