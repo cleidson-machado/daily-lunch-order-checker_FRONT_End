@@ -156,6 +156,7 @@ export default Vue.extend({
 
   //NÃO CARREGA OS DADOS NO MODAL EM SESSÃO ZERADA!.. VERIFICAR?
   created() {
+    //this.$nuxt.refresh();
     this.nameOfDayWeekToday();
     this.fetchMenuDataForToday();
   },
@@ -170,25 +171,25 @@ export default Vue.extend({
 
     nameOfDayWeekTodayBrFormat() {
       let response = dayjs(Date.now()).locale('pt-br').format('dddd').toUpperCase();
-      return response;
+      this.todayNameOfWeekBr = response;
     },
 
     todayDateBrFormat() {
       let response = dayjs(Date.now()).format('DD/MM/YYYY');
-      return response;
+      this.todayDateBr = response
     },
 
-    //OK.. REVIEW
-    async fetchMenuDataForToday() {
+    //OK.. METHOD USING TRY CATCH...
+    async fetchMenuDataForToday_ORIGINAL_WAY() {
       try {
         const typeName = this.txtDataTypeDefault;
         const dayName = this.nameOfDayWeekToday();
-        //const resApi = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/' + dayName);
+
         const resApi = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/weekDayAndType/' + dayName + '/' + typeName);
 
-        //SET THE CURRENT DATE PT-BR
-        this.todayDateBr = this.todayDateBrFormat();
-        this.todayNameOfWeekBr = this.nameOfDayWeekTodayBrFormat();
+        this.todayDateBrFormat(); //SET THE CURRENT DATE PT-BR
+
+        this.nameOfDayWeekTodayBrFormat(); //SET THE NAME OF WEEK TO PT-BR
 
         if (dayName == 'SATURDAY' && resApi.length != 0) {
           //RETURN WARNING SATURDAY
@@ -199,7 +200,7 @@ export default Vue.extend({
         } else if (resApi.length != 0) {
           //RETURN TO DATA
           this.menuList = resApi;
-          this.sendDataForModal();
+          this.sendDataForModal(); //CREATE A MODAL MEMORY OBJECT!
         } else {
           this.infoTextMsn =
             'NÃO EXISTEM!!!, AINDA, OPÇÕES DE MENU CRIADOS PARA: ' +
@@ -215,13 +216,50 @@ export default Vue.extend({
       }
     },
 
-    //SEND A NEW ORDER... JUST A TEST?.. REMOVE IT!
-    sendNewOrderForToday() {
-      //OPEN DE MODAL VIEW
-      this.sendDataForModal();
+    //OK.. METHOD USING RESPONSE
+    async fetchMenuDataForToday() {
+
+      const typeName = this.txtDataTypeDefault;
+      const dayName = this.nameOfDayWeekToday();
+      this.todayDateBrFormat(); //SET THE CURRENT DATE PT-BR
+      this.nameOfDayWeekTodayBrFormat(); //SET THE NAME OF WEEK TO PT-BR
+
+      await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/weekDayAndType/' + dayName + '/' + typeName)
+        .then(response => {
+          if (dayName == 'SATURDAY' && response.length != 0) {
+            //RETURN WARNING SATURDAY ###### ADD TO THE FUTURE PARAMETERS ######
+            this.infoTextMsn = 'NO ' + this.todayNameOfWeekBr + ' NÃO HÁ FORNECIMENTO DE REFEIÇÕES!';
+
+          } else if (dayName == 'SUNDAY' && response.length != 0) {
+            //RETURN WARNING SUNDAY ###### ADD TO THE FUTURE PARAMETERS ######
+            this.infoTextMsn = 'NO ' + this.todayNameOfWeekBr + ' NÃO HÁ FORNECIMENTO DE REFEIÇÕES!';
+
+          } else if (response.length != 0) {
+
+            //RETURN TO DATA
+            this.menuList = response;
+
+            //CREATE A MODAL MEMORY OBJECT!
+            this.sendDataForModal();
+
+          } else {
+            this.infoTextMsn =
+              'NÃO EXISTEM!!!, AINDA, OPÇÕES DE MENU CRIADOS PARA: ' +
+              '| ' +
+              this.todayNameOfWeekBr +
+              ' |';
+          }
+        })
+        .catch(err => {
+          'Error Code ( ' + err.response.status + ' ) Sorry The API sever is Of Line?';
+          this.errorCode = err.response.status;
+          console.log(this.infoTextMsn);
+        })
     },
 
+    //POPULATE THE MODAL MEMORY OBJECT!
     sendDataForModal() {
+
       //SET TO AMBIENT VARIABLE FOR THE ORDER OBJECT
       localStorage.setItem('theLunchMealId', this.menuList[0].id);
       localStorage.setItem('theOrderValue', this.menuList[0].averagePrice);
@@ -233,7 +271,14 @@ export default Vue.extend({
       localStorage.setItem('theLunchBoxDescription', this.menuList[0].lunchBox.description);
       localStorage.setItem('theLunchBoxType', this.menuList[0].type);
     },
+
   },
+
+  //CHANGE CODE SCHEDULE
+  //00 CHANGE THE METHOD TO USE PROMISES AND RESPONSE CORRECTELY... ##### OK!
+  //01 REFATORE THIS PAGE / AND MODAL TO USE PROPS INSTED LOCAL STORAGE ITEM...
+  //03 RECREATE THE MODAL HTML AND CSS CODE TO USE THE SAME OF MENUS TABLE MODALS...
+
 });
 </script>
 

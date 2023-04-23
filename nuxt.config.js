@@ -4,46 +4,36 @@ export default {
   head: {
     script: [
       {
-        src: "https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js",
+        //src: "https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js",
       },
     ],
     title: 'daily-lunch-order-checker',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@/assets/css/tailwind.css',
-  ],
+  css: ['@/assets/css/tailwind.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    '@nuxt/postcss8','@nuxtjs/tailwindcss'
-  ],
+  buildModules: ['@nuxt/postcss8', '@nuxtjs/tailwindcss'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/tailwindcss'
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/tailwindcss'],
 
   axios: {
     proxy: true,
@@ -51,8 +41,11 @@ export default {
   },
 
   proxy: {
-    '/api/': { target: 'https://benef-api.frontline.cassems.com.br', pathRewrite: {'^/api/': ''} },
-    '/foodapi/': { target: 'http://localhost:3000', pathRewrite: {'^/foodapi/': ''} },
+    '/api/': {
+      target: 'https://benef-api.frontline.cassems.com.br',
+      pathRewrite: { '^/api/': '' },
+    },
+    '/foodapi/': { target: 'http://localhost:3000', pathRewrite: { '^/foodapi/': '' } },
   },
 
   tailwindcss: {
@@ -73,5 +66,5 @@ export default {
         autoprefixer: {},
       },
     },
-  }
-}
+  },
+};
