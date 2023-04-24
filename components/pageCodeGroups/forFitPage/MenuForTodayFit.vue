@@ -215,12 +215,6 @@ export default Vue.extend({
       }
     },
 
-    //SEND A NEW ORDER...
-    sendNewOrderForToday() {
-      //OPEN DE MODAL VIEW
-      this.sendDataForModal();
-    },
-
     sendDataForModal() {
       //SET TO AMBIENT VARIABLE FOR THE ORDER OBJECT
       localStorage.setItem('theLunchMealId', this.menuList[0].id);

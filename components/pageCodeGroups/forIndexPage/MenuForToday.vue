@@ -197,12 +197,9 @@ export default Vue.extend({
 
   mounted() {
     initFlowbite();
-    localStorage.clear();
   },
 
-  //NÃO CARREGA OS DADOS NO MODAL EM SESSÃO ZERADA!.. VERIFICAR?
   created() {
-    //this.$nuxt.refresh();
     this.nameOfDayWeekToday();
     this.fetchMenuDataForToday();
   },
@@ -250,6 +247,7 @@ export default Vue.extend({
 
             //RETURN TO DATA FOR MODAL AND THIS MENU | NORMAL | ...OR... | FIT | ROUTE PAGE
             this.menuList = response;
+            //localStorage.clear();
 
           } else {
             this.infoTextMsn =
