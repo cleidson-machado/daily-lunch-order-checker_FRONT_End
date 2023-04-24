@@ -8,10 +8,10 @@
         <div class="flex justify-between mb-4 rounded-t sm:mb-5">
           <div class="text-lg text-gray-900 md:text-xl dark:text-white">
             <h3 class="font-semibold ">
-              {{ itemLunchMealName }}
+              {{ menuName }}
             </h3>
             <p>
-              <span class="font-bold"> R$ {{ itemPrice }} </span> <span class="font-extralight text-xs text-black">
+              <span class="font-bold"> R$ {{ menuAveragePrice }} </span> <span class="font-extralight text-xs text-black">
                 ( preço unitário - simbólico )
               </span>
             </p>
@@ -31,10 +31,10 @@
           </div>
         </div>
         <dl>
-          <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Pedido: {{ itemLunchBoxlName }} |
-            Tipo: {{ itemLunchBoxlType }} |</dt>
-          <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">CARDÁPIO: {{ itemLunchMealDescription }}
-            EMBALAGEM: {{ itemLunchBoxlDescription }}
+          <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Pedido: {{ menuLunchBoxName }} |
+            Tipo: {{ menuType }} |</dt>
+          <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">CARDÁPIO: {{ menuDescription }}
+            EMBALAGEM: {{ menuLunchBoxDescription }}
           </dd>
           <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Colaborador:
             <!-- START MSN AREA ######################################## -->
@@ -238,20 +238,31 @@ import { initFlowbite } from 'flowbite';
 export default Vue.extend({
   name: 'OrderLunchModal',
 
+  props: [
+    "menuId",
+    "menuName",
+    "menuType",
+    "menuAverageCalories",
+    "menuAverageWeight",
+    "menuAveragePrice",
+    "menuDessertName",
+    "menuNameDayWeek",
+    "menuDescription",
+    "menuRateQualityNumber",
+    "menuImageLinkPath",
+    "menuCreatedAt",
+    "menuUpdatedAt",
+    "menuLunchBoxName",
+    "menuLunchBoxDescription",
+    "menuLunchBoxImageLinkPath",
+    "menuLunchBoxCreatedAt",
+    "menuLunchBoxUpdatedAt",
+  ],
+
   data: () => {
     return {
-      //DATA DO CREATE A NEW ORDER.... IS SEND TO THIS MODAL BY THE INDEX PAGE
-      itemPrice: localStorage.getItem('theOrderValue'),
+      //KEY DATA VALUE TO SAVE NEW ORDER
       itemAmount: '1',
-      itemId: localStorage.getItem('theLunchMealId'),
-      //USERID GET BY THE SEARCH
-
-      //TXT DATA TO VIEW ONLY ON MODAL
-      itemLunchMealName: localStorage.getItem('theLunchMealName'),
-      itemLunchMealDescription: localStorage.getItem('theLunchMealDescription'),
-      itemLunchBoxlName: localStorage.getItem('theLunchBoxName'),
-      itemLunchBoxlDescription: localStorage.getItem('theLunchBoxDescription'),
-      itemLunchBoxlType: localStorage.getItem('theLunchBoxType'),
 
       //USER DATA LIST... DEFAULT IS EMPTY WHEN THE INDEX MAIN IS CREATED
       userList: [],
@@ -276,12 +287,10 @@ export default Vue.extend({
 
       //USER WHEN SEND A SAVE ACTION AND FOUND ERROR
       foundErrorOnSaveAction: [],
-
     };
   },
 
   mounted() {
-    //this.selectAllUserToOrder() //IT IS A TEST... CREATE HERE TO POPULATE THE COMBO SELECT ON LOADING PAGE..
     initFlowbite();
   },
 
@@ -324,47 +333,24 @@ export default Vue.extend({
       }
     },
 
-    //OK.. WORKING GOOD!!.. USED WHEN THE API DOES NOT RETURN ERROR WHEN USER IS NOT FOUND
-    async fechUserDataByLastNameOrEmail2() {
-      // IF I FOUND SOMETHING ON THE INPUT TO PERFORM A SEARCH ACTION
-      if (this.txtDataToFindUser) {
-        await this.$axios
-          .$get('/foodapi/user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
-          .then((response) => {
-            this.userList = response;
-            if (response.length === 0) {
-              this.userListNotFound = [];
-              this.searchByEmpyField = ['NO_EMPTY'];
-            } else {
-              this.userListNotFound = ['NO_EMPTY'];
-              this.searchByEmpyField = ['NO_EMPTY'];
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } else {
-        //RETURN A MSN
-        this.searchByEmpyField = [];
-        //console.log('EMPTY FIELD by SEARCH');
-      }
-    },
-
     //SAVE THE ORDER A LUNCH... MELHORAR!!???
     async saveTheNewOrder() {
       //debugger
       if (this.userList.length === 1) {
-        const calcPrice = parseFloat(this.itemPrice) * parseInt(this.itemAmount);
+        //console.log('O PREÇO MODAL:' + this.menuAveragePrice);
+        const calcPrice = parseFloat(this.menuAveragePrice) * parseInt(this.itemAmount);
+        //debugger
+        console.log('O PREÇO CALCULADO É:' + calcPrice);
+        //debugger
         await this.$axios
           .$post('/foodapi/order-for-lunch/add', {
-            orderValue: parseFloat(calcPrice),
+            orderValue: calcPrice,
             amount: parseInt(this.itemAmount),
-            lunchMealId: this.itemId,
+            lunchMealId: this.menuId, //#### OLD localStorage.getItem //lunchMealId: this.itemId, 
             userOrderId: this.userList[0].id,
           })
           .then((response) => {
-            //THE ORDER CONFIRMATION
-            this.saveSuccessfully = [response.length];
+            this.saveSuccessfully = [response.length]; //THE ORDER CONFIRMATION
           })
           .catch((err) => {
             console.log('FOUND A ERROR TO SAVE:' + err);
@@ -375,14 +361,12 @@ export default Vue.extend({
         if (this.userList.length >= 2) {
           this.foundMultipleDataMsn = [];
         } else {
-          this.searchByEmpyField = [];
-          console.log('EMPTY FIELD by SAVE ACTION');
+          this.searchByEmpyField = []; //console.log('EMPTY FIELD by SAVE ACTION');
         }
       }
     },
 
-    //GET USER LIST FOR ORDER A LUNCH... TEST TO USE ON THE SELECT COMBO FIELD
-    //IT IS A TEST... CREATE HERE TO POPULATE THE COMBO SELECT ON LOADING PAGE..
+    //TO USE ON THE FUTURE SELECT COMBO FIELD...??
     async selectAllUserToOrder() {
       await this.$axios
         .$get('/foodapi/user/listAll')
