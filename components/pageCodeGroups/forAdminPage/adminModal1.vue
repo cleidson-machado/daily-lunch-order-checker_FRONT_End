@@ -30,7 +30,7 @@
                     <div class="flex flex-col space-y-4 ...">
 
                         <router-link to="/users" custom v-slot="{ navigate }">
-                            <button v-on:click="navigate" role="link" data-modal-toggle="admin-modal"
+                            <button v-on:click="navigate" role="link" data-modal-hide="admin-modal"
                                 class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-300 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-people-fill" viewBox="0 0 16 16">
@@ -46,7 +46,7 @@
                         </router-link>
 
                         <router-link to="/boxes" custom v-slot="{ navigate }">
-                            <button v-on:click="navigate" role="link" data-modal-toggle="admin-modal"
+                            <button v-on:click="navigate" role="link" data-modal-hide="admin-modal"
                                 class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-300 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-box-fill" viewBox="0 0 16 16">
@@ -59,7 +59,7 @@
                         </router-link>
 
                         <router-link to="/menus" custom v-slot="{ navigate }">
-                            <button v-on:click="navigate" role="link" data-modal-toggle="admin-modal"
+                            <button v-on:click="navigate" role="link" data-modal-hide="admin-modal"
                                 class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-300 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-book-half" viewBox="0 0 16 16">
@@ -74,8 +74,8 @@
                             </button>
                         </router-link>
 
-                        <router-link to="/menus" custom v-slot="{ navigate }">
-                            <button v-on:click="navigate" role="link" data-modal-toggle="admin-modal"
+                        <router-link to="/orders" custom v-slot="{ navigate }">
+                            <button v-on:click="navigate" role="link" data-modal-hide="admin-modal"
                                 class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-300 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-check-square-fill" viewBox="0 0 16 16">
@@ -88,7 +88,7 @@
                         </router-link>
 
                         <router-link to="#" custom v-slot="{ navigate }">
-                            <button v-on:click="navigate" role="link" data-modal-toggle="admin-modal"
+                            <button v-on:click="navigate" role="link" data-modal-hide="admin-modal"
                                 class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-300 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-stop-circle-fill" viewBox="0 0 16 16">

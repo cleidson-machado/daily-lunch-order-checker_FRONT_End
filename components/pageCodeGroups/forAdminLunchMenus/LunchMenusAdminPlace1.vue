@@ -418,7 +418,6 @@ export default Vue.extend({
 
     mounted() {
         initFlowbite();
-        //this.fetchOrdersData()
     },
 
     methods: {

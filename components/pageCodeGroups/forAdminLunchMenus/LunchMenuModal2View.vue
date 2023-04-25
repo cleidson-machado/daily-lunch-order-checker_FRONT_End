@@ -32,42 +32,48 @@
                                 <label for="Name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Name
                                 </label>
-                                <p id="Name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <p id="Name"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <strong>{{ menuName }}</strong>
                                 </p>
                             </div>
                             <div class="mb-0 col-span-2 ...">
                                 <label for="Box" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Box</label>
-                                <p id="Box" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <p id="Box"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <strong>{{ menuLunchBoxName }}</strong>
                                 </p>
                             </div>
                             <div class="mb-0">
                                 <label for="Type" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Type</label>
-                                <p id="Type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <p id="Type"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <strong>{{ menuType }}</strong>
                                 </p>
                             </div>
                             <div class="mb-0">
                                 <label for="Calories" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Calories</label>
-                                <p id="Calories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <p id="Calories"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <strong>{{ menuAverageCalories }}</strong>
                                 </p>
                             </div>
                             <div class="mb-0">
                                 <label for="Weight" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Weight</label>
-                                <p id="Weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <p id="Weight"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <strong>{{ menuAverageWeight }}</strong>
                                 </p>
                             </div>
                             <div class="mb-0">
                                 <label for="Price" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Price</label>
-                                <p id="Price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <p id="Price"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <strong>{{ menuAveragePrice }}</strong>
                                 </p>
                             </div>
@@ -75,7 +81,8 @@
                                 <label for="DessertName"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Dessert Name</label>
-                                <p id="DessertName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <p id="DessertName"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <strong>{{ menuDessertName }}</strong>
                                 </p>
                             </div>
@@ -83,7 +90,8 @@
                                 <label for="nameDayWeek" class="mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Name Day Week
                                 </label>
-                                <p id="nameDayWeek" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <p id="nameDayWeek"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <strong>{{ menuNameDayWeek }}</strong>
                                 </p>
                             </div>
@@ -91,15 +99,17 @@
                                 <label for="Description"
                                     class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                                     Description</label>
-                                <p id="Description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <p id="Description"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <strong>{{ menuDescription }}</strong>
                                 </p>
                             </div>
 
                             <div class="mb-0 col-span-3 ...">
-                                || <span class="font-light text-xs text-red-700">Rate_Num: {{ menuRateQualityNumber }}</span> ||
+                                || <span class="font-light text-xs text-red-700">Rate_Num: {{ menuRateQualityNumber
+                                }}</span> ||
                                 <span class="font-light text-xs text-red-700">Img_Link: {{ menuImageLinkPath }}</span> ||
-                                
+
                             </div>
 
                             <div class="mb-0 col-span-3 ...">
@@ -115,7 +125,7 @@
                     <!-- ######################## -->
                     <!-- START Modal footer -->
                     <div class="flex items-center p-3 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                        <button type="button" data-modal-hide="lunch-menu-modal-view" 
+                        <button type="button" data-modal-hide="lunch-menu-modal-view"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             OK - Close
                         </button>
@@ -137,35 +147,24 @@ export default Vue.extend({
     name: 'LunchMenuModal2View',
 
     props: [
-            "menuId", 
-            "menuName", 
-            "menuLunchBoxName",
-            "menuType", 
-            "menuAverageCalories", 
-            "menuAverageWeight", 
-            "menuAveragePrice", 
-            "menuDessertName", 
-            "menuNameDayWeek", 
-            "menuDescription", 
-            "menuRateQualityNumber", 
-            "menuImageLinkPath",
-            "menuCreatedAt",
-            "menuUpdatedAt",
-        ],
-
-    data: () => {
-        return {
-
-        };
-    },
+        "menuId",
+        "menuName",
+        "menuLunchBoxName",
+        "menuType",
+        "menuAverageCalories",
+        "menuAverageWeight",
+        "menuAveragePrice",
+        "menuDessertName",
+        "menuNameDayWeek",
+        "menuDescription",
+        "menuRateQualityNumber",
+        "menuImageLinkPath",
+        "menuCreatedAt",
+        "menuUpdatedAt",
+    ],
 
     mounted() {
         initFlowbite();
-
-    },
-
-    created() {
-
     },
 
 })

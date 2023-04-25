@@ -55,16 +55,8 @@ export default Vue.extend({
         "menuName",
     ],
 
-    data: () => {
-
-    },
-
     mounted() {
         initFlowbite();
-
-    },
-
-    created() {
 
     },
 

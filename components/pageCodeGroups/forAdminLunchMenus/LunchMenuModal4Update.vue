@@ -168,20 +168,8 @@ export default Vue.extend({
 
     data: () => {
         return {
-            menuName: '',
-            menuType: '',
-            menuAverageCalories: 0,
-            menuAverageWeight: 0,
-            menuAveragePrice: 0,
-            menuDessertName: '',
-            menuNameDayWeek: '',
-            menuDescription: '',
-            menuRateQualityNumber: 0,
-            menuImageLinkPath: '',
             menuLunchBoxId: '',
-
             listLunchBox: [],
-
             foundErrorOnSaveAction: [],
             foundErrorOnListBoxAction: [],
             saveSuccessfully: [],
@@ -195,9 +183,6 @@ export default Vue.extend({
 
     methods: {
         async saveTheNewMenuLunch() {
-            console.log(this.menuName);
-            console.log(this.menuLunchBoxId);
-
             await this.$axios
                 .$put('/foodapi/lunch-meal-menu/' + this.menuId, {
                     name: this.menuName,
@@ -213,8 +198,7 @@ export default Vue.extend({
                     lunchBoxId: this.menuLunchBoxId,
                 })
                 .then((response) => {
-                    //THE SAVE CONFIRMATION
-                    this.saveSuccessfully = [response.length];
+                    this.saveSuccessfully = [response.length]; //THE SAVE CONFIRMATION
                 })
                 .catch((err) => {
                     console.log('FOUND A ERROR TO SAVE_1:' + err);

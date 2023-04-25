@@ -1,15 +1,20 @@
 <template>
-    <spa-4 /> <!-- HERE-FIT-CONTENT -->
+    <div>
+        <orders-admin-place-1 />
+        <admin-modal-1 />
+    </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import Spa4 from '~/components/pageCodeGroups/forAdminOrders/SinglePageApp4.vue'
+import OrdersAdminPlace1 from '@/components/pageCodeGroups/forAdminOrders/OrdersAdminPlace1.vue'
+import AdminModal1 from '~/components/pageCodeGroups/forAdminPage/adminModal1.vue';
 
 export default Vue.extend({
     name: 'OrderPage',
     components: {
-        Spa4,
+        AdminModal1,
+        OrdersAdminPlace1,
     }
 })
 </script>
