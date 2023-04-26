@@ -324,19 +324,19 @@
             </div>
         </section>
 
-        <lunch-menu-modal-1 />
+        <lunch-menu-modal-1 id="createModalComponet" />
 
-        <lunch-menu-modal-2-view :menuId="menuIdModal" :menuName="menuNameModal" :menuLunchBoxName="menuLunchBoxNameModal"
-            :menuType="menuTypeModal" :menuAverageCalories="menuAverageCaloriesModal"
-            :menuAverageWeight="menuAverageWeightModal" :menuAveragePrice="menuAveragePriceModal"
-            :menuDessertName="menuDessertNameModal" :menuNameDayWeek="menuNameDayWeekModal"
-            :menuDescription="menuDescriptionModal" :menuRateQualityNumber="menuRateQualityNumberModal"
-            :menuImageLinkPath="menuImageLinkPathModal" :menuCreatedAt="menuCreatedAtModal"
-            :menuUpdatedAt="menuUpdatedAtModal" />
+        <lunch-menu-modal-2-view id="viewModalComponet" :menuId="menuIdModal" :menuName="menuNameModal"
+            :menuLunchBoxName="menuLunchBoxNameModal" :menuType="menuTypeModal"
+            :menuAverageCalories="menuAverageCaloriesModal" :menuAverageWeight="menuAverageWeightModal"
+            :menuAveragePrice="menuAveragePriceModal" :menuDessertName="menuDessertNameModal"
+            :menuNameDayWeek="menuNameDayWeekModal" :menuDescription="menuDescriptionModal"
+            :menuRateQualityNumber="menuRateQualityNumberModal" :menuImageLinkPath="menuImageLinkPathModal"
+            :menuCreatedAt="menuCreatedAtModal" :menuUpdatedAt="menuUpdatedAtModal" />
 
-        <lunch-menu-modal-3-view-delete :menuId="menuIdModal" :menuName="menuNameModal" />
+        <lunch-menu-modal-3-view-delete id="deleteModalComponet" :menuId="menuIdModal" :menuName="menuNameModal" />
 
-        <lunch-menu-modal-4-view-update :menuId="menuIdModal" :menuName="menuNameModal"
+        <lunch-menu-modal-4-view-update id="updateModalComponet" :menuId="menuIdModal" :menuName="menuNameModal"
             :menuLunchBoxName="menuLunchBoxNameModal" :menuType="menuTypeModal"
             :menuAverageCalories="menuAverageCaloriesModal" :menuAverageWeight="menuAverageWeightModal"
             :menuAveragePrice="menuAveragePriceModal" :menuDessertName="menuDessertNameModal"
@@ -394,7 +394,6 @@ export default Vue.extend({
         menuImageLinkPathModal: '',
         menuCreatedAtModal: '',
         menuUpdatedAtModal: '',
-        //menuLunchBoxIdModal: '',
     }),
 
     created() {

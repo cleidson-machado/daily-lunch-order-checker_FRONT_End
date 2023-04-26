@@ -179,22 +179,6 @@ export default Vue.extend({
 
     methods: {
         async saveTheNewMenuLunch() {
-
-            //this.menuName = 'TESTE OK plus',
-            //this.menuType = 'NORMAL',
-            //this.menuAverageCalories = 999.5,
-            //this.menuAverageWeight = 777,
-            //this.menuAveragePrice = 11.35,
-            //this.menuDessertName = 'um doce',
-            //this.menuNameDayWeek = 'MONDAY',
-            //this.menuDescription = 'txt...txt...txt...txt...txt...',
-            //this.menuRateQualityNumber = 1,
-            //this.menuImageLinkPath = 'WednesdayMenu.png',
-            //this.menuLunchBoxId = '412cabe5-1f7d-4cd9-9774-e4657c9cbcb7',
-
-            console.log(this.menuName);
-            console.log(this.menuLunchBoxId);
-
             await this.$axios
                 .$post('/foodapi/lunch-meal-menu/add', {
                     name: this.menuName,
