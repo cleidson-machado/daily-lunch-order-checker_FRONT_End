@@ -1,4 +1,9 @@
 export default {
+  //https://nuxtjs.org/deployments/netlify/
+  generate: {
+    fallback: true,
+  },
+
   //https://explorers.netlify.com/learn/get-started-with-nuxt/nuxt-generate-and-deploy
   target: 'static',
 
