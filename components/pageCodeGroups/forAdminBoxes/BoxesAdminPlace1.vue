@@ -3,7 +3,7 @@
         <section>
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-0">
                 <h2 class="mb-0 mt-4 font-extrabold tracking-tight leading-none text-violet-800 lg:text-2xl">
-                    Administrative Panel of Meals or Menus
+                    Administrative Panel of Boxes Only
                 </h2>
             </div>
         </section>
