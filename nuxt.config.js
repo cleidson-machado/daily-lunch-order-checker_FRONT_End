@@ -1,4 +1,7 @@
 export default {
+  //https://explorers.netlify.com/learn/get-started-with-nuxt/nuxt-generate-and-deploy
+  target: 'static',
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   // https://tailwind-elements.com/docs/standard/integrations/nuxt-integration
   head: {
