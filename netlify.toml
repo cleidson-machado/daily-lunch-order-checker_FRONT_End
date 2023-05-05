@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "https://lunch-api-server.onrender.com"
+  from = "https://lunch-order-checker.netlify.app"
   to = "https://lunch-api-server.onrender.com"
   status = 200
   force = true
