@@ -44,7 +44,7 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/tailwindcss'],
 
   axios: {
-    proxy: false,
+    proxy: true,
     proxyHeaders: false,
   },
 
