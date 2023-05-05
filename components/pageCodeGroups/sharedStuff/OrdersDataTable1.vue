@@ -186,14 +186,7 @@ export default Vue.extend({
 
         //OK.. NEW METHOD USING THE CORRECT CODE TECHNIC
         async fetchOrdersData() {
-
-            const options = {
-                origin: ["https://lunch-order-checker.netlify.app"],
-                methods: ["GET", "POST", "DELETE"],
-                credentials: true
-            }
-
-            await this.$axios.$get('order-for-lunch/listAll', options)
+            await this.$axios.$get('order-for-lunch/listAll')
                 .then(response => {
                     this.ordersList = response
                     //console.table(response)
