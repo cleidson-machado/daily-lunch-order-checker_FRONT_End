@@ -313,7 +313,7 @@ export default Vue.extend({
       //debugger
       try {
         await this.$axios
-          .$get('/foodapi/user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
+          .$get('/user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
           .then((response) => {
             this.userList = response;
             if (response.length === 1) {
@@ -345,7 +345,7 @@ export default Vue.extend({
         console.log('O PREÇO CALCULADO É:' + calcPrice);
         //debugger
         await this.$axios
-          .$post('/foodapi/order-for-lunch/add', {
+          .$post('/order-for-lunch/add', {
             orderValue: calcPrice,
             amount: parseInt(this.itemAmount),
             lunchMealId: this.menuId, //#### OLD localStorage.getItem //lunchMealId: this.itemId, 
@@ -371,7 +371,7 @@ export default Vue.extend({
     //TO USE ON THE FUTURE SELECT COMBO FIELD...??
     async selectAllUserToOrder() {
       await this.$axios
-        .$get('/foodapi/user/listAll')
+        .$get('/user/listAll')
         .then((response) => {
           this.userList = response;
         })
