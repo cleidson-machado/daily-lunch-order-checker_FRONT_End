@@ -190,8 +190,7 @@ export default Vue.extend({
             const options = {
                 origin: ["https://lunch-order-checker.netlify.app"],
                 methods: ["GET", "POST", "DELETE"],
-                credentials: true,
-                origin: true,
+                credentials: true
             }
 
             await this.$axios.$get('order-for-lunch/listAll', options)
