@@ -31,25 +31,25 @@
             </div>
             <div type="button" class="order-first" v-for="(menu, index) in menuList" v-bind:key="index">
               <button data-modal-target="new-order-modal" data-modal-toggle="new-order-modal" v-on:click="setMenuAttributes(
-                  menu.id,
-                  menu.name,
-                  menu.type,
-                  menu.averageCalories,
-                  menu.averageWeight,
-                  menu.averagePrice,
-                  menu.dessertName,
-                  menu.nameDayWeek,
-                  menu.description,
-                  menu.rateQualityNumber,
-                  menu.imageLinkPath,
-                  menu.createdAt,
-                  menu.updatedAt,
-                  menu.lunchBox.name,
-                  menu.lunchBox.description,
-                  menu.lunchBox.imageLinkPath,
-                  menu.lunchBox.createdAt,
-                  menu.lunchBox.updatedAt
-                )" class="btn btn-red min-h-full min-w-full">
+                menu.id,
+                menu.name,
+                menu.type,
+                menu.averageCalories,
+                menu.averageWeight,
+                menu.averagePrice,
+                menu.dessertName,
+                menu.nameDayWeek,
+                menu.description,
+                menu.rateQualityNumber,
+                menu.imageLinkPath,
+                menu.createdAt,
+                menu.updatedAt,
+                menu.lunchBox.name,
+                menu.lunchBox.description,
+                menu.lunchBox.imageLinkPath,
+                menu.lunchBox.createdAt,
+                menu.lunchBox.updatedAt
+              )" class="btn btn-red min-h-full min-w-full">
                 <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path
                     d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z">
@@ -233,7 +233,7 @@ export default Vue.extend({
       this.todayDateBrFormat(); //SET THE CURRENT DATE PT-BR
       this.nameOfDayWeekTodayBrFormat(); //SET THE NAME OF WEEK TO PT-BR
 
-      await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/weekDayAndType/' + dayName + '/' + typeName)
+      await this.$axios.$get('https://lunch-api-server.onrender.com/lunch-meal-menu/listBy/weekDayAndType/' + dayName + '/' + typeName)
         .then(response => {
           if (dayName == 'SATURDAY' && response.length != 0) {
             //RETURN WARNING SATURDAY ###### ADD TO THE FUTURE PARAMETERS ######
