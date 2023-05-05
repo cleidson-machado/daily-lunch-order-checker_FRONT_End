@@ -186,7 +186,7 @@ export default Vue.extend({
 
         //OK.. NEW METHOD USING THE CORRECT CODE TECHNIC
         async fetchOrdersData() {
-            await this.$axios.$get('/foodapi/order-for-lunch/listAll')
+            await this.$axios.$get('order-for-lunch/listAll')
                 .then(response => {
                     this.ordersList = response
                     //console.table(response)
