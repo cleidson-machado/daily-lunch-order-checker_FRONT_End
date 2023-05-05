@@ -44,7 +44,7 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/tailwindcss'],
 
   axios: {
-    proxy: false,
+    proxy: true,
     proxyHeaders: false,
   },
 
@@ -53,9 +53,9 @@ export default {
       target: 'https://benef-api.frontline.cassems.com.br',
       pathRewrite: { '^/api/': '' },
     },
-    '/foodapi/': {
+    '/foodapi': {
       target: 'https://lunch-api-server.onrender.com',
-      pathRewrite: { '^/foodapi/': '' },
+      pathRewrite: { '^/foodapi': '/' },
     },
   },
 
