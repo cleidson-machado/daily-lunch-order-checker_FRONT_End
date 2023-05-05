@@ -313,7 +313,7 @@ export default Vue.extend({
       //debugger
       try {
         await this.$axios
-          .$get('/foodapi/user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
+          .$get('user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
           .then((response) => {
             this.userList = response;
             if (response.length === 1) {
@@ -371,7 +371,7 @@ export default Vue.extend({
     //TO USE ON THE FUTURE SELECT COMBO FIELD...??
     async selectAllUserToOrder() {
       await this.$axios
-        .$get('/foodapi/user/listAll')
+        .$get('user/listAll')
         .then((response) => {
           this.userList = response;
         })

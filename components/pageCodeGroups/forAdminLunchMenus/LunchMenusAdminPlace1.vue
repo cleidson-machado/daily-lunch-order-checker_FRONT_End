@@ -213,21 +213,21 @@
                                             <button type="button" data-modal-target="new-lunch-menu-modal-update"
                                                 data-modal-toggle="new-lunch-menu-modal-update"
                                                 data-tooltip-target="tooltip-for-review" v-on:click="getMenuById(
-                                                        lunch.id,
-                                                        lunch.name,
-                                                        lunch.lunchBox.name,
-                                                        lunch.type,
-                                                        lunch.averageCalories,
-                                                        lunch.averageWeight,
-                                                        lunch.averagePrice,
-                                                        lunch.dessertName,
-                                                        lunch.nameDayWeek,
-                                                        lunch.description,
-                                                        lunch.rateQualityNumber,
-                                                        lunch.imageLinkPath,
-                                                        lunch.createdAt,
-                                                        lunch.updatedAt,
-                                                    )"
+                                                    lunch.id,
+                                                    lunch.name,
+                                                    lunch.lunchBox.name,
+                                                    lunch.type,
+                                                    lunch.averageCalories,
+                                                    lunch.averageWeight,
+                                                    lunch.averagePrice,
+                                                    lunch.dessertName,
+                                                    lunch.nameDayWeek,
+                                                    lunch.description,
+                                                    lunch.rateQualityNumber,
+                                                    lunch.imageLinkPath,
+                                                    lunch.createdAt,
+                                                    lunch.updatedAt,
+                                                )"
                                                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border-t border-b border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                                                 <svg aria-hidden="true" class="w-4 h-4 mr-0 fill-current"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -421,7 +421,7 @@ export default Vue.extend({
 
     methods: {
         async fetchOrdersData() {
-            await this.$axios.$get('/foodapi/lunch-meal-menu/listAll')
+            await this.$axios.$get('lunch-meal-menu/listAll')
                 .then(response => {
                     this.lunchMenusList = response
                     this.amountItemsFound = response.length

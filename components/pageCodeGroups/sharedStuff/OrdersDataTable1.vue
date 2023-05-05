@@ -207,7 +207,7 @@ export default Vue.extend({
 
         //BKP ORIGINAL INITIAL TEMPORARY METHOD
         async fetchOrdersDataBKP() {
-            const orders = this.$axios.$get('/foodapi/order-for-lunch/listAll');
+            const orders = this.$axios.$get('order-for-lunch/listAll');
             this.ordersList = await orders;
             //console.table(orders);//TEST
         },

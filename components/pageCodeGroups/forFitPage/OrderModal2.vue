@@ -305,7 +305,7 @@ export default Vue.extend({
       //debugger
       try {
         await this.$axios
-          .$get('/foodapi/user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
+          .$get('user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
           .then((response) => {
             this.userList = response;
             if (response.length === 1) {
@@ -332,7 +332,7 @@ export default Vue.extend({
       // IF I FOUND SOMETHING ON THE INPUT TO PERFORM A SEARCH ACTION
       if (this.txtDataToFindUser) {
         await this.$axios
-          .$get('/foodapi/user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
+          .$get('user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
           .then((response) => {
             this.userList = response;
             if (response.length === 0) {
@@ -359,7 +359,7 @@ export default Vue.extend({
       if (this.userList.length === 1) {
         const calcPrice = parseFloat(this.itemPrice) * parseInt(this.itemAmount);
         await this.$axios
-          .$post('/foodapi/order-for-lunch/add', {
+          .$post('order-for-lunch/add', {
             orderValue: parseFloat(calcPrice),
             amount: parseInt(this.itemAmount),
             lunchMealId: this.itemId,
@@ -392,7 +392,7 @@ export default Vue.extend({
     //IT IS A TEST... CREATE HERE TO POPULATE THE COMBO SELECT ON LOADING PAGE..
     async selectAllUserToOrder() {
       await this.$axios
-        .$get('/foodapi/user/listAll')
+        .$get('user/listAll')
         .then((response) => {
           this.userList = response;
         })

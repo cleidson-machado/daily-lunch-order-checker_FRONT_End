@@ -183,8 +183,8 @@ export default Vue.extend({
       try {
         const typeName = this.txtDataTypeDefault;
         const dayName = this.nameOfDayWeekToday();
-        //const resApi = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/' + dayName);
-        const resApi = await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/weekDayAndType/' + dayName + '/' + typeName);
+        //const resApi = await this.$axios.$get('lunch-meal-menu/listBy/' + dayName);
+        const resApi = await this.$axios.$get('lunch-meal-menu/listBy/weekDayAndType/' + dayName + '/' + typeName);
 
         //SET THE CURRENT DATE PT-BR
         this.todayDateBr = this.todayDateBrFormat();

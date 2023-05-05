@@ -184,7 +184,7 @@ export default Vue.extend({
     methods: {
         async saveTheNewMenuLunch() {
             await this.$axios
-                .$put('/foodapi/lunch-meal-menu/' + this.menuId, {
+                .$put('lunch-meal-menu/' + this.menuId, {
                     name: this.menuName,
                     type: this.menuType,
                     averageCalories: this.menuAverageCalories,
@@ -209,7 +209,7 @@ export default Vue.extend({
 
         async selectAllUserToOrder() {
             await this.$axios
-                .$get('/foodapi/lunch-box-type/listAll')
+                .$get('lunch-box-type/listAll')
                 .then((response) => {
                     this.listLunchBox = response;
                 })

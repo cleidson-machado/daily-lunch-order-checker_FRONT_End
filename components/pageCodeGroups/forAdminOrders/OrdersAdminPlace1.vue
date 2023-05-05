@@ -313,7 +313,7 @@ export default Vue.extend({
 
     methods: {
         async fetchOrdersData() {
-            await this.$axios.$get('/foodapi/order-for-lunch/listAll')
+            await this.$axios.$get('order-for-lunch/listAll')
                 .then(response => {
                     this.ordersList = response
                     this.amountItemsFound = response.length

@@ -65,7 +65,7 @@ export default Vue.extend({
             console.log('DELETAR: ' + this.menuId)
 
             await this.$axios
-                .$delete('/foodapi/lunch-meal-menu/' + this.menuId)
+                .$delete('lunch-meal-menu/' + this.menuId)
                 .then((response) => {
                     //console.table(response)
                 })

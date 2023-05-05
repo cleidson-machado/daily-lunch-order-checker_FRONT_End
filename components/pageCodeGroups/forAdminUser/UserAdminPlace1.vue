@@ -315,7 +315,7 @@ export default Vue.extend({
 
     methods: {
         async fetchUsersData() {
-            await this.$axios.$get('/foodapi/user/listAll')
+            await this.$axios.$get('user/listAll')
                 .then(response => {
                     this.usersList = response
                     this.amountItemsFound = response.length
