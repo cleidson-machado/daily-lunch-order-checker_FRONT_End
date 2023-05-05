@@ -233,7 +233,7 @@ export default Vue.extend({
       this.todayDateBrFormat(); //SET THE CURRENT DATE PT-BR
       this.nameOfDayWeekTodayBrFormat(); //SET THE NAME OF WEEK TO PT-BR
 
-      await this.$axios.$get('https://lunch-api-server.onrender.com/lunch-meal-menu/listBy/weekDayAndType/' + dayName + '/' + typeName)
+      await this.$axios.$get('/foodapi/lunch-meal-menu/listBy/weekDayAndType/' + dayName + '/' + typeName)
         .then(response => {
           if (dayName == 'SATURDAY' && response.length != 0) {
             //RETURN WARNING SATURDAY ###### ADD TO THE FUTURE PARAMETERS ######

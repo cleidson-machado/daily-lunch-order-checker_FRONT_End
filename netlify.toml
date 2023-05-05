@@ -1,0 +1,6 @@
+[[redirects]]
+  from = "/foodapi/"
+  to = "https://lunch-api-server.onrender.com"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
