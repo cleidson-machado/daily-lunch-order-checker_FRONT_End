@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "http://localhost:3000"
+  from = "http://localhost:3001"
   to = "https://lunch-api-server.onrender.com"
   status = 200
   force = true
