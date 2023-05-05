@@ -53,10 +53,7 @@ export default {
       target: 'https://benef-api.frontline.cassems.com.br',
       pathRewrite: { '^/api/': '' },
     },
-    '/foodapi/': {
-      target: 'https://lunch-api-server.onrender.com',
-      pathRewrite: { '^/foodapi/': '' },
-    },
+    '/foodapi/': { target: 'http://localhost:3000', pathRewrite: { '^/foodapi/': '' } },
   },
 
   tailwindcss: {
