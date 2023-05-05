@@ -46,8 +46,8 @@ export default {
   axios: {
     proxy: true,
     baseURL: 'https://lunch-api-server.onrender.com',
-    proxyHeaders: false,
-    credentials: false,
+    proxyHeaders: true,
+    credentials: true,
   },
 
   proxy: {
