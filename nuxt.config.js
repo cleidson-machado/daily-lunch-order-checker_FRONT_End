@@ -44,7 +44,7 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/tailwindcss'],
 
   axios: {
-    proxy: false,
+    proxy: true,
     baseURL: 'https://lunch-api-server.onrender.com',
     proxyHeaders: false,
     credentials: false,
