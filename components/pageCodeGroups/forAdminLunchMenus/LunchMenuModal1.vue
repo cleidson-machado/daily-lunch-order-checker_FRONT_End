@@ -178,7 +178,16 @@ export default Vue.extend({
     },
 
     methods: {
+
+        averagePriceRemoveComma(value) {
+            const newValue = value.replace(",", ".")
+            this.menuAveragePrice = newValue;
+        },
+
         async saveTheNewMenuLunch() {
+
+            this.averagePriceRemoveComma(this.menuAveragePrice);
+
             await this.$axios
                 .$post('lunch-meal-menu/add', {
                     name: this.menuName,
