@@ -3,7 +3,7 @@
         <section>
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-0">
                 <h2 class="mb-0 mt-4 font-extrabold tracking-tight leading-none text-violet-800 lg:text-2xl">
-                    Administrative Panel of Users
+                    Administrative Panel of Orders
                 </h2>
             </div>
         </section>
@@ -132,30 +132,24 @@
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" class="px-4 py-3">Nome</th>
-                                    <th scope="col" class="px-4 py-3">Sobrenome</th>
-                                    <th scope="col" class="px-4 py-3">Email</th>
-                                    <th scope="col" class="px-4 py-3">Status</th>
-                                    <th scope="col" class="px-4 py-3">Data de Criação</th>
+                                    <th scope="col" class="px-4 py-3">Solicitante</th>
+                                    <th scope="col" class="px-4 py-3">Box / Embalagem</th>
+                                    <th scope="col" class="px-4 py-3">Qtd - Tipo</th>
+                                    <th scope="col" class="px-4 py-3">Valor Un</th>
+                                    <th scope="col" class="px-4 py-3">Data do Pedido</th>
                                     <th scope="col" class="px-4 py-3"><span class="sr-only">Ações</span></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="border-b dark:border-gray-700" v-for="(user, index) in filteredList"
+                                <tr class="border-b dark:border-gray-700" v-for="(order, index) in filteredList"
                                     v-bind:key="index">
                                     <th scope="row"
-                                        class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ formatUpperCase(user.firstName) }}
-                                    </th>
-                                    <td class="px-4 py-3">{{ user.lastName }}</td>
-                                    <td class="px-4 py-3">{{ user.email }}</td>
-                                    <td class="px-4 py-3" v-if="user.isActive == true">
-                                        <p class="text-green-600 font-semibold">ATIVO</p>
-                                    </td>
-                                    <td class="px-4 py-3" v-if="user.isActive == false">
-                                        <p class="text-red-600 font-semibold">DESATIVADO</p>
-                                    </td>
-                                    <td class="px-4 py-3">{{ formatDateByDayJs(user.createdAt) }}</td>
+                                        class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {{
+                                            formatUpperCase(order.userOrder.lastName) }}</th>
+                                    <td class="px-4 py-3">{{ order.lunchMeal.lunchBox.name }}</td>
+                                    <td class="px-4 py-3">{{ order.amount }} - {{ order.lunchMeal.type }}</td>
+                                    <td class="px-4 py-3"><strong>R$ {{ order.orderValue }}</strong></td>
+                                    <td class="px-4 py-3">{{ formatDateByDayJs(order.createdAt) }}</td>
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         <div class="inline-flex rounded-md shadow-sm" role="group">
                                             <button type="button" data-tooltip-target="tooltip-for-view"
@@ -273,16 +267,17 @@
         </section>
     </div>
 </template>
+
 <script lang="ts">
 import Vue from 'vue'
 import { initFlowbite } from 'flowbite';
 import * as dayjs from 'dayjs'
 
 export default Vue.extend({
-    name: 'UserAdminPlace1',
+    name: 'OrdersAdminPlace1',
 
     data: () => ({
-        usersList: [],
+        ordersList: [],
         groupingNumber: 10,
         currentPage: 1,
         pageStart: 0,
@@ -293,20 +288,23 @@ export default Vue.extend({
     }),
 
     created() {
-        this.fetchUsersData()
+        this.fetchOrdersData()
     },
 
     computed: {
+
         filteredList() {
             const star = (this.currentPage - 1) * this.groupingNumber
             const end = this.currentPage * this.groupingNumber
-            const result = this.usersList.slice(star, end)
+            const result = this.ordersList.slice(star, end)
             this.pageStart = star
             this.pageEnd = end
             this.stopNext = result.length
             this.numberPages = Math.ceil(this.amountItemsFound / this.groupingNumber) //HERE IS A CALCULATION FOR THE NUMBER OF PAGES
+            //console.log(result) //DON'T WORK YET??
             return result
         }
+
     },
 
     mounted() {
@@ -314,11 +312,12 @@ export default Vue.extend({
     },
 
     methods: {
-        async fetchUsersData() {
-            await this.$axios.$get('user/listAll')
+        async fetchOrdersData() {
+            await this.$axios.$get('order-for-lunch/listAll')
                 .then(response => {
-                    this.usersList = response
+                    this.ordersList = response
                     this.amountItemsFound = response.length
+                    //console.table(response)
                 })
                 .catch(err => {
                     console.log('Error getting all data from API:', err)
@@ -343,8 +342,9 @@ export default Vue.extend({
         changePageBtn(num) {
             this.currentPage = num
         },
-
-    },
+    }
 
 })
 </script>
+
+<style></style>

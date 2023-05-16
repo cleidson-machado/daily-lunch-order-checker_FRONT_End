@@ -209,10 +209,13 @@
               </svg>
               FINALIZAR
             </button>
-            <a href="/"
-              class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-              MUDAR para Versão NORMAL!
-            </a>
+            <router-link to="/" custom v-slot="{ navigate }">
+              <button v-on:click="navigate" role="link" data-modal-toggle="new-order-modal"
+                v-on:mousedown="changeToNormalCloseModal()"
+                class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                MUDAR para Versão NORMAL!
+              </button>
+            </router-link>
           </div>
           <button type="button"
             class="inline-flex items-center text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
@@ -302,7 +305,7 @@ export default Vue.extend({
       //debugger
       try {
         await this.$axios
-          .$get('/foodapi/user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
+          .$get('user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
           .then((response) => {
             this.userList = response;
             if (response.length === 1) {
@@ -329,7 +332,7 @@ export default Vue.extend({
       // IF I FOUND SOMETHING ON THE INPUT TO PERFORM A SEARCH ACTION
       if (this.txtDataToFindUser) {
         await this.$axios
-          .$get('/foodapi/user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
+          .$get('user/listBy/lastNameOrEmail/' + this.txtDataToFindUser)
           .then((response) => {
             this.userList = response;
             if (response.length === 0) {
@@ -356,7 +359,7 @@ export default Vue.extend({
       if (this.userList.length === 1) {
         const calcPrice = parseFloat(this.itemPrice) * parseInt(this.itemAmount);
         await this.$axios
-          .$post('/foodapi/order-for-lunch/add', {
+          .$post('order-for-lunch/add', {
             orderValue: parseFloat(calcPrice),
             amount: parseInt(this.itemAmount),
             lunchMealId: this.itemId,
@@ -381,11 +384,15 @@ export default Vue.extend({
       }
     },
 
+    changeToNormalCloseModal() {
+      localStorage.clear();
+    },
+
     //GET USER LIST FOR ORDER A LUNCH... TEST TO USE ON THE SELECT COMBO FIELD
     //IT IS A TEST... CREATE HERE TO POPULATE THE COMBO SELECT ON LOADING PAGE..
     async selectAllUserToOrder() {
       await this.$axios
-        .$get('/foodapi/user/listAll')
+        .$get('user/listAll')
         .then((response) => {
           this.userList = response;
         })

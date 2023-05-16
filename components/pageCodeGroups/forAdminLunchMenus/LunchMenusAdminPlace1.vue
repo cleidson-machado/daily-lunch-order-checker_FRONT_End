@@ -3,7 +3,7 @@
         <section>
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-0">
                 <h2 class="mb-0 mt-4 font-extrabold tracking-tight leading-none text-violet-800 lg:text-2xl">
-                    Administrative Panel of Users
+                    Administrative Panel of Lunch or Menus
                 </h2>
             </div>
         </section>
@@ -33,14 +33,15 @@
                         </div>
                         <div
                             class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                            <button type="button"
+                            <button type="button" data-modal-target="new-lunch-menu-modal"
+                                data-modal-toggle="new-lunch-menu-modal"
                                 class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                                 <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path clip-rule="evenodd" fill-rule="evenodd"
                                         d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                                 </svg>
-                                Add product
+                                Add New One
                             </button>
                             <div class="flex items-center space-x-3 w-full md:w-auto">
                                 <button id="actionsDropdownButton" data-dropdown-toggle="actionsDropdown"
@@ -92,35 +93,49 @@
                                             <input id="apple" type="checkbox" value=""
                                                 class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="apple"
-                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Apple
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">MONDAY
                                                 (56)</label>
                                         </li>
                                         <li class="flex items-center">
                                             <input id="fitbit" type="checkbox" value=""
                                                 class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="fitbit"
-                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Microsoft
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">TUESDAY
                                                 (16)</label>
                                         </li>
                                         <li class="flex items-center">
                                             <input id="razor" type="checkbox" value=""
                                                 class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="razor"
-                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Razor
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">WEDNESDAY
                                                 (49)</label>
                                         </li>
                                         <li class="flex items-center">
                                             <input id="nikon" type="checkbox" value=""
                                                 class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="nikon"
-                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Nikon
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">THURSDAY
                                                 (12)</label>
                                         </li>
                                         <li class="flex items-center">
                                             <input id="benq" type="checkbox" value=""
                                                 class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                             <label for="benq"
-                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">BenQ
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">FRIDAY
+                                                (74)</label>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <input id="benq" type="checkbox" value=""
+                                                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label for="benq"
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">SATURDAY
+                                                (74)</label>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <input id="benq" type="checkbox" value=""
+                                                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label for="benq"
+                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">SUNDAY
                                                 (74)</label>
                                         </li>
                                     </ul>
@@ -133,32 +148,50 @@
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-4 py-3">Nome</th>
-                                    <th scope="col" class="px-4 py-3">Sobrenome</th>
-                                    <th scope="col" class="px-4 py-3">Email</th>
-                                    <th scope="col" class="px-4 py-3">Status</th>
-                                    <th scope="col" class="px-4 py-3">Data de Criação</th>
+                                    <th scope="col" class="px-4 py-3">Tipo </th>
+                                    <th scope="col" class="px-4 py-3">Photo</th>
+                                    <th scope="col" class="px-4 py-3">Nome Dia Semana</th>
+                                    <th scope="col" class="px-4 py-3">Data Cad.</th>
+                                    <th scope="col" class="px-4 py-3">Data Atual.</th>
                                     <th scope="col" class="px-4 py-3"><span class="sr-only">Ações</span></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="border-b dark:border-gray-700" v-for="(user, index) in filteredList"
+                                <tr class="border-b dark:border-gray-700" v-for="(lunch, index) in filteredList"
                                     v-bind:key="index">
                                     <th scope="row"
-                                        class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ formatUpperCase(user.firstName) }}
-                                    </th>
-                                    <td class="px-4 py-3">{{ user.lastName }}</td>
-                                    <td class="px-4 py-3">{{ user.email }}</td>
-                                    <td class="px-4 py-3" v-if="user.isActive == true">
-                                        <p class="text-green-600 font-semibold">ATIVO</p>
+                                        class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {{
+                                            formatUpperCase(lunch.name) }}</th>
+                                    <td class="px-4 py-3"><strong>{{ lunch.type }}</strong></td>
+                                    <td class="px-4 py-3">{{ lunch.imageLinkPath }}</td>
+                                    <td class="px-4 py-3"><strong>{{ lunch.nameDayWeek }}</strong></td>
+                                    <td class="px-4 py-3">{{ formatDateByDayJs(lunch.createdAt) }}</td>
+                                    <td class="px-4 py-3" v-if="lunch.updatedAt == null">
+                                        <p class="text-yellow-400 font-semibold">No Update Yet!</p>
                                     </td>
-                                    <td class="px-4 py-3" v-if="user.isActive == false">
-                                        <p class="text-red-600 font-semibold">DESATIVADO</p>
+                                    <td class="px-4 py-3" v-if="lunch.updatedAt != null">
+                                        {{ formatDateByDayJs(lunch.updatedAt) }}
                                     </td>
-                                    <td class="px-4 py-3">{{ formatDateByDayJs(user.createdAt) }}</td>
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         <div class="inline-flex rounded-md shadow-sm" role="group">
-                                            <button type="button" data-tooltip-target="tooltip-for-view"
+                                            <button type="button" data-modal-target="lunch-menu-modal-view"
+                                                data-modal-toggle="lunch-menu-modal-view"
+                                                data-tooltip-target="tooltip-for-view" v-on:click="getMenuById(
+                                                    lunch.id,
+                                                    lunch.name,
+                                                    lunch.lunchBox.name,
+                                                    lunch.type,
+                                                    lunch.averageCalories,
+                                                    lunch.averageWeight,
+                                                    lunch.averagePrice,
+                                                    lunch.dessertName,
+                                                    lunch.nameDayWeek,
+                                                    lunch.description,
+                                                    lunch.rateQualityNumber,
+                                                    lunch.imageLinkPath,
+                                                    lunch.createdAt,
+                                                    lunch.updatedAt,
+                                                )"
                                                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                                                 <svg aria-hidden="true" class="w-4 h-4 mr-0 fill-current"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -177,7 +210,24 @@
                                                 Data View
                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                             </div>
-                                            <button type="button" data-tooltip-target="tooltip-for-review"
+                                            <button type="button" data-modal-target="new-lunch-menu-modal-update"
+                                                data-modal-toggle="new-lunch-menu-modal-update"
+                                                data-tooltip-target="tooltip-for-review" v-on:click="getMenuById(
+                                                    lunch.id,
+                                                    lunch.name,
+                                                    lunch.lunchBox.name,
+                                                    lunch.type,
+                                                    lunch.averageCalories,
+                                                    lunch.averageWeight,
+                                                    lunch.averagePrice,
+                                                    lunch.dessertName,
+                                                    lunch.nameDayWeek,
+                                                    lunch.description,
+                                                    lunch.rateQualityNumber,
+                                                    lunch.imageLinkPath,
+                                                    lunch.createdAt,
+                                                    lunch.updatedAt,
+                                                )"
                                                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border-t border-b border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                                                 <svg aria-hidden="true" class="w-4 h-4 mr-0 fill-current"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -196,7 +246,9 @@
                                                 Data Edition
                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                             </div>
-                                            <button type="button" data-tooltip-target="tooltip-dark"
+                                            <button type="button" data-modal-target="popup-delete-modal"
+                                                data-modal-toggle="popup-delete-modal" data-tooltip-target="tooltip-dark"
+                                                v-on:click="getMenuByIdDelete(lunch.id, lunch.name)"
                                                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-r-md hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                                                 <svg aria-hidden="true" class="w-4 h-4 mr-0 fill-current"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -271,18 +323,54 @@
                 </div>
             </div>
         </section>
+
+        <lunch-menu-modal-1 id="createModalComponet" />
+
+        <lunch-menu-modal-2-view id="viewModalComponet" :menuId="menuIdModal" :menuName="menuNameModal"
+            :menuLunchBoxName="menuLunchBoxNameModal" :menuType="menuTypeModal"
+            :menuAverageCalories="menuAverageCaloriesModal" :menuAverageWeight="menuAverageWeightModal"
+            :menuAveragePrice="menuAveragePriceModal" :menuDessertName="menuDessertNameModal"
+            :menuNameDayWeek="menuNameDayWeekModal" :menuDescription="menuDescriptionModal"
+            :menuRateQualityNumber="menuRateQualityNumberModal" :menuImageLinkPath="menuImageLinkPathModal"
+            :menuCreatedAt="menuCreatedAtModal" :menuUpdatedAt="menuUpdatedAtModal" />
+
+        <lunch-menu-modal-3-view-delete id="deleteModalComponet" :menuId="menuIdModal" :menuName="menuNameModal" />
+
+        <lunch-menu-modal-4-view-update id="updateModalComponet" :menuId="menuIdModal" :menuName="menuNameModal"
+            :menuLunchBoxName="menuLunchBoxNameModal" :menuType="menuTypeModal"
+            :menuAverageCalories="menuAverageCaloriesModal" :menuAverageWeight="menuAverageWeightModal"
+            :menuAveragePrice="menuAveragePriceModal" :menuDessertName="menuDessertNameModal"
+            :menuNameDayWeek="menuNameDayWeekModal" :menuDescription="menuDescriptionModal"
+            :menuRateQualityNumber="menuRateQualityNumberModal" :menuImageLinkPath="menuImageLinkPathModal"
+            :menuCreatedAt="menuCreatedAtModal" :menuUpdatedAt="menuUpdatedAtModal" />
+
     </div>
 </template>
+
 <script lang="ts">
 import Vue from 'vue'
 import { initFlowbite } from 'flowbite';
+import LunchMenuModal1 from './LunchMenuModal1.vue';
+import LunchMenuModal2View from './LunchMenuModal2View.vue';
+import LunchMenuModal3ViewDelete from './LunchMenuModal3Delete.vue';
+import LunchMenuModal4ViewUpdate from './LunchMenuModal4Update.vue';
 import * as dayjs from 'dayjs'
 
+
 export default Vue.extend({
-    name: 'UserAdminPlace1',
+    name: 'LunchMenusAdminPlace1',
+
+    components: {
+        LunchMenuModal1,
+        LunchMenuModal2View,
+        LunchMenuModal3ViewDelete,
+        LunchMenuModal4ViewUpdate
+    },
 
     data: () => ({
-        usersList: [],
+
+        //TABLE DATA
+        lunchMenusList: [],
         groupingNumber: 10,
         currentPage: 1,
         pageStart: 0,
@@ -290,23 +378,41 @@ export default Vue.extend({
         amountItemsFound: 0,
         stopNext: 0,
         numberPages: 0,
+
+        //FORM MODAL OBJECT FOR VIEW ONLY
+        menuIdModal: '',
+        menuNameModal: '',
+        menuLunchBoxNameModal: '',
+        menuTypeModal: '',
+        menuAverageCaloriesModal: '',
+        menuAverageWeightModal: '',
+        menuAveragePriceModal: '',
+        menuDessertNameModal: '',
+        menuNameDayWeekModal: '',
+        menuDescriptionModal: '',
+        menuRateQualityNumberModal: '',
+        menuImageLinkPathModal: '',
+        menuCreatedAtModal: '',
+        menuUpdatedAtModal: '',
     }),
 
     created() {
-        this.fetchUsersData()
+        this.fetchOrdersData()
     },
 
     computed: {
+
         filteredList() {
             const star = (this.currentPage - 1) * this.groupingNumber
             const end = this.currentPage * this.groupingNumber
-            const result = this.usersList.slice(star, end)
+            const result = this.lunchMenusList.slice(star, end)
             this.pageStart = star
             this.pageEnd = end
             this.stopNext = result.length
             this.numberPages = Math.ceil(this.amountItemsFound / this.groupingNumber) //HERE IS A CALCULATION FOR THE NUMBER OF PAGES
             return result
         }
+
     },
 
     mounted() {
@@ -314,11 +420,12 @@ export default Vue.extend({
     },
 
     methods: {
-        async fetchUsersData() {
-            await this.$axios.$get('user/listAll')
+        async fetchOrdersData() {
+            await this.$axios.$get('lunch-meal-menu/listAll')
                 .then(response => {
-                    this.usersList = response
+                    this.lunchMenusList = response
                     this.amountItemsFound = response.length
+                    //console.table(response)
                 })
                 .catch(err => {
                     console.log('Error getting all data from API:', err)
@@ -344,7 +451,30 @@ export default Vue.extend({
             this.currentPage = num
         },
 
-    },
+        async getMenuById(id, name, lunchBname, type, aveCal, aveWeig, avePri, desNam, dayNam, descPt, rateNum, igmLink, creAt, updAt) {
+            this.menuIdModal = id
+            this.menuNameModal = name
+            this.menuLunchBoxNameModal = lunchBname
+            this.menuTypeModal = type
+            this.menuAverageCaloriesModal = aveCal
+            this.menuAverageWeightModal = aveWeig
+            this.menuAveragePriceModal = avePri
+            this.menuDessertNameModal = desNam
+            this.menuNameDayWeekModal = dayNam
+            this.menuDescriptionModal = descPt
+            this.menuRateQualityNumberModal = rateNum
+            this.menuImageLinkPathModal = igmLink
+            this.menuCreatedAtModal = creAt
+            this.menuUpdatedAtModal = updAt
+        },
+
+        async getMenuByIdDelete(id, name,) {
+            this.menuIdModal = id
+            this.menuNameModal = name
+        }
+    }
 
 })
 </script>
+
+<style></style>
