@@ -27,7 +27,7 @@
                                     </div>
                                     <input type="text" id="simple-search"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                        placeholder="Search" required="">
+                                        placeholder="Search" required="true">
                                 </div>
                             </form>
                         </div>
@@ -157,7 +157,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="border-b dark:border-gray-700" v-for="(lunch, index) in filteredList"
+                                <tr class="border-b dark:border-gray-700" v-for="(lunch, index) in   filteredList  "
                                     v-bind:key="index">
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {{
@@ -174,24 +174,7 @@
                                     </td>
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         <div class="inline-flex rounded-md shadow-sm" role="group">
-                                            <button type="button" data-modal-target="lunch-menu-modal-view"
-                                                data-modal-toggle="lunch-menu-modal-view"
-                                                data-tooltip-target="tooltip-for-view" v-on:click="getMenuById(
-                                                    lunch.id,
-                                                    lunch.name,
-                                                    lunch.lunchBox.name,
-                                                    lunch.type,
-                                                    lunch.averageCalories,
-                                                    lunch.averageWeight,
-                                                    lunch.averagePrice,
-                                                    lunch.dessertName,
-                                                    lunch.nameDayWeek,
-                                                    lunch.description,
-                                                    lunch.rateQualityNumber,
-                                                    lunch.imageLinkPath,
-                                                    lunch.createdAt,
-                                                    lunch.updatedAt,
-                                                )"
+                                            <nuxt-link :to="'/menus/view/' + lunch.id"
                                                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                                                 <svg aria-hidden="true" class="w-4 h-4 mr-0 fill-current"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -204,7 +187,7 @@
                                                     </path>
                                                 </svg>
                                                 <span class=""><strong>V</strong></span>
-                                            </button>
+                                            </nuxt-link>
                                             <div id="tooltip-for-view" role="tooltip"
                                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                                                 Data View
@@ -213,20 +196,7 @@
                                             <button type="button" data-modal-target="new-lunch-menu-modal-update"
                                                 data-modal-toggle="new-lunch-menu-modal-update"
                                                 data-tooltip-target="tooltip-for-review" v-on:click="getMenuById(
-                                                    lunch.id,
-                                                    lunch.name,
-                                                    lunch.lunchBox.name,
-                                                    lunch.type,
-                                                    lunch.averageCalories,
-                                                    lunch.averageWeight,
-                                                    lunch.averagePrice,
-                                                    lunch.dessertName,
-                                                    lunch.nameDayWeek,
-                                                    lunch.description,
-                                                    lunch.rateQualityNumber,
-                                                    lunch.imageLinkPath,
-                                                    lunch.createdAt,
-                                                    lunch.updatedAt,
+                                                    lunch.id
                                                 )"
                                                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border-t border-b border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
                                                 <svg aria-hidden="true" class="w-4 h-4 mr-0 fill-current"
@@ -298,7 +268,7 @@
                                 </button>
                             </li>
                             <!-- START OF THE PAGE BUTTONS GROUP -->
-                            <li v-for="(item, index) in new Array(numberPages)" v-bind:key="index">
+                            <li v-for="(  item, index  ) in   new Array(numberPages)  " v-bind:key="index">
                                 <button v-on:click="changePageBtn(index + 1)"
                                     class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">
                                     <span>{{ index + 1 }}</span>
@@ -451,7 +421,11 @@ export default Vue.extend({
             this.currentPage = num
         },
 
-        async getMenuById(id, name, lunchBname, type, aveCal, aveWeig, avePri, desNam, dayNam, descPt, rateNum, igmLink, creAt, updAt) {
+        async getMenuById(id) {
+            this.menuIdModal = id
+        },
+
+        async getMenuById_BKP(id, name, lunchBname, type, aveCal, aveWeig, avePri, desNam, dayNam, descPt, rateNum, igmLink, creAt, updAt) {
             this.menuIdModal = id
             this.menuNameModal = name
             this.menuLunchBoxNameModal = lunchBname
